@@ -54,6 +54,27 @@ class LiveServerTests(unittest.TestCase):
         status, _ = self.request("GET", "/api/status", headers={"Host": "example.com"})
         self.assertEqual(status, 403)
 
+    def test_comparison_validation_and_shared_forecast_contract(self):
+        _, availability = self.request("GET", "/api/status")
+        if not availability["gated_ready"]:
+            self.skipTest("Gated model resources unavailable")
+        for body in ({"view": "unknown"}, {"condition": "unknown"},
+                     {"horizon": 10000}, {"horizon": True}, {"seed": -1},
+                     {"action_mode": "unknown"}, {"scenario": "unknown"}):
+            status, payload = self.request("POST", "/api/compare", body)
+            self.assertEqual(status, 400)
+            self.assertIn("error", payload)
+        status, data = self.request("POST", "/api/compare", {"view": "prediction", "seed": 2026})
+        self.assertEqual(status, 200)
+        self.assertEqual(data["model_training_seed"], 142)
+        self.assertEqual(len(data["methods"]), 4)
+        self.assertEqual(len(data["actual_path"]), data["executed_steps"] + 1)
+        for row in data["methods"]:
+            np.testing.assert_allclose(row["predicted_path"][0], data["snapshot"])
+        status, repeated = self.request("POST", "/api/compare", {"view": "prediction", "seed": 2026})
+        self.assertEqual(status, 200)
+        self.assertEqual(data, repeated)
+
     def test_gated_resources_are_required_without_affecting_old_model(self):
         with tempfile.TemporaryDirectory() as directory:
             app = LiveApplication(directory)

@@ -84,6 +84,7 @@ class LiveApplication:
         self.sessions: dict[str, LiveSession] = {}
         self.sessions_lock = threading.Lock()
         self.model_lock = threading.Lock()
+        self.comparison_cache = {}
         self.model = None
         self.model_training_seed = None
         self.gated_model = None
@@ -247,6 +248,47 @@ class LiveApplication:
             session.env.damping_scale = scale
             return {"session_id": body["session_id"], "damping_scale": scale, "done": False}
 
+    def compare(self, body):
+        """Matched models and observations for an explicitly labelled demo.
+
+        This endpoint has no live-session side effects. The comparison builder
+        keeps evaluator truth out of all model inputs. Its small cache avoids
+        recomputing identical navigation rollouts on repeated UI visits.
+        """
+        from foresight.comparison import build_comparison, build_navigation
+
+        if self.gated_model is None:
+            raise APIError(self.gated_load_error, 503)
+        view = body.get("view", "prediction")
+        condition = body.get("condition", "nominal")
+        action_mode = body.get("action_mode", "cruise")
+        scenario = body.get("scenario", "crossing")
+        seed = body.get("seed", 2026)
+        horizon = body.get("horizon", 16)
+        if view not in {"prediction", "navigation"}:
+            raise APIError("Unknown comparison view")
+        if condition not in {"nominal", "global_shift"}:
+            raise APIError("Unknown comparison condition")
+        if action_mode not in {"cruise", "coast", "brake"} or scenario not in SCENARIOS:
+            raise APIError("Unknown action sequence or scenario")
+        if isinstance(seed, bool) or not isinstance(seed, int) or not 0 <= seed <= 2 ** 31 - 1:
+            raise APIError("seed must be an integer between 0 and 2147483647")
+        if isinstance(horizon, bool) or not isinstance(horizon, int) or not 4 <= horizon <= 32:
+            raise APIError("horizon must be an integer between 4 and 32")
+        key = (view, condition, action_mode, scenario, seed, horizon)
+        with self.model_lock, threadpool_limits(limits=1):
+            if key not in self.comparison_cache:
+                common = dict(base=self.gated_model, threshold=self.gate_threshold,
+                              global_damping=self.global_damping, seed=seed, condition=condition)
+                result = (build_comparison(**common, action_mode=action_mode, horizon=horizon)
+                          if view == "prediction" else build_navigation(**common, scenario=scenario))
+                result["model_training_seed"] = self.gated_training_seed
+                result["evidence_scope"] = "interactive paired demonstration; not aggregate experimental evidence"
+                if len(self.comparison_cache) >= 8:
+                    self.comparison_cache.pop(next(iter(self.comparison_cache)))
+                self.comparison_cache[key] = result
+            return self.comparison_cache[key]
+
 
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *args, app: LiveApplication, **kwargs):
@@ -307,7 +349,8 @@ class Handler(SimpleHTTPRequestHandler):
             self._local_api()
             path = urlsplit(self.path).path
             routes = {"/api/reset": self.app.reset, "/api/step": self.app.step,
-                      "/api/goal": self.app.goal, "/api/dynamics": self.app.dynamics}
+                      "/api/goal": self.app.goal, "/api/dynamics": self.app.dynamics,
+                      "/api/compare": self.app.compare}
             if path not in routes:
                 raise APIError("Unknown API endpoint", 404)
             self._reply(200, routes[path](self._body()))
