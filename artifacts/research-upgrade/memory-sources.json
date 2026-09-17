@@ -1,0 +1,183 @@
+{
+  "search_queries": [
+    "Known foundational RSSM latent planning papers",
+    "world model AND occlusion"
+  ],
+  "attempts": [
+    {
+      "url": "https://export.arxiv.org/api/query?search_query=all:%22world%20model%22%20AND%20all:occlusion&start=0&max_results=5",
+      "status": 406,
+      "error": "Not Acceptable",
+      "accessed_date": "2026-09-17",
+      "query": "all:\"world model\" AND all:occlusion",
+      "read_scope": "request failed; no paper content read"
+    },
+    {
+      "name": "planet",
+      "url": "https://arxiv.org/abs/1811.04551",
+      "accessed_utc": "2026-09-17T04:19:42.180808+00:00",
+      "status": 200,
+      "sha256": "c334a634a681b4790e0ef8218179bc8435eee35012df09ec48c9f30d5a46a025",
+      "bytes": 44455,
+      "title": "Title: Learning Latent Dynamics for Planning from Pixels",
+      "abstract": "Abstract: Planning has been very successful for control tasks with known environment dynamics. To leverage planning in unknown environments, the agent needs to learn the dynamics from interactions with the world. However, learning dynamics models that are accurate enough for planning has been a long-standing challenge, especially in image-based domains. We propose the Deep Planning Network (PlaNet), a purely model-based agent that learns the environment dynamics from images and chooses actions through fast online planning in latent space. To achieve high performance, the dynamics model must accurately predict the rewards ahead for multiple time steps. We approach this using a latent dynamics model with both deterministic and stochastic transition components. Moreover, we propose a multi-step variational inference objective that we name latent overshooting. Using only pixel observations, our agent solves continuous control tasks with contact dynamics, partial observability, and sparse rewards, which exceed the difficulty of tasks that were previously solved by planning with learned models. PlaNet uses substantially fewer episodes and reaches final performance close to and sometimes higher than strong model-free algorithms.",
+      "local_snapshot": "outputs/research-memory-sources/planet-abstract.html",
+      "read_scope": "arXiv abstract and metadata only"
+    },
+    {
+      "name": "dreamerv3",
+      "url": "https://arxiv.org/abs/2301.04104",
+      "accessed_utc": "2026-09-17T04:19:42.180808+00:00",
+      "status": 200,
+      "sha256": "9b8279c15123de4ddb395d7b0333cfe29b8eadfcfe669550a97477fe9317ff1e",
+      "bytes": 41612,
+      "title": "Title: Mastering Diverse Domains through World Models",
+      "abstract": "Abstract: Developing a general algorithm that learns to solve tasks across a wide range of applications has been a fundamental challenge in artificial intelligence. Although current reinforcement learning algorithms can be readily applied to tasks similar to what they have been developed for, configuring them for new application domains requires significant human expertise and experimentation. We present DreamerV3, a general algorithm that outperforms specialized methods across over 150 diverse tasks, with a single configuration. Dreamer learns a model of the environment and improves its behavior by imagining future scenarios. Robustness techniques based on normalization, balancing, and transformations enable stable learning across domains. Applied out of the box, Dreamer is the first algorithm to collect diamonds in Minecraft from scratch without human data or curricula. This achievement has been posed as a significant challenge in artificial intelligence that requires exploring farsighted strategies from pixels and sparse rewards in an open world. Our work allows solving challenging control problems without extensive experimentation, making reinforcement learning broadly applicable.",
+      "local_snapshot": "outputs/research-memory-sources/dreamerv3-abstract.html",
+      "read_scope": "arXiv abstract and metadata only"
+    },
+    {
+      "name": "plan2explore",
+      "url": "https://arxiv.org/abs/2005.05960",
+      "accessed_utc": "2026-09-17T04:19:42.181807+00:00",
+      "status": 200,
+      "sha256": "9c8a1755f1f938f694e768bd097701e8cb7c47b71ec27d7154e4a6f671ba0795",
+      "bytes": 44110,
+      "title": "Title: Planning to Explore via Self-Supervised World Models",
+      "abstract": "Abstract: Reinforcement learning allows solving complex tasks, however, the learning tends to be task-specific and the sample efficiency remains a challenge. We present Plan2Explore, a self-supervised reinforcement learning agent that tackles both these challenges through a new approach to self-supervised exploration and fast adaptation to new tasks, which need not be known during exploration. During exploration, unlike prior methods which retrospectively compute the novelty of observations after the agent has already reached them, our agent acts efficiently by leveraging planning to seek out expected future novelty. After exploration, the agent quickly adapts to multiple downstream tasks in a zero or a few-shot manner. We evaluate on challenging control tasks from high-dimensional image inputs. Without any training supervision or task-specific interaction, Plan2Explore outperforms prior self-supervised exploration methods, and in fact, almost matches the performances oracle which has access to rewards. Videos and code at  this https URL",
+      "local_snapshot": "outputs/research-memory-sources/plan2explore-abstract.html",
+      "read_scope": "arXiv abstract and metadata only"
+    },
+    {
+      "name": "memorymaze",
+      "url": "https://arxiv.org/abs/2210.13383",
+      "accessed_utc": "2026-09-17T04:19:42.181807+00:00",
+      "status": 200,
+      "sha256": "c84022ff180dcc91e7ebd263080b1f72f36181a34de29c9fceccd7c15218b454",
+      "bytes": 41662,
+      "title": "Title: Evaluating Long-Term Memory in 3D Mazes",
+      "abstract": "Abstract: Intelligent agents need to remember salient information to reason in partially-observed environments. For example, agents with a first-person view should remember the positions of relevant objects even if they go out of view. Similarly, to effectively navigate through rooms agents need to remember the floor plan of how rooms are connected. However, most benchmark tasks in reinforcement learning do not test long-term memory in agents, slowing down progress in this important research direction. In this paper, we introduce the Memory Maze, a 3D domain of randomized mazes specifically designed for evaluating long-term memory in agents. Unlike existing benchmarks, Memory Maze measures long-term memory separate from confounding agent abilities and requires the agent to localize itself by integrating information over time. With Memory Maze, we propose an online reinforcement learning benchmark, a diverse offline dataset, and an offline probing evaluation. Recording a human player establishes a strong baseline and verifies the need to build up and retain memories, which is reflected in their gradually increasing rewards within each episode. We find that current algorithms benefit from training with truncated backpropagation through time and succeed on small mazes, but fall short of human performance on the large mazes, leaving room for future algorithmic designs to be evaluated on the Memory Maze.",
+      "local_snapshot": "outputs/research-memory-sources/memorymaze-abstract.html",
+      "read_scope": "arXiv abstract and metadata only"
+    },
+    {
+      "name": "nwm",
+      "url": "https://arxiv.org/abs/2412.03572",
+      "accessed_utc": "2026-09-17T04:19:42.181807+00:00",
+      "status": 200,
+      "sha256": "c78e6575f95a3df8a6b26007f237636ac038f36a1ba7d55ceefd1d59d353f286",
+      "bytes": 41434,
+      "title": "Title: Navigation World Models",
+      "abstract": "Abstract: Navigation is a fundamental skill of agents with visual-motor capabilities. We introduce a Navigation World Model (NWM), a controllable video generation model that predicts future visual observations based on past observations and navigation actions. To capture complex environment dynamics, NWM employs a Conditional Diffusion Transformer (CDiT), trained on a diverse collection of egocentric videos of both human and robotic agents, and scaled up to 1 billion parameters. In familiar environments, NWM can plan navigation trajectories by simulating them and evaluating whether they achieve the desired goal. Unlike supervised navigation policies with fixed behavior, NWM can dynamically incorporate constraints during planning. Experiments demonstrate its effectiveness in planning trajectories from scratch or by ranking trajectories sampled from an external policy. Furthermore, NWM leverages its learned visual priors to imagine trajectories in unfamiliar environments from a single input image, making it a flexible and powerful tool for next-generation navigation systems.",
+      "local_snapshot": "outputs/research-memory-sources/nwm-abstract.html",
+      "read_scope": "arXiv abstract and metadata only"
+    },
+    {
+      "name": "planet-code",
+      "url": "https://raw.githubusercontent.com/google-research/planet/master/README.md",
+      "accessed_utc": "2026-09-17T04:20:17.610094+00:00",
+      "status": 200,
+      "final_url": "https://raw.githubusercontent.com/google-research/planet/master/README.md",
+      "sha256": "61d0d9215eae2cc8ee4d035913f745fa426db3a6342c5008ee5bae158aa3bd48",
+      "bytes": 3954,
+      "read_scope": "full README",
+      "code_urls": [
+        "https://github.com/deepmind/dm_control#rendering"
+      ],
+      "local_snapshot": "outputs/research-memory-sources/planet-code.md"
+    },
+    {
+      "name": "dreamerv3-code",
+      "url": "https://raw.githubusercontent.com/danijar/dreamerv3/main/README.md",
+      "accessed_utc": "2026-09-17T04:20:17.610094+00:00",
+      "status": 200,
+      "final_url": "https://raw.githubusercontent.com/danijar/dreamerv3/main/README.md",
+      "sha256": "a4d8e77c07a876a7f528aa204fbc910812c5ca96bcfb67709b366f8ff0d3ed6b",
+      "bytes": 4590,
+      "read_scope": "full README",
+      "code_urls": [
+        "https://github.com/danijar/dreamerv3/assets/2111293/0fe8f1cf-6970-41ea-9efc-e2e2477e7861",
+        "https://github.com/google/jax#pip-installation-gpu-cuda"
+      ],
+      "local_snapshot": "outputs/research-memory-sources/dreamerv3-code.md"
+    },
+    {
+      "name": "plan2explore-project",
+      "url": "https://ramanans1.github.io/plan2explore/",
+      "accessed_utc": "2026-09-17T04:20:17.611093+00:00",
+      "status": 200,
+      "final_url": "https://ramanans1.github.io/plan2explore/",
+      "sha256": "7d38360c2586e9829cbbd62342c86f9a018673a4c098ff24846d32eecb058eab",
+      "bytes": 15984,
+      "read_scope": "project page",
+      "code_urls": [
+        "https://github.com/ramanans1",
+        "https://github.com/ramanans1/plan2explore'"
+      ],
+      "local_snapshot": "outputs/research-memory-sources/plan2explore-project.html"
+    },
+    {
+      "name": "memorymaze-code",
+      "url": "https://raw.githubusercontent.com/jurgisp/memory-maze/main/README.md",
+      "accessed_utc": "2026-09-17T04:20:17.611093+00:00",
+      "status": 200,
+      "final_url": "https://raw.githubusercontent.com/jurgisp/memory-maze/main/README.md",
+      "sha256": "012f0fbb841470cf9d12a616e6824e693cf22046516c358bacf9b6aebef02c45",
+      "bytes": 13088,
+      "read_scope": "full README",
+      "code_urls": [
+        "https://github.com/deepmind/dm_control",
+        "https://github.com/deepmind/dm_control#rendering",
+        "https://github.com/deepmind/dm_env",
+        "https://github.com/deepmind/lab/tree/master/game_scripts/levels/contributed/dmlab30",
+        "https://github.com/deepmind/lab/tree/master/game_scripts/levels/contributed/dmlab30#goal-locations-large",
+        "https://github.com/deepmind/lab/tree/master/game_scripts/levels/contributed/dmlab30#goal-locations-small",
+        "https://github.com/deepmind/labmaze",
+        "https://github.com/deepmind/mujoco",
+        "https://github.com/google-research/seed_rl/tree/master/agents/vtrace",
+        "https://github.com/jurgisp/memory-maze/issues",
+        "https://github.com/jurgisp/pydreamer",
+        "https://github.com/openai/gym"
+      ],
+      "local_snapshot": "outputs/research-memory-sources/memorymaze-code.md"
+    },
+    {
+      "name": "nwm-project",
+      "url": "https://www.amirbar.net/nwm/",
+      "accessed_utc": "2026-09-17T04:20:17.611093+00:00",
+      "status": 200,
+      "final_url": "https://www.amirbar.net/nwm/",
+      "sha256": "4cfd0c9907c33349f5ab593541c2facb3587dd000944ea635cdf6bf183e34411",
+      "bytes": 20294,
+      "read_scope": "project page",
+      "code_urls": [
+        "https://github.com/facebookresearch/nwm/"
+      ],
+      "local_snapshot": "outputs/research-memory-sources/nwm-project.html"
+    },
+    {
+      "name": "plan2explore-code",
+      "url": "https://raw.githubusercontent.com/ramanans1/plan2explore/master/README.md",
+      "accessed_utc": "2026-09-17T04:21:02.960310+00:00",
+      "read_scope": "full README",
+      "status": 200,
+      "sha256": "ad94f9e699e34c17e71a808e98dab7ca30328315df12a36dfb491c8db1c920e1",
+      "bytes": 7764,
+      "local_snapshot": "outputs/research-memory-sources/plan2explore-code.md"
+    },
+    {
+      "name": "pydreamer-code",
+      "url": "https://raw.githubusercontent.com/jurgisp/pydreamer/main/README.md",
+      "accessed_utc": "2026-09-17T04:21:08.224854+00:00",
+      "read_scope": "full README",
+      "status": 200,
+      "sha256": "9e219c0705854faa9b37214120b584794abca152138be66b6967c92f5a7d736c",
+      "bytes": 8847,
+      "local_snapshot": "outputs/research-memory-sources/pydreamer-code.md"
+    }
+  ],
+  "notes": [
+    "Primary sources fetched directly. Full paper body and experiments were not reviewed here. README/project contents were read. Local raw snapshots are under ignored outputs/research-memory-sources; hashes refer to fetched response bytes.",
+    "Initial console display of five code/project records raised Windows GBK UnicodeEncodeError after snapshots and manifest were saved. Records were then inspected with escaped Unicode; network fetches succeeded."
+  ]
+}

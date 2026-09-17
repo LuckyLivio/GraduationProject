@@ -1,0 +1,246 @@
+{
+  "purpose": "Primary-source research for bounded self-trained object-interaction world-model direction; source facts are not project results.",
+  "search_date_local": "2026-09-17",
+  "records": [
+    {
+      "paper_key": "visual_search",
+      "kind": "search",
+      "url": "https://export.arxiv.org/api/query?search_query=all:%22visual%20foresight%22&max_results=5",
+      "retrieved_utc": "2026-09-17T04:22:18.166314+00:00",
+      "status": "failed",
+      "error": "HTTP Error 406: Not Acceptable"
+    },
+    {
+      "paper_key": "dual_control_search",
+      "kind": "search",
+      "url": "https://export.arxiv.org/api/query?search_query=all:%22dual%20control%22%20AND%20all:%22learning%22&max_results=7",
+      "retrieved_utc": "2026-09-17T04:22:18.166314+00:00",
+      "status": "failed",
+      "error": "HTTP Error 406: Not Acceptable"
+    },
+    {
+      "paper_key": "active_search",
+      "kind": "search",
+      "url": "https://arxiv.org/search/?query=active+system+identification+robot+mass+friction&searchtype=all&abstracts=show&order=-announced_date_first&size=50",
+      "retrieved_utc": "2026-09-17T04:22:18.167314+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/search/?query=active+system+identification+robot+mass+friction&searchtype=all&abstracts=show&order=-announced_date_first&size=50",
+      "sha256": "850107dfdaab77eaca87d71ec87bafeca4f2a7e8e165710b9392422de6ca8217",
+      "bytes": 20110,
+      "text_length": 4633,
+      "verified_excerpt": "Showing 1–1 of 1 results for all: active system identification robot mass friction Search v0.5.6 released 2020-02-24 Search term or terms Field All fields Title Author(s) Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORCID License (URI) arXiv author ID Help pages Full text Search Show abstracts Hide abstracts Advanced Search All fields Title Author(s) Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORCID License (URI) arXiv author ID Help pages Full text Show abstracts Hide abstracts 25 50 100 200 results per page . Sort results by Announcement date (newest first) Announcement date (oldest first) Submission date (newest first) Submission date (oldest first) Relevance Go arXiv:2411.09020 [ pdf , other ] cs.RO Predictive Visuo-Tactile Interactive Perception Framework for Object Properties Inference Authors: Anirvan Dutta , Etienne Burdet , Mohsen Kaboli Abstract : Interactive exploration of the unknown physical properties of objects such as stiffness, mass , center of… ▽ More Interactive exploration of the unknown physical properties of objects such as stiffness, mass , center of mass , friction coefficient, and shape is crucial for autonomous robotic systems operating continuously in unstructured environments. Precise identification of these properties is essential to manipulate objects in a stable and controlled way, and is also required to anticipate the outcomes of (prehensile or non-prehensile) manipulation actions such as pushing, pulling, lifting, etc. Our study focuses on autonomously inferring the physical properties of a diverse set of various homogeneous, heterogeneous, and articulated objects utilizing a robotic system equipped with vision and tactile sensors. We propose a novel predictive perception framework for identifying object properties of the diverse objects by leveraging versatile exploratory actions: non-prehensile pushing and prehensile pulling. As part of the framework, we propose a novel active shape perception to seamlessly initiate exploration. Our innovative dual differentiable filtering with Graph Neural Networks learns the object- robot interaction and performs consistent inference of indirectly observable time-invariant object properties. In addition, we formulate a $N$-step information gain approach to actively select the most informative actions for efficient learning and inference. Extensive real- robot experiments with planar objects show that our predictive perception framework results in better performance than the state-of-the-art baseline and demonstrate our framework in three major applications for i) object tracking, ii) goal-driven task, and iii) change in environment detection. △ Less Submitted 13 November, 2024; originally announced November 2024. Search v0.5.6 released 2020-02-24 We gratefully acknowledge support from our major fu"
+    },
+    {
+      "paper_key": "visual2017",
+      "kind": "abstract",
+      "url": "https://arxiv.org/abs/1610.00696",
+      "retrieved_utc": "2026-09-17T04:22:18.167314+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/1610.00696",
+      "sha256": "2f90a8eab57873456480b56d6816a8e5a276f1734e88eeeb960cc1c31274f406",
+      "bytes": 42125,
+      "text_length": 4626,
+      "verified_excerpt": "Title: Deep Visual Foresight for Planning Robot Motion Authors: Chelsea Finn , Sergey Levine View a PDF of the paper titled Deep Visual Foresight for Planning Robot Motion, by Chelsea Finn and Sergey Levine View PDF HTML (experimental) Abstract: A key challenge in scaling up robot learning to many skills and environments is removing the need for human supervision, so that robots can collect their own data and improve their own performance without being limited by the cost of requesting human feedback. Model-based reinforcement learning holds the promise of enabling an agent to learn to predict the effects of its actions, which could provide flexible predictive models for a wide range of tasks and environments, without detailed human supervision. We develop a method for combining deep action-conditioned video prediction models with model-predictive control that uses entirely unlabeled training data. Our approach does not require a calibrated camera, an instrumented training set-up, nor precise sensing and actuation. Our results show that our method enables a real robot to perform nonprehensile manipulation -- pushing objects -- and can handle novel objects not seen during training. Comments: ICRA 2017. Supplementary video: this https URL "
+    },
+    {
+      "paper_key": "visual2017",
+      "kind": "fulltext",
+      "url": "https://arxiv.org/html/1610.00696v2",
+      "retrieved_utc": "2026-09-17T04:22:18.167314+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/html/1610.00696v2",
+      "sha256": "f47ba5b8fb8f7659fca4723b20bf0d37690eaf86c379a0726a092b3dac1f52c9",
+      "bytes": 169565,
+      "text_length": 53611,
+      "excerpts": [
+        {
+          "term": "50,000 pushing attempts",
+          "text": "ic pushing experience. In this section, we introduce notation and briefly describe the data collection process and model. Our dataset includes 50,000 50,000 pushing attempts collected using 10 10 7-DoF arms, involving hundreds of objects. 1 1 1 We have made the entire dataset publicly available for download at http://sites.google.com/site/brainrobotdata During data collection, a bin containing between 10 10 and 20 20 objects is positioned in front of each robot, as shown in Figure 1 . Each push attempt starts with the robot randomly selecting an initial pose along the outside border of the bin. Subsequently, the robot iteratively selects a new target gripper pose 𝐚 t \\mathbf{a}_{t} and moves"
+        },
+        {
+          "term": "mass",
+          "text": "en a small error in the estimated liquid content in the cup or the friction coefficient might cause the robot to push it too high above its center of mass, causing the contents to spill. This is the essence of the unstructured open world problem: when the robot has to deal with the variability of the real world, methods based on rigid hand-engineered processes tend to suffer at the hands of special cases, exceptions, and unmodeled effects. Learning-based methods have shown remarkable effectiveness in handling complex, unstructured environments in passive computer vision tasks, such as image classification [ 1 ] and object detection [ 2 ] , by co-adapting low and high-level feature representa"
+        },
+        {
+          "term": "force",
+          "text": "t robots can collect their own data and improve their own performance without being limited by the cost of requesting human feedback. Model-based reinforcement learning holds the promise of enabling an agent to learn to predict the effects of its actions, which could provide flexible predictive models for a wide range of tasks and environments, without detailed human supervision. We develop a method for combining deep action-conditioned video prediction models with model-predictive control that uses entirely unlabeled training data. Our approach does not require a calibrated camera, an instrumented training set-up, nor precise sensing and actuation. Our results show that our method enables a"
+        }
+      ]
+    },
+    {
+      "paper_key": "cswm",
+      "kind": "abstract",
+      "url": "https://arxiv.org/abs/1911.12247",
+      "retrieved_utc": "2026-09-17T04:22:18.167314+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/1911.12247",
+      "sha256": "dd20f0e385d6c3dd508d9a9409dcad47d7de35c8ec505eb4c46a6b86bdbd85bd",
+      "bytes": 41225,
+      "text_length": 4615,
+      "verified_excerpt": "Title: Contrastive Learning of Structured World Models Authors: Thomas Kipf , Elise van der Pol , Max Welling View a PDF of the paper titled Contrastive Learning of Structured World Models, by Thomas Kipf and 2 other authors View PDF HTML (experimental) Abstract: A structured understanding of our world in terms of objects, relations, and hierarchies is an important component of human cognition. Learning such a structured world model from raw sensory data remains a challenge. As a step towards this goal, we introduce Contrastively-trained Structured World Models (C-SWMs). C-SWMs utilize a contrastive approach for representation learning in environments with compositional structure. We structure each state embedding as a set of object representations and their relations, modeled by a graph neural network. This allows objects to be discovered from raw pixel observations without direct supervision as part of the learning process. We evaluate C-SWMs on compositional environments involving multiple interacting objects that can be manipulated independently by an agent, simple Atari games, and a multi-object physics simulation. Our experiments demonstrate that C-SWMs can overcome limitations of models based on pixel reconstruction and outperform typical representatives of this model class in highly structured environments, while learning interpretable object-based representations. Comments: ICLR 2020 "
+    },
+    {
+      "paper_key": "cswm",
+      "kind": "author_code_readme",
+      "url": "https://raw.githubusercontent.com/tkipf/c-swm/master/README.md",
+      "retrieved_utc": "2026-09-17T04:22:18.168314+00:00",
+      "status": 200,
+      "final_url": "https://raw.githubusercontent.com/tkipf/c-swm/master/README.md",
+      "sha256": "556410f6031d1bb7d6c7e8d820b4ff430d598d5501460beb5792b60ea3849e45",
+      "bytes": 4566,
+      "text_length": 4532,
+      "verified_excerpt": "# Contrastive Learning of Structured World Models This repository contains the official PyTorch implementation of: **Contrastive Learning of Structured World Models.** Thomas Kipf, Elise van der Pol, Max Welling. http://arxiv.org/abs/1911.12247 ![C-SWM](c-swm.png) **Abstract:** A structured understanding of our world in terms of objects, relations, and hierarchies is an important component of human cognition. Learning such a structured world model from raw sensory data remains a challenge. As a step towards this goal, we introduce Contrastively-trained Structured World Models (C-SWMs). C-SWMs utilize a contrastive approach for representation learning in environments with compositional structure. We structure each state embedding as a set of object representations and their relations, modeled by a graph neural network. This allows objects to be discovered from raw pixel observations without direct supervision as part of the learning process. We evaluate C-SWMs on compositional environments involving multiple interacting objects that can be manipulated independently by an agent, simple Atari games, and a multi-object physics simulation. Our experiments demonstrate that C-SWMs can overcome limitations of models based on pixel reconstruction and outperform typical representatives of this model class in highly structured environments, while learning interpretable object-based representations. ## Requirements * Python 3.6 or 3.7 * PyTorch version 1.2 * OpenAI Gym version: 0.12.0 `pip install gym==0.12.0` * OpenAI Atari_py version: 0.1.4: `pip install atari-py==0.1.4` * Scikit-image version 0.15.0 `pip install scikit-image==0.15.0` * Matplotlib version 3.0.2 `pip install matplotlib==3.0.2` ## Generate datasets **2D Shapes**: ```bash python data_gen/env.py --env_id ShapesTrain-v0 --fname data/shapes_train.h5 --num_episodes 1000 --seed 1 python data_gen/env.py --env_id ShapesEval-v0 --fname data/shapes_eval.h5 --num_episodes 10000 --seed 2 ``` **3D Cubes**: ```bash python data_gen/env.py --env_id CubesTrain-v0 --fname data/cubes_train.h5 --num_episodes 1000 --seed 3 python data_gen/env.py --env_id CubesEval-v0 --fname data/cubes_eval.h5 --num_episodes 10000 --seed 4 ``` **Atari Pong**: ```bash python data_gen/env.py --env_id PongDeterministic-v4 --fname data/pong_train.h5 --num_episodes 1000 --atari --seed 1 python data_gen/env.py --env_id PongDeterministic-v4 --fname data/pong_eval.h5 --num_episodes 100 --atari --seed 2 ``` **Space Invaders**: ```bash python data_gen/env.py --env_id SpaceInvadersDeterministic-v4 --fname data/spaceinvaders_train.h5 --num_episodes 1000 --atari --seed 1 python data_gen/env.py --env_id SpaceInvadersDeterministic-v4 --fname data/spaceinvaders_eval.h5 --num_episodes 100 --atari --seed 2 ``` **3-Body Gravitational Physics**: ```bash python data_gen/physics.py --num-episodes 5000 --fname data/balls_train.h5 --seed 1 python data_gen/physics.py --num-episodes 1000 --fname data/balls_eval.h5 --eval --seed 2 ``` ## Run model training and evaluation **2D Shapes**: ```bash python train.py --dataset data/shapes_train.h5 --encoder small --name shapes python eval.py --dataset data/shapes_eval.h5 --save-folder checkpoints/shapes --num-steps 1 ``` **3D Cubes**: ```bash python train.py --dataset data/cubes_train.h5 --encoder large --name cubes python eval.py --dataset data/cubes_eval.h5 --save-folder checkpoints/cubes --num-steps 1 ``` **Atari Pong**: ```bash python train.py --dataset data/pong_train.h5 --encoder medium --embedding-dim 4 --action-dim 6 --num-objects 3 --copy-action --epochs 200 --name pong python eval.py --dataset data/pong_eval.h5 --save-folder checkpoints/pong --num-steps 1 ``` **Space Invaders**: ```bash python train.py --dataset data/spaceinvaders_train.h5 --encoder medium --embedding-dim 4 --action-dim 6 --num-objects 3 --copy-action --epochs 200 --name spaceinvaders python eval.py --dataset data/spaceinvaders_eval.h5 --save-folder checkpoints/spaceinvaders --num-steps 1 ``` **3-Body Gravitational Physics**: ```bash python train.py --dataset data/balls_train.h5 --encoder medium --embedding-dim 4 --num-objects 3 --ignore-action --name balls python eval.py --dataset data/balls_eval.h5 --save-folder checkpoints/balls --num-steps 1 ``` ### Cite If you make use of this code in your own work, please cite our paper: ``` @article{kipf2019contrastive, title={Contrastive Learning of Structured World Models}, author={Kipf, Thomas and van der Pol, Elise and Welling, Max}, journal={arXiv preprint arXiv:1911.12247}, year={2019} } ``` "
+    },
+    {
+      "paper_key": "slotformer",
+      "kind": "abstract",
+      "url": "https://arxiv.org/abs/2210.05861",
+      "retrieved_utc": "2026-09-17T04:22:18.168314+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2210.05861",
+      "sha256": "ff375acd9c1b6e11c8ba24e850d9fc0559715e51d3256b1192e9eb4c7ce990a9",
+      "bytes": 42776,
+      "text_length": 5114,
+      "verified_excerpt": "Title: SlotFormer: Unsupervised Visual Dynamics Simulation with Object-Centric Models Authors: Ziyi Wu , Nikita Dvornik , Klaus Greff , Thomas Kipf , Animesh Garg View a PDF of the paper titled SlotFormer: Unsupervised Visual Dynamics Simulation with Object-Centric Models, by Ziyi Wu and 4 other authors View PDF HTML (experimental) Abstract: Understanding dynamics from visual observations is a challenging problem that requires disentangling individual objects from the scene and learning their interactions. While recent object-centric models can successfully decompose a scene into objects, modeling their dynamics effectively still remains a challenge. We address this problem by introducing SlotFormer -- a Transformer-based autoregressive model operating on learned object-centric representations. Given a video clip, our approach reasons over object features to model spatio-temporal relationships and predicts accurate future object states. In this paper, we successfully apply SlotFormer to perform video prediction on datasets with complex object interactions. Moreover, the unsupervised SlotFormer's dynamics model can be used to improve the performance on supervised downstream tasks, such as Visual Question Answering (VQA), and goal-conditioned planning. Compared to past works on dynamics modeling, our method achieves significantly better long-term synthesis of object dynamics, while retaining high quality visual generation. Besides, SlotFormer enables VQA models to reason about the future without object-level labels, even outperforming counterparts that use ground-truth annotations. Finally, we show its ability to serve as a world model for model-based planning, which is competitive with methods designed specifically for such tasks. Comments: Accepted by ICLR 2023. Project page: this https URL "
+    },
+    {
+      "paper_key": "slotformer",
+      "kind": "fulltext",
+      "url": "https://arxiv.org/html/2210.05861v2",
+      "retrieved_utc": "2026-09-17T04:22:23.357510+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/html/2210.05861v2",
+      "sha256": "868203e217183270562d07f649fc4199d746a5f80eb15043d6d8ff584433407d",
+      "bytes": 350163,
+      "text_length": 99319,
+      "excerpts": [
+        {
+          "term": "mass",
+          "text": "r. Monet: Unsupervised scene decomposition and representation. arXiv preprint arXiv:1901.11390 , 2019. Carion et al. (2020) Nicolas Carion, Francisco Massa, Gabriel Synnaeve, Nicolas Usunier, Alexander Kirillov, and Sergey Zagoruyko. End-to-end object detection with transformers. In ECCV , pp. 213–229. Springer, 2020. Chang et al. (2016) Michael Chang, Tomer Ullman, Antonio Torralba, and Joshua Tenenbaum. A compositional object-based approach to learning physical dynamics. In ICLR , 2016. Chen et al. (2020a) Mark Chen, Alec Radford, Rewon Child, Jeffrey Wu, Heewoo Jun, David Luan, and Ilya Sutskever. Generative pretraining from pixels. In ICML , pp. 1691–1703. PMLR, 2020a. Chen et al. (2020b"
+        },
+        {
+          "term": "10,000",
+          "text": "rmer as the world model and build a task success classifier on predicted object states as the scoring function. Then, we use it to rank a pre-defined 10,000 actions from Bakhtin et al. (2019) , and execute them accordingly. We experiment on the within-template setting. Implementation Details. We first pre-train the object-centric model on each dataset, and then extract slots for training SlotFormer. We employ SAVi ( Kipf et al., 2021 ) on OBJ3D, CLEVRER, PHYRE, and STEVE ( Singh et al., 2022 ) on Physion to extract object-centric features. SAVi leverages a CNN decoder to reconstruct videos from slots, while STEVE uses a Transformer-based slot decoder. STEVE can perform scene decomposition on"
+        },
+        {
+          "term": "force",
+          "text": "ifferent timesteps. To realize such consistency, we employ residual connections from 𝒮 t \\mathcal{S}_{t} to 𝒮 ^ t + 1 \\hat{\\mathcal{S}}_{t+1} , which forces the Transformer 𝒯 \\mathcal{T} to apply refinement to the slots while preserving their absolute order. Owing to this order invariance, SlotFormer can be used to reason about individual object’s dynamics for long-term rollout, and can be seamlessly integrated with downstream task models. 3.3 Model Training Error accumulation is a key issue in long-term generation ( Oprea et al., 2020 ) . In contrast to prior works ( Wu et al., 2021 ) that use a GPT-style causal attention mask ( Radford et al., 2018 ) , SlotFormer predicts all the slots at "
+        }
+      ]
+    },
+    {
+      "paper_key": "slotformer",
+      "kind": "author_code_readme",
+      "url": "https://raw.githubusercontent.com/pairlab/SlotFormer/master/README.md",
+      "retrieved_utc": "2026-09-17T04:22:23.468777+00:00",
+      "status": 200,
+      "final_url": "https://raw.githubusercontent.com/pairlab/SlotFormer/master/README.md",
+      "sha256": "d9734beb9b134c367ce1e739bd10ce2fb463e40b75a9f3a09a47403c16d4e3ff",
+      "bytes": 4160,
+      "text_length": 3926,
+      "verified_excerpt": "# SlotFormer [**SlotFormer: Unsupervised Visual Dynamics Simulation with Object-Centric Models**](https://slotformer.github.io/) [Ziyi Wu](https://wuziyi616.github.io/), [Nikita Dvornik](https://scholar.google.com/citations?user=UOLJQTIAAAAJ&hl=en), [Klaus Greff](https://qwlouse.github.io/), [Thomas Kipf](https://tkipf.github.io/), [Animesh Garg](https://animesh.garg.tech/) _[ICLR'23](https://openreview.net/forum?id=TFbwV6I0VLg) | [GitHub](https://github.com/pairlab/SlotFormer) | [arXiv](https://arxiv.org/abs/2210.05861) | [Project page](https://slotformer.github.io/)_ Ground-Truth Our Prediction | Ground-Truth Our Prediction :--------------------------------------------------:|:--------------------------------------------------: ![image](src/PHYRE-00021133.gif) | ![image](src/PHYRE-00007001.gif) ## Introduction This is the official PyTorch implementation for paper: [SlotFormer: Unsupervised Visual Dynamics Simulation with Object-Centric Models](https://arxiv.org/abs/2210.05861), which is accepted by ICLR 2023. The code contains: - Training base object-centric slot models - Video prediction task on OBJ3D and CLEVRER - VQA task on CLEVRER - VQA task on Physion - Planning task on PHYRE ## Update - 2023.9.20: BC-breaking change! We fix an error in the mIoU calculation code. This won't change the order of benchmarked methods, but will change their absolute values. See [this PR](https://github.com/pairlab/SlotFormer/pull/7) for more details. Please re-run the evaluation code on your trained models to get the correct results. The updated mIoU of SlotFormer on CLEVRER is **49.42** (using the provided pre-trained weight) - 2023.1.20: The paper is accepted by ICLR 2023! - 2022.10.26: Support Physion VQA task and PHYRE planning task - 2022.10.16: Initial code release! - Support base object-centric model training - Support SlotFormer training - Support evaluation on the video prediction task - Support evaluation on the CLEVRER VQA task ## Installation Please refer to [install.md](docs/install.md) for step-by-step guidance on how to install the packages. ## Experiments **This codebase is tailored to [Slurm](https://slurm.schedmd.com/documentation.html) GPU clusters with preemption mechanism.** For the configs, we mainly use RTX6000 with 24GB memory (though many experiments don't require so much memory). Please modify the code accordingly if you are using other hardware settings: - Please go through `scripts/train.py` and change the fields marked by `TODO:` - Please read the config file for the model you want to train. We use DDP with multiple GPUs to accelerate training. You can use less GPUs to achieve a better memory-speed trade-off ### Dataset Preparation Please refer to [data.md](docs/data.md) for steps to download and pre-process each dataset. ### Reproduce Results Please see [benchmark.md](docs/benchmark.md) for detailed instructions on how to reproduce our results in the paper. ## Citation Please cite our paper if you find it useful in your research: ``` @article{wu2022slotformer, title={SlotFormer: Unsupervised Visual Dynamics Simulation with Object-Centric Models}, author={Wu, Ziyi and Dvornik, Nikita and Greff, Klaus and Kipf, Thomas and Garg, Animesh}, journal={arXiv preprint arXiv:2210.05861}, year={2022} } ``` ## Acknowledgement We thank the authors of [Slot-Attention](https://github.com/google-research/google-research/tree/master/slot_attention), [slot_attention.pytorch](https://github.com/untitled-ai/slot_attention), [SAVi](https://github.com/google-research/slot-attention-video/), [RPIN](https://github.com/HaozhiQi/RPIN) and [Aloe](https://github.com/deepmind/deepmind-research/tree/master/object_attention_for_reasoning) for opening source their wonderful works. ## License SlotFormer is released under the MIT License. See the LICENSE file for more details. ## Contact If you have any questions about the code, please contact Ziyi Wu dazitu616@gmail.com "
+    },
+    {
+      "paper_key": "active_physics",
+      "kind": "abstract",
+      "url": "https://arxiv.org/abs/1611.01843",
+      "retrieved_utc": "2026-09-17T04:22:23.473854+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/1611.01843",
+      "sha256": "f551c525de6a47dbc4586a6e4e3122fb8c1cc57e54d7322a8d66ba9ab36db1f9",
+      "bytes": 42919,
+      "text_length": 5057,
+      "verified_excerpt": "Title: Learning to Perform Physics Experiments via Deep Reinforcement Learning Authors: Misha Denil , Pulkit Agrawal , Tejas D Kulkarni , Tom Erez , Peter Battaglia , Nando de Freitas View a PDF of the paper titled Learning to Perform Physics Experiments via Deep Reinforcement Learning, by Misha Denil and 5 other authors View PDF HTML (experimental) Abstract: When encountering novel objects, humans are able to infer a wide range of physical properties such as mass, friction and deformability by interacting with them in a goal driven way. This process of active interaction is in the same spirit as a scientist performing experiments to discover hidden facts. Recent advances in artificial intelligence have yielded machines that can achieve superhuman performance in Go, Atari, natural language processing, and complex control problems; however, it is not clear that these systems can rival the scientific intuition of even a young child. In this work we introduce a basic set of tasks that require agents to estimate properties such as mass and cohesion of objects in an interactive simulated environment where they can manipulate the objects and observe the consequences. We found that state of art deep reinforcement learning methods can learn to perform the experiments necessary to discover such hidden properties. By systematically manipulating the problem difficulty and the cost incurred by the agent for performing experiments, we found that agents learn different strategies that balance the cost of gathering information against the cost of making mistakes in different situations. "
+    },
+    {
+      "paper_key": "active_physics",
+      "kind": "fulltext",
+      "url": "https://arxiv.org/html/1611.01843v3",
+      "retrieved_utc": "2026-09-17T04:22:23.527821+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/html/1611.01843v3",
+      "sha256": "8de3980c67da4a598f5179a43d196c2f19b16117f2a2073ad23b88f8e3ed74ed",
+      "bytes": 137220,
+      "text_length": 62733,
+      "excerpts": [
+        {
+          "term": "mass",
+          "text": " Research Email: pulkitag@berkeley.edu Abstract When encountering novel objects, humans are able to infer a wide range of physical properties such as mass, friction and deformability by interacting with them in a goal driven way. This process of active interaction is in the same spirit as a scientist performing experiments to discover hidden facts. Recent advances in artificial intelligence have yielded machines that can achieve superhuman performance in Go, Atari, natural language processing, and complex control problems; however, it is not clear that these systems can rival the scientific intuition of even a young child. In this work we introduce a basic set of tasks that require agents to"
+        },
+        {
+          "term": "10,000",
+          "text": "mation. We trained three agents for each difficulty and show results aggregated across the different replicas. After training, each agent was run for 10,000 steps under the same conditions they were exposed to during training. We record the number and length of episodes executed during the testing period as well as the outcome of each episode. Episodes are terminated by timeout after 100 steps, but the vast majority of episodes are terminated in < 30 <30 steps by the agent producing a label. Since episodes vary in length not all agents complete the same number of episodes during testing. The left plot in Figure 3 shows histograms of the episode lengths broken down by task difficulty. The das"
+        },
+        {
+          "term": "force",
+          "text": " Learning to Perform Physics Experiments via Deep Reinforcement Learning // Restore the saved color scheme preference, or // enact the browser preference if \"automatic\", // without expecting DOM load to have completed. // // Also restore any saved readingmode and ToC display preferences. function initializeReadingPreferences() { let saved_theme = localStorage.getItem(\"ar5iv_theme\") || \"automatic\"; if (saved_theme === \"automatic\") { if (window.matchMedia(\"(prefers-color-scheme: dark)\").matches) { saved_theme = \"dark\"; } } if (saved_theme == \"dark\") { document.documentElement.setAttribute(\"data-them"
+        }
+      ]
+    },
+    {
+      "paper_key": "visuo_tactile",
+      "kind": "abstract",
+      "url": "https://arxiv.org/abs/2411.09020",
+      "retrieved_utc": "2026-09-17T04:22:23.553550+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2411.09020",
+      "sha256": "c3179510d96f31558a4b00e504727381687a0c6903f384772f9807543be4eb1a",
+      "bytes": 42639,
+      "text_length": 5119,
+      "verified_excerpt": "Title: Predictive Visuo-Tactile Interactive Perception Framework for Object Properties Inference Authors: Anirvan Dutta , Etienne Burdet , Mohsen Kaboli View a PDF of the paper titled Predictive Visuo-Tactile Interactive Perception Framework for Object Properties Inference, by Anirvan Dutta and 2 other authors View PDF HTML (experimental) Abstract: Interactive exploration of the unknown physical properties of objects such as stiffness, mass, center of mass, friction coefficient, and shape is crucial for autonomous robotic systems operating continuously in unstructured environments. Precise identification of these properties is essential to manipulate objects in a stable and controlled way, and is also required to anticipate the outcomes of (prehensile or non-prehensile) manipulation actions such as pushing, pulling, lifting, etc. Our study focuses on autonomously inferring the physical properties of a diverse set of various homogeneous, heterogeneous, and articulated objects utilizing a robotic system equipped with vision and tactile sensors. We propose a novel predictive perception framework for identifying object properties of the diverse objects by leveraging versatile exploratory actions: non-prehensile pushing and prehensile pulling. As part of the framework, we propose a novel active shape perception to seamlessly initiate exploration. Our innovative dual differentiable filtering with Graph Neural Networks learns the object-robot interaction and performs consistent inference of indirectly observable time-invariant object properties. In addition, we formulate a $N$-step information gain approach to actively select the most informative actions for efficient learning and inference. Extensive real-robot experiments with planar objects show that our predictive perception framework results in better performance than the state-of-the-art baseline and demonstrate our framework in three major applications for i) object tracking, ii) goal-driven task, and iii) change in environment detection. "
+    },
+    {
+      "paper_key": "visuo_tactile",
+      "kind": "fulltext",
+      "url": "https://arxiv.org/html/2411.09020v1",
+      "retrieved_utc": "2026-09-17T04:22:23.609670+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/html/2411.09020v1",
+      "sha256": "eedd6c3e72ef1e23331d14a4ba4b3c656f64b90924afa101518a9d06c2cc0bf4",
+      "bytes": 523596,
+      "text_length": 124064,
+      "excerpts": [
+        {
+          "term": "mass",
+          "text": "rt by EU Horizon PHASTRAC under Grant ID 101092096. Abstract Interactive exploration of the unknown physical properties of objects such as stiffness, mass, center of mass, friction coefficient, and shape is crucial for autonomous robotic systems operating continuously in unstructured environments. Precise identification of these properties is essential to manipulate objects in a stable and controlled way, and is also required to anticipate the outcomes of (prehensile or non-prehensile) manipulation actions such as pushing, pulling, lifting, etc. Our study focuses on autonomously inferring the physical properties of a diverse set of various homogeneous, heterogeneous, and articulated objects "
+        },
+        {
+          "term": "candidates",
+          "text": "quadrics which are then replaced when the EM algorithm gets stuck in the local minima. In our case, along with the general generation of superquadric candidates as in [ 25 ] , similar candidates due to nonlinear deformation terms were also generated. The EMS approach first estimates the Gaussian centroids given the current estimation of the superquadric parameters. μ ^ i = argmin μ i ∈ 𝒮 β l ​ p ​ ( μ i | x i ) ∼ argmin μ i ∈ 𝒮 β l ​ ‖ x i − μ i ‖ 2 \\hat{\\mu}_{i}=\\underset{\\mu_{i}\\in\\mathcal{S}^{l}_{\\beta}}{\\mathrm{argmin}}p(\\mu_{i}|x_{i})\\sim\\underset{\\mu_{i}\\in\\mathcal{S}^{l}_{\\beta}}{\\mathrm{argmin}}||x_{i}-\\mu_{i}||^{2} (8) With the current estimate of μ i \\mu_{i} , the expectation of th"
+        },
+        {
+          "term": "information gain",
+          "text": "-robot interaction and performs consistent inference of indirectly observable time-invariant object properties. In addition, we formulate a N N -step information gain approach to actively select the most informative actions for efficient learning and inference. Extensive real-robot experiments with planar objects show that our predictive perception framework results in better performance than the state-of-the-art baseline, and demonstrate our framework in three major applications for i) object tracking, ii) goal-driven task, and iii) change in environment detection. Index Terms: Visual and Tactile Sensing, Active Interactive Perception, Recursive Bayesian Filtering I Introduction Fig. 1: Ove"
+        },
+        {
+          "term": "force",
+          "text": "opagation of graphs to model the interaction between a robot and an object. This representation focuses on the causal relationship of the interaction forces as the central element. It captures how the robot acts on the object (cause) while accounting for the environment in this interaction. This choice proves advantageous both in generalizing the model to be used in all the different cases of object-robot interaction presented in this work and also in capturing complex interactions sufficiently to account for tactile observations accurately (effect of object’s movement and properties on the robot). Furthermore, to improve data efficiency and inference time, it is essential for robotic system"
+        }
+      ]
+    },
+    {
+      "paper_key": "visual2018_companion",
+      "kind": "abstract",
+      "url": "https://arxiv.org/abs/1812.00568",
+      "retrieved_utc": "2026-09-17T04:22:23.789590+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/1812.00568",
+      "sha256": "c57fa089b61b2dcc3a4e05d1b4356ad79155ceeaafd2d46427747ff47b53c59c",
+      "bytes": 43548,
+      "text_length": 5089,
+      "verified_excerpt": "Title: Visual Foresight: Model-Based Deep Reinforcement Learning for Vision-Based Robotic Control Authors: Frederik Ebert , Chelsea Finn , Sudeep Dasari , Annie Xie , Alex Lee , Sergey Levine View a PDF of the paper titled Visual Foresight: Model-Based Deep Reinforcement Learning for Vision-Based Robotic Control, by Frederik Ebert and 5 other authors View PDF HTML (experimental) Abstract: Deep reinforcement learning (RL) algorithms can learn complex robotic skills from raw sensory inputs, but have yet to achieve the kind of broad generalization and applicability demonstrated by deep learning methods in supervised domains. We present a deep RL method that is practical for real-world robotics tasks, such as robotic manipulation, and generalizes effectively to never-before-seen tasks and objects. In these settings, ground truth reward signals are typically unavailable, and we therefore propose a self-supervised model-based approach, where a predictive model learns to directly predict the future from raw sensory readings, such as camera images. At test time, we explore three distinct goal specification methods: designated pixels, where a user specifies desired object manipulation tasks by selecting particular pixels in an image and corresponding goal positions, goal images, where the desired goal state is specified with an image, and image classifiers, which define spaces of goal states. Our deep predictive models are trained using data collected autonomously and continuously by a robot interacting with hundreds of objects, without human supervision. We demonstrate that visual MPC can generalize to never-before-seen objects---both rigid and deformable---and solve a range of user-defined object manipulation tasks using the same model. "
+    },
+    {
+      "paper_key": "visual2018_companion",
+      "kind": "author_code_readme",
+      "url": "https://raw.githubusercontent.com/SudeepDasari/visual_foresight/master/README.md",
+      "retrieved_utc": "2026-09-17T04:22:26.318403+00:00",
+      "status": 200,
+      "final_url": "https://raw.githubusercontent.com/SudeepDasari/visual_foresight/master/README.md",
+      "sha256": "9c039ed1ee8e1cd8f27a34faaa24678df3f328114fbb69588932696a32828e26",
+      "bytes": 6927,
+      "text_length": 6794,
+      "verified_excerpt": "# Visual Foresight Code for reproducing experiments in [Visual Foresight: Model-Based Deep Reinforcement Learning for Vision-Based Robotic Control](https://sites.google.com/view/visualforesight), along with expanded support for additional robots. On a high level, Visual Model Predictive Control (visual-MPC) leverages an action-conditioned video prediction model (trained from unsupervised interaction) to enable robots to perform various tasks with only raw-pixel input. This codebase provides an implmentation of: unsupervised data collection, our benchmarking framework, the various planning costs, and - of course - the visual-MPC controller! Additionally, we provide: instructions to reproduce our experiments, Dockerfiles for our simulator environments, and documentation on our Sawyer robot setup. Crucially, this codebase does NOT implement video prediction model training, or meta-classifier model training. If you're only interested in training models, please refer to [Stochastic Adversarial Video Prediction](https://github.com/alexlee-gk/video_prediction) and/or [Few-Shot Goal Inference for Visuomotor Learning and Planning](https://github.com/anxie/meta_classifier). # Installation ## General Dependencies Since this project is deployed in sim and on a robot, all code is written to be compatible with Python 2.7 and Python 3.5. ## Sim ### Manual Installation Our simulator requires **Python 3.5.2** and [MuJoCo 1.5](https://www.roboti.us/index.html) to run successfully. We strongly recommend using a virtual environment (such as Anaconda) for this project. After you setup Python and MuJoCo, installation directions are as follows: ``` # install video prediction code git clone https://github.com/febert/video_prediction-1.git && cd video_prediction-1 && git checkout dev && python setup.py develop && cd .. # install meta-classifier code git clone https://github.com/anxie/meta_classifier.git #install visual-MPC git clone https://github.com/SudeepDasari/visual_foresight.git && cd visual_foresight pip install -r requirements.txt python setup.py develop ``` ### Docker Installation Docker allows a cleaner way to get started with our code. Since we heavily use the GPU, you will have to install [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) and all related dependencies. After that run: ``` git clone https://github.com/SudeepDasari/visual_foresight.git && cd docker && cp ~/.mujoco/mjkey.txt ./ nvidia-docker build -t foresight/sim:latest . ``` Now to create a new bash in this environment run: `nvidia-docker run -it foresight/sim: bash` ## Robot ### Hardware Setup All experiments are conducted on a [Sawyer robot](https://www.rethinkrobotics.com/sawyer/) with an attached [WSG-50 gripper](https://www.weiss-robotics.com/en/produkte/gripping-systems/performance-line-en/wsg-50-en/). The robot is filmed from two orthogonal viewing angles using [consumer webcams](https://www.amazon.com/Logitech-Widescreen-Calling-Recording-Desktop/dp/B006JH8T3S). Refer to the paper for further details. ### Software Setup Robot code heavily uses ROS. Assuming you use our same hardware, you will need to install the following: * [ROS and Intera 5.2](http://sdk.rethinkrobotics.com/intera/Workstation_Setup) * [wsg 50 ROS node](http://wiki.ros.org/wsg50) * Any ROS node to access webcams. We use a [modified version of video_stream_opencv](https://github.com/SudeepDasari/video_stream_opencv) Once you've installed the dependencies: 1. Clone our repository into your ROS workspace's src folder. Then run `catkin_make` to rebuild your workspace. 2. Clone and install the [video_prediction](https://github.com/febert/visual_mpc/tree/dev) code-base. 3. Clone and install the [meta-classifier](https://github.com/anxie/meta_classifier) code-base 4. Remember to install our python packages by running `sudo python setup.py develop` in EVERY project workspace 5. Start up required ROS nodes: ``` # in a new intera terminal roslaunch foresight_rospkg start_cameras.launch # run cameras # in a new intera terminal roslaunch foresight_rospkg start_gripper.launch # start gripper node # in a new intera terminal roscd foresight_rospkg/launch rosrun foresight_rospkg send_urdf_fragment.py # (optional) stop after Sawyer recognizes the gripper ./start_impedance ``` # Experiment Reproduction In sim, data collection and benchmarks are started by running `python visual_mpc/sim/run.py`. The correct configuration file must be supplied, for each experiment/data collection run. Similarly, `rosrun foresight_rospkg run_robot.py` is the primary entry point for the robot experiments/data-collection. ## Data Collection By default data is saved in the same directory as the corresponding python config file. Rollouts are saved as a series of pickled dictionaries and JPEG images, or as compressed TFRecords. ### Robot Use `run_robot` to start random data collection on the Sawyer. * For hard object collection: `rosrun foresight_rospkg run_robot.py data_collection/sawyer/hard_object_data/hparams.py -r` * For deformable object collection: `rosrun foresight_rospkg run_robot.py data_collection/sawyer/towel_data/hparams.py -r` ### Sim Use `visual_mpc/sim/run.py` to start random data collection in our custom MuJoCo cartgripper environment * To collect data with l-block objects and autograsp (x, y, z, wrist rotation, grasp reflex) action space run: `python visual_mpc/sim/run.py data_collection/sim/grasp_reflex_lblocks/hparams.py --nworkers ` ### Convert to TFRecords While the raw (pkl/jpeg file) data format is convenient to work with, it is far less efficient for model training. Thus, we offer a utility in `visual_mpc/utils/file_2_record.py` which converts data from our raw format to compressed TFRecords. ## Running Benchmarks Again pass in the python config file to the corresponding entry point. This time add a `--benchmark` flag! ### Robot * For Registration Experiments: `rosrun foresight_rospkg run_robot.py experiments/sawyer/registration_experiments/hparams.py --benchmark` * For Mixed Object Experiments (one model which handles both deformable and rigid objects) - Rigid: `rosrun foresight_rospkg run_robot.py experiments/sawyer/mixed_objects/hparams_hardobjects.py --benchmark` - Deformable: `rosrun foresight_rospkg run_robot.py experiments/sawyer/mixed_objects/hparams_deformable_objects.py --benchmark` * **Meta-classifier experiments are coming soon** ### Sim **Coming soon!** # Pretrained Models **Coming soon** # Citation If you find this useful, consider citing: ``` @article{visualforesight, title={Visual Foresight: Model-Based Deep Reinforcement Learning for Vision-Based Robotic Control}, author={Ebert, Frederik and Finn, Chelsea and Dasari, Sudeep and Xie, Annie and Lee, Alex and Levine, Sergey}, journal={arXiv preprint arXiv:1812.00568}, year={2018} } ``` "
+    }
+  ]
+}

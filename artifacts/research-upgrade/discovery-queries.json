@@ -1,0 +1,166 @@
+[
+  {
+    "query": "world model partial observability memory navigation occlusion",
+    "url": "https://api.openalex.org/works?search=world%20model%20partial%20observability%20memory%20navigation%20occlusion&per-page=5&filter=from_publication_date:2023-01-01",
+    "items": [
+      {
+        "title": "Deep Reinforcement Learning of Mobile Robot Navigation in Dynamic Environment: A Review",
+        "year": 2025,
+        "doi": "https://doi.org/10.3390/s25113394",
+        "id": "https://openalex.org/W4410819626",
+        "source": "https://doi.org/10.3390/s25113394"
+      },
+      {
+        "title": "World models and predictive coding for cognitive and developmental robotics: frontiers and challenges",
+        "year": 2023,
+        "doi": "https://doi.org/10.1080/01691864.2023.2225232",
+        "id": "https://openalex.org/W4382138711",
+        "source": "https://doi.org/10.1080/01691864.2023.2225232"
+      },
+      {
+        "title": "Unmanned aerial vehicle navigation in underground structure inspection: A review",
+        "year": 2023,
+        "doi": "https://doi.org/10.1002/gj.4763",
+        "id": "https://openalex.org/W4377223611",
+        "source": "https://doi.org/10.1002/gj.4763"
+      },
+      {
+        "title": "Deep reinforcement learning navigation via decision transformer in autonomous driving",
+        "year": 2024,
+        "doi": "https://doi.org/10.3389/fnbot.2024.1338189",
+        "id": "https://openalex.org/W4392966039",
+        "source": "https://doi.org/10.3389/fnbot.2024.1338189"
+      },
+      {
+        "title": "A Robust Strategy for UAV Autonomous Landing on a Moving Platform under Partial Observability",
+        "year": 2024,
+        "doi": "https://doi.org/10.3390/drones8060232",
+        "id": "https://openalex.org/W4399173563",
+        "source": "https://doi.org/10.3390/drones8060232"
+      }
+    ]
+  },
+  {
+    "query": "world models active perception navigation",
+    "url": "https://api.openalex.org/works?search=world%20models%20active%20perception%20navigation&per-page=5&filter=from_publication_date:2023-01-01",
+    "items": [
+      {
+        "title": "Interpreting Black-Box Models: A Review on Explainable Artificial Intelligence",
+        "year": 2023,
+        "doi": "https://doi.org/10.1007/s12559-023-10179-8",
+        "id": "https://openalex.org/W4386142022",
+        "source": "https://doi.org/10.1007/s12559-023-10179-8"
+      },
+      {
+        "title": "A survey on large language model based autonomous agents",
+        "year": 2024,
+        "doi": "https://doi.org/10.1007/s11704-024-40231-1",
+        "id": "https://openalex.org/W4393065402",
+        "source": "https://doi.org/10.1007/s11704-024-40231-1"
+      },
+      {
+        "title": "Core Challenges of Social Robot Navigation: A Survey",
+        "year": 2023,
+        "doi": "https://doi.org/10.1145/3583741",
+        "id": "https://openalex.org/W3134972302",
+        "source": "https://doi.org/10.1145/3583741"
+      },
+      {
+        "title": "A Survey on Active Simultaneous Localization and Mapping: State of the Art and New Frontiers",
+        "year": 2023,
+        "doi": "https://doi.org/10.1109/tro.2023.3248510",
+        "id": "https://openalex.org/W4327662982",
+        "source": "https://doi.org/10.1109/tro.2023.3248510"
+      },
+      {
+        "title": "Patient navigation across the cancer care continuum: An overview of systematic reviews and emerging literature",
+        "year": 2023,
+        "doi": "https://doi.org/10.3322/caac.21788",
+        "id": "https://openalex.org/W4382011420",
+        "source": "https://doi.org/10.3322/caac.21788"
+      }
+    ]
+  },
+  {
+    "query": "Dreamer 4 world model",
+    "url": "https://api.openalex.org/works?search=Dreamer%204%20world%20model&per-page=5&filter=from_publication_date:2023-01-01",
+    "items": [
+      {
+        "title": "Reasoning with Language Model is Planning with World Model",
+        "year": 2023,
+        "doi": "https://doi.org/10.18653/v1/2023.emnlp-main.507",
+        "id": "https://openalex.org/W4389520747",
+        "source": "https://doi.org/10.18653/v1/2023.emnlp-main.507"
+      },
+      {
+        "title": "Mastering Diverse Domains through World Models",
+        "year": 2023,
+        "doi": "https://doi.org/10.48550/arxiv.2301.04104",
+        "id": "https://openalex.org/W4315706776",
+        "source": "http://arxiv.org/abs/2301.04104"
+      },
+      {
+        "title": "Model-based Reinforcement Learning: A Survey",
+        "year": 2023,
+        "doi": "https://doi.org/10.1561/2200000086",
+        "id": "https://openalex.org/W3038822267",
+        "source": "https://doi.org/10.1561/2200000086"
+      },
+      {
+        "title": "World models and predictive coding for cognitive and developmental robotics: frontiers and challenges",
+        "year": 2023,
+        "doi": "https://doi.org/10.1080/01691864.2023.2225232",
+        "id": "https://openalex.org/W4382138711",
+        "source": "https://doi.org/10.1080/01691864.2023.2225232"
+      },
+      {
+        "title": "A survey on model-based reinforcement learning",
+        "year": 2024,
+        "doi": "https://doi.org/10.1007/s11432-022-3696-5",
+        "id": "https://openalex.org/W4391259941",
+        "source": "https://doi.org/10.1007/s11432-022-3696-5"
+      }
+    ]
+  },
+  {
+    "query": "DINO WM world models visual planning",
+    "url": "https://api.openalex.org/works?search=DINO%20WM%20world%20models%20visual%20planning&per-page=5&filter=from_publication_date:2023-01-01",
+    "items": [
+      {
+        "title": "DINO-WM: World Models on Pre-trained Visual Features enable Zero-shot Planning",
+        "year": 2024,
+        "doi": "https://doi.org/10.48550/arxiv.2411.04983",
+        "id": "https://openalex.org/W4404360744",
+        "source": "http://arxiv.org/abs/2411.04983"
+      },
+      {
+        "title": "Foundational Models Defining a New Era in Vision: A Survey and Outlook",
+        "year": 2023,
+        "doi": "https://doi.org/10.48550/arxiv.2307.13721",
+        "id": "https://openalex.org/W4385327621",
+        "source": "http://arxiv.org/abs/2307.13721"
+      },
+      {
+        "title": "Is Sora a World Simulator? A Comprehensive Survey on General World Models and Beyond",
+        "year": 2024,
+        "doi": "https://doi.org/10.48550/arxiv.2405.03520",
+        "id": "https://openalex.org/W4396788112",
+        "source": "http://arxiv.org/abs/2405.03520"
+      },
+      {
+        "title": "Prospective Role of Foundation Models in Advancing Autonomous Vehicles",
+        "year": 2024,
+        "doi": "https://doi.org/10.34133/research.0399",
+        "id": "https://openalex.org/W4396869735",
+        "source": "https://doi.org/10.34133/research.0399"
+      },
+      {
+        "title": "Brain-Inspired Remote Sensing Foundation Models and Open Problems: A Comprehensive Survey",
+        "year": 2023,
+        "doi": "https://doi.org/10.1109/jstars.2023.3316302",
+        "id": "https://openalex.org/W4386825235",
+        "source": "https://doi.org/10.1109/jstars.2023.3316302"
+      }
+    ]
+  }
+]

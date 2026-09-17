@@ -1,0 +1,225 @@
+{
+  "accessed_at": "2026-09-17T04:20:25.622844+00:00",
+  "records": [
+    {
+      "query": "\"navigation world models\"",
+      "url": "https://api.openalex.org/works?search=%22navigation%20world%20models%22&per-page=6&filter=from_publication_date:2023-01-01",
+      "status": 200,
+      "sha256": "a40f2ba2073b7185fdafdc8051a8d0d8de43b07ffa3d950145f6302bb173917d",
+      "results": [
+        {
+          "title": "Navigation World Models",
+          "year": 2025,
+          "doi": "https://doi.org/10.1109/cvpr52734.2025.01472",
+          "url": "https://doi.org/10.1109/cvpr52734.2025.01472"
+        },
+        {
+          "title": "Navigation World Models",
+          "year": 2024,
+          "doi": "https://doi.org/10.48550/arxiv.2412.03572",
+          "url": "http://arxiv.org/abs/2412.03572"
+        },
+        {
+          "title": "OmniNWM: Omniscient Driving Navigation World Models",
+          "year": 2026,
+          "doi": "https://doi.org/10.1007/978-3-032-37624-4_12",
+          "url": "https://doi.org/10.1007/978-3-032-37624-4_12"
+        },
+        {
+          "title": "Walk Through Paintings: Egocentric World Models from Internet Priors",
+          "year": 2026,
+          "doi": "https://doi.org/10.1007/978-3-032-37098-3_26",
+          "url": "https://doi.org/10.1007/978-3-032-37098-3_26"
+        },
+        {
+          "title": "NavWM: A Unified Navigation World Model for Foresight-Driven Planning",
+          "year": 2026,
+          "doi": "https://doi.org/10.48550/arxiv.2606.24101",
+          "url": "https://doi.org/10.48550/arxiv.2606.24101"
+        },
+        {
+          "title": "NavWM: A Unified Navigation World Model for Foresight-Driven Planning",
+          "year": 2026,
+          "doi": null,
+          "url": "https://arxiv.org/abs/2606.24101"
+        }
+      ]
+    },
+    {
+      "query": "\"world model\" \"occlusion\"",
+      "url": "https://api.openalex.org/works?search=%22world%20model%22%20%22occlusion%22&per-page=6&filter=from_publication_date:2023-01-01",
+      "status": 200,
+      "sha256": "d8f9a0fd61f58722c19c0d8fdae28f3d692a0a7a5e242bc6341ee82457296f50",
+      "results": [
+        {
+          "title": "World models and predictive coding for cognitive and developmental robotics: frontiers and challenges",
+          "year": 2023,
+          "doi": "https://doi.org/10.1080/01691864.2023.2225232",
+          "url": "https://doi.org/10.1080/01691864.2023.2225232"
+        },
+        {
+          "title": "Unifying (Machine) Vision via Counterfactual World Modeling",
+          "year": 2023,
+          "doi": "https://doi.org/10.48550/arxiv.2306.01828",
+          "url": "http://arxiv.org/abs/2306.01828"
+        },
+        {
+          "title": "Development and evaluation of automated localisation and reconstruction of all fruits on tomato plants in a greenhouse based on multi-view perception and 3D multi-object tracking",
+          "year": 2023,
+          "doi": "https://doi.org/10.1016/j.biosystemseng.2023.06.003",
+          "url": "https://doi.org/10.1016/j.biosystemseng.2023.06.003"
+        },
+        {
+          "title": "A review of embodied intelligence systems: a three-layer framework integrating multimodal perception, world modeling, and structured strategies",
+          "year": 2025,
+          "doi": "https://doi.org/10.3389/frobt.2025.1668910",
+          "url": "https://doi.org/10.3389/frobt.2025.1668910"
+        },
+        {
+          "title": "Sora as a World Model? A Complete Survey on Text-to-Video Generation",
+          "year": 2024,
+          "doi": "https://doi.org/10.48550/arxiv.2403.05131",
+          "url": "http://arxiv.org/abs/2403.05131"
+        },
+        {
+          "title": "Multi-Hypothesis Tracking in a Graph-Based World Model for Knowledge-Driven Active Perception",
+          "year": 2023,
+          "doi": "https://doi.org/10.1109/lra.2023.3300282",
+          "url": "https://doi.org/10.1109/lra.2023.3300282"
+        }
+      ]
+    },
+    {
+      "query": "\"world model\" \"active perception\"",
+      "url": "https://api.openalex.org/works?search=%22world%20model%22%20%22active%20perception%22&per-page=6&filter=from_publication_date:2023-01-01",
+      "status": 200,
+      "sha256": "57eef64409f0522efa9f88828e3e3e06530af276250f78eb35f6f6165864a7a4",
+      "results": [
+        {
+          "title": "World models and predictive coding for cognitive and developmental robotics: frontiers and challenges",
+          "year": 2023,
+          "doi": "https://doi.org/10.1080/01691864.2023.2225232",
+          "url": "https://doi.org/10.1080/01691864.2023.2225232"
+        },
+        {
+          "title": "Active Predictive Coding: A Unifying Neural Model for Active Perception, Compositional Learning, and Hierarchical Planning",
+          "year": 2023,
+          "doi": "https://doi.org/10.1162/neco_a_01627",
+          "url": "https://doi.org/10.1162/neco_a_01627"
+        },
+        {
+          "title": "Multi-Hypothesis Tracking in a Graph-Based World Model for Knowledge-Driven Active Perception",
+          "year": 2023,
+          "doi": "https://doi.org/10.1109/lra.2023.3300282",
+          "url": "https://doi.org/10.1109/lra.2023.3300282"
+        },
+        {
+          "title": "Embodied AI: From LLMs to World Models",
+          "year": 2025,
+          "doi": "https://doi.org/10.36227/techrxiv.175977432.27129012/v1",
+          "url": "https://doi.org/10.36227/techrxiv.175977432.27129012/v1"
+        },
+        {
+          "title": "HortiBot: An Adaptive Multi-Arm System for Robotic Horticulture of Sweet Peppers",
+          "year": 2024,
+          "doi": "https://doi.org/10.1109/iros58592.2024.10802082",
+          "url": "https://doi.org/10.1109/iros58592.2024.10802082"
+        },
+        {
+          "title": "World Models and Predictive Coding for Cognitive and Developmental Robotics: Frontiers and Challenges",
+          "year": 2023,
+          "doi": "https://doi.org/10.48550/arxiv.2301.05832",
+          "url": "http://arxiv.org/abs/2301.05832"
+        }
+      ]
+    },
+    {
+      "query": "\"world model\" \"memory\" navigation",
+      "url": "https://api.openalex.org/works?search=%22world%20model%22%20%22memory%22%20navigation&per-page=6&filter=from_publication_date:2023-01-01",
+      "status": 200,
+      "sha256": "e6b935c07b0205439f0d3df835c3f48309d11afbddb313d32f286bed51fc8f1f",
+      "results": [
+        {
+          "title": "A world model: On the political logics of generative AI",
+          "year": 2024,
+          "doi": "https://doi.org/10.1016/j.polgeo.2024.103134",
+          "url": "https://www.sciencedirect.com/science/article/pii/S0962629824000830/pdf"
+        },
+        {
+          "title": "Grounded SAM: Assembling Open-World Models for Diverse Visual Tasks",
+          "year": 2024,
+          "doi": "https://doi.org/10.48550/arxiv.2401.14159",
+          "url": "http://arxiv.org/abs/2401.14159"
+        },
+        {
+          "title": "From task structures to world models: what do LLMs know?",
+          "year": 2024,
+          "doi": "https://doi.org/10.1016/j.tics.2024.02.008",
+          "url": "https://doi.org/10.1016/j.tics.2024.02.008"
+        },
+        {
+          "title": "World models and predictive coding for cognitive and developmental robotics: frontiers and challenges",
+          "year": 2023,
+          "doi": "https://doi.org/10.1080/01691864.2023.2225232",
+          "url": "https://doi.org/10.1080/01691864.2023.2225232"
+        },
+        {
+          "title": "Understanding World or Predicting Future? A Comprehensive Survey of World Models",
+          "year": 2025,
+          "doi": "https://doi.org/10.1145/3746449",
+          "url": "https://doi.org/10.1145/3746449"
+        },
+        {
+          "title": "WMNav: Integrating Vision-Language Models into World Models for Object Goal Navigation",
+          "year": 2025,
+          "doi": "https://doi.org/10.1109/iros60139.2025.11246684",
+          "url": "https://doi.org/10.1109/iros60139.2025.11246684"
+        }
+      ]
+    },
+    {
+      "query": "\"world model\" \"information gain\"",
+      "url": "https://api.openalex.org/works?search=%22world%20model%22%20%22information%20gain%22&per-page=6&filter=from_publication_date:2023-01-01",
+      "status": 200,
+      "sha256": "bec42a15a510794e15ca7200cfa9291523518394e7acafda5b99e5983fcfc35d",
+      "results": [
+        {
+          "title": "World models and predictive coding for cognitive and developmental robotics: frontiers and challenges",
+          "year": 2023,
+          "doi": "https://doi.org/10.1080/01691864.2023.2225232",
+          "url": "https://doi.org/10.1080/01691864.2023.2225232"
+        },
+        {
+          "title": "Local Search and the Evolution of World Models",
+          "year": 2023,
+          "doi": "https://doi.org/10.1111/tops.12703",
+          "url": "https://doi.org/10.1111/tops.12703"
+        },
+        {
+          "title": "World Models and Predictive Coding for Cognitive and Developmental Robotics: Frontiers and Challenges",
+          "year": 2023,
+          "doi": "https://doi.org/10.48550/arxiv.2301.05832",
+          "url": "http://arxiv.org/abs/2301.05832"
+        },
+        {
+          "title": "Multi-Hypothesis Tracking in a Graph-Based World Model for Knowledge-Driven Active Perception",
+          "year": 2023,
+          "doi": "https://doi.org/10.1109/lra.2023.3300282",
+          "url": "https://doi.org/10.1109/lra.2023.3300282"
+        },
+        {
+          "title": "Active inference as a theory of sentient behavior",
+          "year": 2024,
+          "doi": "https://doi.org/10.1016/j.biopsycho.2023.108741",
+          "url": "https://doi.org/10.1016/j.biopsycho.2023.108741"
+        },
+        {
+          "title": "The Essential Role of Causality in Foundation World Models for Embodied AI",
+          "year": 2024,
+          "doi": "https://doi.org/10.48550/arxiv.2402.06665",
+          "url": "http://arxiv.org/abs/2402.06665"
+        }
+      ]
+    }
+  ]
+}

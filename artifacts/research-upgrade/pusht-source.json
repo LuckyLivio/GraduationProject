@@ -1,0 +1,229 @@
+{
+  "retrieved_utc": "2026-09-17T04:28:31.350618+00:00",
+  "purpose": "Read-only audit of official PushT observation/action and physics implementation",
+  "records": [
+    {
+      "url": "https://raw.githubusercontent.com/real-stanford/diffusion_policy/main/diffusion_policy/env/pusht/pusht_env.py",
+      "status": 200,
+      "sha256": "759107dc0ea6017b8afe3380ce23817713edf26af725fc4f03c0416ced940bd0",
+      "bytes": 13554,
+      "excerpts": [
+        {
+          "start_line": 43,
+          "text": "        self.render_size = render_size\n        self.sim_hz = 100\n        # Local controller params.\n        self.k_p, self.k_v = 100, 20    # PD control.z\n        self.control_hz = self.metadata['video.frames_per_second']\n        # legcay set_state for data compatibility\n        self.legacy = legacy\n\n        # agent_pos, block_pos, block_angle\n        self.observation_space = spaces.Box(\n            low=np.array([0,0,0,0,0], dtype=np.float64),\n            high=np.array([ws,ws,ws,ws,np.pi*2], dtype=np.float64),\n            shape=(5,),\n            dtype=np.float64\n        )\n\n        # positional goal for agent\n        self.action_space = spaces.Box("
+        },
+        {
+          "start_line": 51,
+          "text": "        # agent_pos, block_pos, block_angle\n        self.observation_space = spaces.Box(\n            low=np.array([0,0,0,0,0], dtype=np.float64),\n            high=np.array([ws,ws,ws,ws,np.pi*2], dtype=np.float64),\n            shape=(5,),\n            dtype=np.float64\n        )\n\n        # positional goal for agent\n        self.action_space = spaces.Box(\n            low=np.array([0,0], dtype=np.float64),\n            high=np.array([ws,ws], dtype=np.float64),\n            shape=(2,),\n            dtype=np.float64\n        )\n\n        self.block_cog = block_cog\n        self.damping = damping"
+        },
+        {
+          "start_line": 59,
+          "text": "        # positional goal for agent\n        self.action_space = spaces.Box(\n            low=np.array([0,0], dtype=np.float64),\n            high=np.array([ws,ws], dtype=np.float64),\n            shape=(2,),\n            dtype=np.float64\n        )\n\n        self.block_cog = block_cog\n        self.damping = damping\n        self.render_action = render_action\n\n        \"\"\"\n        If human-rendering is used, `self.window` will be a reference\n        to the window that we draw to. `self.clock` will be a clock that is used\n        to ensure that the environment is rendered at the correct framerate in\n        human-mode. They will remain `None` until human-mode is used for the\n        first time."
+        },
+        {
+          "start_line": 109,
+          "text": "\n    def step(self, action):\n        dt = 1.0 / self.sim_hz\n        self.n_contact_points = 0\n        n_steps = self.sim_hz // self.control_hz\n        if action is not None:\n            self.latest_action = action\n            for i in range(n_steps):\n                # Step PD control.\n                # self.agent.velocity = self.k_p * (act - self.agent.position)    # P control works too.\n                acceleration = self.k_p * (action - self.agent.position) + self.k_v * (Vec2d(0, 0) - self.agent.velocity)\n                self.agent.velocity += acceleration * dt\n\n                # Step physics.\n                self.space.step(dt)\n\n        # compute reward\n        goal_body = self._get_goal_pose_body(self.goal_pose)"
+        },
+        {
+          "start_line": 154,
+          "text": "\n    def _get_obs(self):\n        obs = np.array(\n            tuple(self.agent.position) \\\n            + tuple(self.block.position) \\\n            + (self.block.angle % (2 * np.pi),))\n        return obs\n\n    def _get_goal_pose_body(self, pose):\n        mass = 1\n        inertia = pymunk.moment_for_box(mass, (50, 100))\n        body = pymunk.Body(mass, inertia)\n        # preserving the legacy assignment order for compatibility\n        # the order here doesn't matter somehow, maybe because CoM is aligned with body origin\n        body.position = pose[:2].tolist()\n        body.angle = pose[2]\n        return body\n    "
+        },
+        {
+          "start_line": 323,
+          "text": "\n    def add_circle(self, position, radius):\n        body = pymunk.Body(body_type=pymunk.Body.KINEMATIC)\n        body.position = position\n        body.friction = 1\n        shape = pymunk.Circle(body, radius)\n        shape.color = pygame.Color('RoyalBlue')\n        self.space.add(body, shape)\n        return body\n\n    def add_box(self, position, height, width):\n        mass = 1\n        inertia = pymunk.moment_for_box(mass, (height, width))\n        body = pymunk.Body(mass, inertia)\n        body.position = position\n        shape = pymunk.Poly.create_box(body, (height, width))\n        shape.color = pygame.Color('LightSlateGray')\n        self.space.add(body, shape)"
+        },
+        {
+          "start_line": 342,
+          "text": "\n    def add_tee(self, position, angle, scale=30, color='LightSlateGray', mask=pymunk.ShapeFilter.ALL_MASKS()):\n        mass = 1\n        length = 4\n        vertices1 = [(-length*scale/2, scale),\n                                 ( length*scale/2, scale),\n                                 ( length*scale/2, 0),\n                                 (-length*scale/2, 0)]\n        inertia1 = pymunk.moment_for_poly(mass, vertices=vertices1)\n        vertices2 = [(-scale/2, scale),\n                                 (-scale/2, length*scale),\n                                 ( scale/2, length*scale),\n                                 ( scale/2, scale)]\n        inertia2 = pymunk.moment_for_poly(mass, vertices=vertices1)\n        body = pymunk.Body(mass, inertia1 + inertia2)\n        shape1 = pymunk.Poly(body, vertices1)\n        shape2 = pymunk.Poly(body, vertices2)\n        shape1.color = pygame.Color(color)"
+        },
+        {
+          "start_line": 288,
+          "text": "\n    def _setup(self):\n        self.space = pymunk.Space()\n        self.space.gravity = 0, 0\n        self.space.damping = 0\n        self.teleop = False\n        self.render_buffer = list()\n        \n        # Add walls.\n        walls = [\n            self._add_segment((5, 506), (5, 5), 2),\n            self._add_segment((5, 5), (506, 5), 2),\n            self._add_segment((506, 5), (506, 506), 2),\n            self._add_segment((5, 506), (506, 506), 2)\n        ]\n        self.space.add(*walls)\n\n        # Add agent, block, and goal zone."
+        }
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/real-stanford/diffusion_policy/main/diffusion_policy/env/pusht/pymunk_override.py",
+      "status": 200,
+      "sha256": "85e7c54b5e9630a9f7e675250ee514ae9b2249d11654ec0811d8e4bcf413fe39",
+      "bytes": 8415,
+      "excerpt": "# ----------------------------------------------------------------------------\n# pymunk\n# Copyright (c) 2007-2016 Victor Blomqvist\n#\n# Permission is hereby granted, free of charge, to any person obtaining a copy\n# of this software and associated documentation files (the \"Software\"), to deal\n# in the Software without restriction, including without limitation the rights\n# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n# copies of the Software, and to permit persons to whom the Software is\n# furnished to do so, subject to the following conditions:\n#\n# The above copyright notice and this permission notice shall be included in\n# all copies or substantial portions of the Software.\n#\n# THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n# SOFTWARE.\n# ----------------------------------------------------------------------------\n\n\"\"\"This submodule contains helper functions to help with quick prototyping \nusing pymunk together with pygame.\n\nIntended to help with debugging and prototyping, not for actual production use\nin a full application. The methods contained in this module is opinionated \nabout your coordinate system and not in any way optimized. \n\"\"\"\n\n__docformat__ = \"reStructuredText\"\n\n__all__ = [\n    \"DrawOptions\",\n    \"get_mouse_pos\",\n    \"to_pygame\",\n    \"from_pygame\",\n    \"lighten\",\n    \"positive_y_is_up\",\n]\n\nfrom typing import List, Sequence, Tuple\n\nimport pygame\n\nimport numpy as np\n\nimport pymunk\nfrom pymunk.space_debug_draw_options import SpaceDebugColor\nfrom pymunk.vec2d import Vec2d\n\npositive_y_is_up: bool = False\n\"\"\"Make increasing values of y point upwards.\n\nWhen True::\n\n    y\n    ^\n    |      . (3, 3)\n    |\n    |   . (2, 2)\n    |\n    +------ > x\n    \nWhen False::\n\n    +------ > x\n    |\n    |   . (2, 2)\n    |\n    |      . (3, 3)\n    v\n    y\n    \n\"\"\"\n\n\nclass DrawOptions(pymunk.SpaceDebugDrawOptions):\n    def __init__(self, surface: pygame.Surface) -> None:\n        \"\"\"Draw a pymunk.Space on a pygame.Surface object.\n\n        Typical usage::\n\n        >>> import pymunk\n        >>> surface = pygame.Surface((10,10))\n        >>> space = pymunk.Space()\n        >>> options = pymunk.pygame_util.DrawOptions(surface)\n        >>> space.debug_draw(options)\n\n        You can control the color of a shape by setting shape.color to the color\n        you want it drawn in::\n\n        >>> c = pymunk.Circle(None, 10)\n        >>> c.color = pygame.Color(\"pink\")\n\n        See pygame_util.demo.py for a full example\n\n        Since pygame uses a coordinate system where y points down (in contrast\n        to many other cases), you either have to make the physics simulation\n        with Pymunk also behave in that way, or flip everything when you draw.\n\n        The easiest is probably to just make the simulation behave the same\n        way as Pygame does. In that way all coordinates used are in the same\n        orientation and easy to reason about::\n\n        >>> space = pymunk.Space()\n        >>> space.gravity = (0, -1000)\n        >>> body = pymunk.Body()\n        >>> body.position = (0, 0) # will be positioned in the top left corner\n        >>> space.debug_draw(options)\n\n        To flip the drawing its possible to set the module property\n        :py:data:`positive_y_is_up` to True. Then the pygame drawing will flip\n        the simulation upside down before drawing::\n\n        >>> positive_y_is_up = True\n        >>> body = pymunk.Body()\n        >>> body.position = (0, 0)\n        >>> # Body will be position in bottom left corner\n\n        :Parameters:\n                surface : pygame.Surface\n                    Surface that the objects will be drawn on\n        \"\"\"\n        self.surface = surface\n        super(DrawOptions, self).__init__()\n\n    def draw_circle(\n        self,\n        pos: Vec2d,\n        angle: float,\n        radius: float,\n        outline_color: SpaceDebugColor,\n        fill_color: SpaceDebugColor,\n    ) -> None:\n        p = to_pygame(pos, self.surface)\n\n        pygame.draw.circle(self.surface, fill_color.as_int(), p, round(radius), 0)\n        pygame.draw.circle(self.surface, light_color(fill_color).as_int(), p, round(radius-4), 0)\n\n        circle_edge = pos + Vec2d(radius, 0).rotated(angle)\n        p2 = to_pygame(circle_edge, self.surface)\n        line_r = 2 if radius > 20 else 1\n        # pygame.draw.lines(self.surface, outline_color.as_int(), False, [p, p2], line_r)\n\n    def draw_segment(self, a: Vec2d, b: Vec2d, color: SpaceDebugColor) -> None:\n        p1 = to_pygame(a, self.surface)\n        p2 = to_pygame(b, self.surface)\n\n        pygame.draw.aalines(self.surface, color.as_int(), False, [p1, p2])\n\n    def draw_fat_segment(\n        self,\n        a: Tuple[float, float],\n        b: Tuple[float, float],\n        radius: float,\n        outline_color: SpaceDebugColor,\n        fill_color: SpaceDebugColor,\n    ) -> None:\n        p1 = to_pygame(a, self.surface)\n        p2 = to_pygame(b, self.surface)\n\n        r = round(max(1, radius * 2))\n        pygame.draw.lines(self.surface, fill_color.as_int(), False, [p1, p2], r)\n        if r > 2:\n            orthog = [abs(p2[1] - p1[1]), abs(p2[0] - p1[0])]\n            if orthog[0] == 0 and orthog[1] == 0:\n                return\n            scale = radius / (orthog[0] * orthog[0] + orthog[1] * orthog[1]) ** 0.5\n            orthog[0] = round(orthog[0] * scale)\n            orthog[1] = round(orthog[1] * scale)\n            points = [\n                (p1[0] - orthog[0], p1[1] - orthog[1]),\n                (p1[0] + orthog[0], p1[1] + orthog[1]),\n                (p2[0] + orthog[0], p2[1] + orthog[1]),\n                (p2[0] - orthog[0], p2[1] - orthog[1]),\n            ]\n            pygame.draw.polygon(self.surface, fill_color.as_int(), points)\n            pygame.draw.circle(\n                self.surface,\n                fill_color.as_int(),\n                (round(p1[0]), round(p1[1])),\n                round(radius),\n            )\n            pygame.draw.circle(\n                self.surface,\n                fill_color.as_int(),\n                (round(p2[0]), round(p2[1])),\n                round(radius),\n            )\n\n    def draw_polygon(\n        self,\n        verts: Sequence[Tuple[float, float]],\n        radius: float,\n        outline_color: SpaceDebugColor,\n        fill_color: SpaceDebugColor,\n    ) -> None:\n        ps = [to_pygame(v, self.surface) for v in verts]\n        ps += [ps[0]]\n\n        radius = 2\n        pygame.draw.polygon(self.surface, light_color(fill_color).as_int(), ps)\n\n        if radius > 0:\n            for i in range(len(verts)):\n                a = verts[i]\n                b = verts[(i + 1) % len(verts)]\n                self.draw_fat_segment(a, b, radius, fill_color, fill_color)\n\n    def draw_dot(\n        self, size: float, pos: Tuple[float, float], color: SpaceDebugColor\n    ) -> None:\n        p = to_pygame(pos, self.surface)\n        pygame.draw.circle(self.surface, color.as_int(), p, round(size), 0)\n\n\ndef get_mouse_pos(surface: pygame.Surface) -> Tuple[int, int]:\n    \"\"\"Get position of the mouse pointer in pymunk coordinates.\"\"\"\n    p = pygame.mouse.get_pos()\n    return from_pygame(p, surface)\n\n\ndef to_pygame(p: Tuple[float, float], surface: pygame.Surface) -> Tuple[int, int]:\n    \"\"\"Convenience method to convert pymunk coordinates to pygame surface\n    local coordinates.\n\n    Note that in case positive_y_is_up is False, this function won't actually do\n    anything except converting the point to integers.\n    \"\"\"\n    if positive_y_is_up:\n        return round(p[0]), surface.get_height() - round(p[1])\n    else:\n        return round(p[0]), round(p[1])\n\n\ndef from_pygame(p: Tuple[float, float], surface: pygame.Surface) -> Tuple[int, int]:\n    \"\"\"Convenience method to convert pygame surface local coordinates to\n    pymunk coordinates\n    \"\"\"\n    return to_pygame(p, surface)\n\n\ndef light_color(color: SpaceDebugColor):\n    color = np.minimum(1.2 * np.float32([color.r, color.g, color.b, color.a]), np.float32([255]))\n    color = SpaceDebugColor(r=color[0], g=color[1], b=color[2], a=color[3])\n    return color\n"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/real-stanford/diffusion_policy/main/README.md",
+      "status": 200,
+      "sha256": "51b6717d694a4ea4b476cf07c64651dc58643402beb0a27cda38a87cc58334b0",
+      "bytes": 25219,
+      "excerpts": [
+        "Hardware (for Push-T):",
+        "[data]$ wget https://diffusion-policy.cs.columbia.edu/data/training/pusht.zip",
+        "[data]$ unzip pusht.zip && rm -f pusht.zip && cd ..",
+        "[diffusion_policy]$ wget -O image_pusht_diffusion_policy_cnn.yaml https://diffusion-policy.cs.columbia.edu/data/experiments/image/pusht/diffusion_policy_cnn/config.yaml",
+        "(robodiff)[diffusion_policy]$ python train.py --config-dir=. --config-name=image_pusht_diffusion_policy_cnn.yaml training.seed=42 training.device=cuda:0 hydra.run.dir='data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_${task_name}'",
+        "(robodiff)[diffusion_policy]$ tree data/outputs/2023.03.01/20.02.03_train_diffusion_unet_hybrid_pusht_image -I wandb",
+        "data/outputs/2023.03.01/20.02.03_train_diffusion_unet_hybrid_pusht_image",
+        "(robodiff)[diffusion_policy]$ python ray_train_multirun.py --config-dir=. --config-name=image_pusht_diffusion_policy_cnn.yaml --seeds=42,43,44 --monitor_key=test/mean_score -- multi_run.run_dir='data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_${task_name}' multi_run.wandb_name_base='${now:%Y.%m.%d-%H.%M.%S}_${name}_${task_name}'",
+        "(robodiff)[diffusion_policy]$ tree data/outputs/2023.03.01/22.13.58_train_diffusion_unet_hybrid_pusht_image -I 'wandb|media'",
+        "data/outputs/2023.03.01/22.13.58_train_diffusion_unet_hybrid_pusht_image",
+        "Download a checkpoint from the published training log folders, such as [https://diffusion-policy.cs.columbia.edu/data/experiments/low_dim/pusht/diffusion_policy_cnn/train_0/checkpoints/epoch=0550-test_mean_score=0.969.ckpt](https://diffusion-policy.cs.columbia.edu/data/experiments/low_dim/pusht/diffusion_policy_cnn/train_0/checkpoints/epoch=0550-test_mean_score=0.969.ckpt).",
+        "(robodiff)[diffusion_policy]$ python eval.py --checkpoint data/0550-test_mean_score=0.969.ckpt --output_dir data/pusht_eval_output --device cuda:0",
+        "(robodiff)[diffusion_policy]$ tree data/pusht_eval_output",
+        "data/pusht_eval_output",
+        "(robodiff)[diffusion_policy]$ cat data/pusht_eval_output/eval_log.json",
+        "  \"train/sim_video_1\": \"data/pusht_eval_output//media/2fo4btlf.mp4\"",
+        "(robodiff)[diffusion_policy]$ python demo_real_robot.py -o data/demo_pusht_real --robot_ip 192.168.0.204",
+        "This should result in a demonstration dataset in `data/demo_pusht_real` with in the same structure as our example [real Push-T training dataset](https://diffusion-policy.cs.columbia.edu/data/training/pusht_real.zip).",
+        "(robodiff)[diffusion_policy]$ python train.py --config-name=train_diffusion_unet_real_image_workspace task.dataset_path=data/demo_pusht_real",
+        "Edit [`diffusion_policy/config/task/real_pusht_image.yaml`](./diffusion_policy/config/task/real_pusht_image.yaml) if your camera setup is different.",
+        "python eval_real_robot.py -i data/outputs/blah/checkpoints/latest.ckpt -o data/eval_pusht_real --robot_ip 192.168.0.204",
+        "On disk, it can be stored as a nested directory (e.g. `data/pusht_cchi_v7_replay.zarr`) or a zip file (e.g. `data/robomimic/datasets/square/mh/image_abs.hdf5.zarr.zip`).",
+        "data/pusht_cchi_v7_replay.zarr",
+        " │   ├── action (25650, 2) float32",
+        " │   ├── img (25650, 96, 96, 3) float32",
+        " │   ├── keypoint (25650, 9, 2) float32",
+        " │   ├── n_contacts (25650, 1) float32",
+        " │   └── state (25650, 5) float32",
+        "     └── episode_ends (206,) int64",
+        "* `diffusion_policy/dataset/pusht_image_dataset.py`",
+        "* `diffusion_policy/env_runner/pusht_image_runner.py`",
+        "* `diffusion_policy/config/task/pusht_image.yaml`",
+        "## 🏷️ License",
+        "This repository is released under the MIT license. See [LICENSE](LICENSE) for additional details.",
+        "* The [Push-T](./diffusion_policy/env/pusht) task is adapted from [IBC](https://github.com/google-research/ibc)."
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/real-stanford/diffusion_policy/main/conda_environment.yaml",
+      "status": 200,
+      "sha256": "c945bcac09284cf897d3e1837139ea83f991e4b2298dbd3a8c4a0718a34994ea",
+      "bytes": 1626,
+      "dependency_lines": [
+        "  - python=3.9",
+        "  - numpy=1.23.3",
+        "  - py-opencv=4.6.0",
+        "  - scikit-image=0.19.3",
+        "  - gym=0.21.0",
+        "  - pymunk=6.2.1",
+        "  - shapely=1.8.4",
+        "    - pygame==2.1.2"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/gaoyuezhou/dino_wm/main/README.md",
+      "status": 200,
+      "sha256": "c8a0d03417f457f26687860e15ee1b4273abb46af4db335d4a2d3217c8643f67",
+      "bytes": 6393,
+      "excerpts": [
+        "├── pusht_noise",
+        "We have uploaded our trained world model checkpoints for PointMaze, PushT, and Wall [here](https://osf.io/bmw48/?view_only=a56a296ce3b24cceaf408383a175ce28) under `checkpoints`. You can launch planning jobs with their respective configs in the repo:",
+        "# PushT",
+        "python plan.py --config-name plan_pusht.yaml model_name=pusht"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/gaoyuezhou/dino_wm/0a9492fa12044b852ae9e001cc74604b79c8bb0c/env/pusht/pusht_env.py",
+      "status": 200,
+      "sha256": "1aaac87d49b619eed2370297d5393cd3e22e22f08bbfb2870ee1422e86ef4c3a",
+      "bytes": 43907,
+      "excerpts": [
+        {
+          "start_line": 389,
+          "text": "        self.render_size = render_size\n        self.sim_hz = 100\n        # Local controller params.\n        self.k_p, self.k_v = 100, 20  # PD control.z\n        self.control_hz = self.metadata[\"video.frames_per_second\"]\n        # legcay set_state for data compatibility\n        self.legacy = legacy\n        self.relative = relative  # relative action space\n        self.action_scale = action_scale\n\n        # agent_pos, block_pos, block_angle\n        self.observation_space = spaces.Box(\n            low=np.array([0, 0, 0, 0, 0], dtype=np.float64),\n            high=np.array([ws, ws, ws, ws, np.pi * 2], dtype=np.float64),\n            shape=(5,),\n            dtype=np.float64,\n        )\n"
+        },
+        {
+          "start_line": 399,
+          "text": "        # agent_pos, block_pos, block_angle\n        self.observation_space = spaces.Box(\n            low=np.array([0, 0, 0, 0, 0], dtype=np.float64),\n            high=np.array([ws, ws, ws, ws, np.pi * 2], dtype=np.float64),\n            shape=(5,),\n            dtype=np.float64,\n        )\n\n        # positional goal for agent\n        self.action_space = spaces.Box(\n            low=np.array([0, 0], dtype=np.float64),\n            high=np.array([ws, ws], dtype=np.float64),\n            shape=(2,),\n            dtype=np.float64,\n        )\n\n        self.block_cog = block_cog\n        self.damping = damping"
+        },
+        {
+          "start_line": 407,
+          "text": "        # positional goal for agent\n        self.action_space = spaces.Box(\n            low=np.array([0, 0], dtype=np.float64),\n            high=np.array([ws, ws], dtype=np.float64),\n            shape=(2,),\n            dtype=np.float64,\n        )\n\n        self.block_cog = block_cog\n        self.damping = damping\n        self.render_action = render_action\n\n        \"\"\"\n        If human-rendering is used, `self.window` will be a reference\n        to the window that we draw to. `self.clock` will be a clock that is used\n        to ensure that the environment is rendered at the correct framerate in\n        human-mode. They will remain `None` until human-mode is used for the\n        first time."
+        },
+        {
+          "start_line": 486,
+          "text": "\n    def step(self, action):\n        dt = 1.0 / self.sim_hz\n        self.n_contact_points = 0\n        n_steps = self.sim_hz // self.control_hz\n        if action is not None:\n            action = np.array(action) * self.action_scale\n            if self.relative:\n                action = self.agent.position + action\n            self.latest_action = action\n            for i in range(n_steps):\n                # Step PD control.\n                # self.agent.velocity = self.k_p * (act - self.agent.position)    # P control works too.\n                acceleration = self.k_p * (action - self.agent.position) + self.k_v * (\n                    Vec2d(0, 0) - self.agent.velocity\n                )\n                self.agent.velocity += acceleration * dt\n"
+        },
+        {
+          "start_line": 557,
+          "text": "\n    def _get_obs(self):\n        if self.with_velocity:\n            obs = np.array(\n                tuple(self.agent.position)\n                + tuple(self.block.position)\n                + (self.block.angle % (2 * np.pi),)\n                + tuple(self.agent.velocity)\n            ).astype(np.float32)\n        else:\n            obs = np.array(\n                tuple(self.agent.position)\n                + tuple(self.block.position)\n                + (self.block.angle % (2 * np.pi),)\n            ).astype(np.float32)\n        return obs\n\n    def _get_goal_pose_body(self, pose):"
+        },
+        {
+          "start_line": 752,
+          "text": "\n    def add_circle(self, position, radius):\n        body = pymunk.Body(body_type=pymunk.Body.KINEMATIC)\n        body.position = position\n        body.friction = 1\n        shape = pymunk.Circle(body, radius)\n        shape.color = pygame.Color(\"RoyalBlue\")\n        self.space.add(body, shape)\n        return body\n\n    def add_box(self, position, height, width):\n        mass = 1\n        inertia = pymunk.moment_for_box(mass, (height, width))\n        body = pymunk.Body(mass, inertia)\n        body.position = position\n        shape = pymunk.Poly.create_box(body, (height, width))\n        shape.color = pygame.Color(\"LightSlateGray\")\n        self.space.add(body, shape)"
+        },
+        {
+          "start_line": 771,
+          "text": "\n    def add_tee(\n        self,\n        position,\n        angle,\n        scale=30,\n        color=\"LightSlateGray\",\n        mask=pymunk.ShapeFilter.ALL_MASKS(),\n    ):  \n        scale=30\n        mass = 1\n        length = 4\n        vertices1 = [\n            (-length * scale / 2, scale),\n            (length * scale / 2, scale),\n            (length * scale / 2, 0),\n            (-length * scale / 2, 0),\n        ]"
+        },
+        {
+          "start_line": 711,
+          "text": "\n    def _setup(self):\n        self.space = pymunk.Space()\n        self.space.gravity = 0, 0\n        self.space.damping = 0\n        self.teleop = False\n        self.render_buffer = list()\n\n        # Add walls.\n        walls = [\n            self._add_segment((5, 506), (5, 5), 2),\n            self._add_segment((5, 5), (506, 5), 2),\n            self._add_segment((506, 5), (506, 506), 2),\n            self._add_segment((5, 506), (506, 506), 2),\n        ]\n        self.space.add(*walls)\n\n        # Add agent, block, and goal zone."
+        },
+        {
+          "start_line": 368,
+          "text": "    def __init__(\n        self,\n        legacy=False,\n        block_cog=None,\n        damping=None,\n        render_action=False,\n        render_size=224,\n        reset_to_state=None,\n        relative=True,\n        action_scale=100,\n        with_velocity=False,\n        with_target=True,\n        shape=\"T\",  # shape can be \"T\" <- the original shape, \"I\", \"L\", \"Z\", \"square\" and \"small_tee\"\n        color=\"LightSlateGray\","
+        },
+        {
+          "start_line": 519,
+          "text": "        state = self._get_obs()\n        # visual = self._render_frame(\"rgb_array\")\n        visual = self._render_frame(\"rgb_array\")\n        proprio = state[:2]\n        if self.with_velocity:\n            proprio = np.concatenate((proprio, state[5:]))\n        observation = {\n            \"visual\": visual,\n            \"proprio\": proprio\n        }\n        # observation = (\n        #     einops.rearrange(observation, \"H W C -> 1 C H W\") / 255.0\n        # )  # VCHW, range [0, 1]\n        info = self._get_info()\n        info[\"state\"] = state\n        info[\"max_coverage\"] = max(self.coverage_arr)\n        info[\"final_coverage\"] = self.coverage_arr[-1]\n\n        return observation, reward, done, info"
+        }
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/gaoyuezhou/dino_wm/0a9492fa12044b852ae9e001cc74604b79c8bb0c/env/pusht/pusht_wrapper.py",
+      "status": 200,
+      "sha256": "b285f3cb8fdecd831341187ea2ac93def0d9a574d863aa7c2ddc5b50c4be8896",
+      "bytes": 3844,
+      "excerpt": "import os\nimport numpy as np\nimport gym\nfrom env.pusht.pusht_env import PushTEnv\nfrom utils import aggregate_dct\n\nclass PushTWrapper(PushTEnv):\n    def __init__(\n            self, \n            with_velocity=True,\n            with_target=True,\n        ):\n        super().__init__(\n            with_velocity=with_velocity,\n            with_target=with_target, \n        )\n        self.action_dim = self.action_space.shape[0]\n    \n    def sample_random_init_goal_states(self, seed):\n        \"\"\"\n        Return two random states: one as the initial state and one as the goal state.\n        \"\"\"\n        rs = np.random.RandomState(seed)\n        \n        def generate_state():\n            if self.with_velocity:\n                return np.array(\n                    [\n                        rs.randint(50, 450),\n                        rs.randint(50, 450),\n                        rs.randint(100, 400),\n                        rs.randint(100, 400),\n                        rs.randn() * 2 * np.pi - np.pi,\n                        0,\n                        0,  # agent velocities default 0\n                    ]\n                )\n            else:\n                return np.array(\n                    [\n                        rs.randint(50, 450),\n                        rs.randint(50, 450),\n                        rs.randint(100, 400),\n                        rs.randint(100, 400),\n                        rs.randn() * 2 * np.pi - np.pi,\n                    ]\n                )\n        \n        init_state = generate_state()\n        goal_state = generate_state()\n        \n        return init_state, goal_state\n    \n    def update_env(self, env_info):\n        self.shape = env_info['shape']\n    \n    def eval_state(self, goal_state, cur_state):\n        \"\"\"\n        Return True if the goal is reached\n        [agent_x, agent_y, T_x, T_y, angle, agent_vx, agent_vy]\n        \"\"\"\n        # if position difference is < 20, and angle difference < np.pi/9, then success\n        pos_diff = np.linalg.norm(goal_state[:4] - cur_state[:4])\n        angle_diff = np.abs(goal_state[4] - cur_state[4])\n        angle_diff = np.minimum(angle_diff, 2 * np.pi - angle_diff)\n        success = pos_diff < 20 and angle_diff < np.pi / 9\n        state_dist = np.linalg.norm(goal_state - cur_state)\n        return {\n            'success': success,\n            'state_dist': state_dist,\n        }\n\n    def prepare(self, seed, init_state):\n        \"\"\"\n        Reset with controlled init_state\n        obs: (H W C)\n        state: (state_dim)\n        \"\"\"\n        self.seed(seed)\n        self.reset_to_state = init_state\n        obs, state = self.reset()\n        return obs, state\n\n    def step_multiple(self, actions):\n        \"\"\"\n        infos: dict, each key has shape (T, ...)\n        \"\"\"\n        obses = []\n        rewards = []\n        dones = []\n        infos = []\n        for action in actions:\n            o, r, d, info = self.step(action)\n            obses.append(o)\n            rewards.append(r)\n            dones.append(d)\n            infos.append(info)\n        obses = aggregate_dct(obses)\n        rewards = np.stack(rewards)\n        dones = np.stack(dones)\n        infos = aggregate_dct(infos)\n        return obses, rewards, dones, infos\n\n    def rollout(self, seed, init_state, actions):\n        \"\"\"\n        only returns np arrays of observations and states\n        seed: int\n        init_state: (state_dim, )\n        actions: (T, action_dim)\n        obses: dict (T, H, W, C)\n        states: (T, D)\n        \"\"\"\n        obs, state = self.prepare(seed, init_state)\n        obses, rewards, dones, infos = self.step_multiple(actions)\n        for k in obses.keys():\n            obses[k] = np.vstack([np.expand_dims(obs[k], 0), obses[k]])\n        states = np.vstack([np.expand_dims(state, 0), infos[\"state\"]])\n        states = np.stack(states)\n        return obses, states\n"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/gaoyuezhou/dino_wm/0a9492fa12044b852ae9e001cc74604b79c8bb0c/conf/env/pusht.yaml",
+      "status": 200,
+      "sha256": "506a2039d0164ff9928855928faa4ee1a33b2030888420b588bdf78f3a4859de",
+      "bytes": 421,
+      "excerpt": "name: pusht\nargs: []\nkwargs: \n  with_velocity: true\n  with_target: true\n\ndataset:\n  _target_: \"datasets.pusht_dset.load_pusht_slice_train_val\"\n  with_velocity: true\n  n_rollout: null\n  normalize_action: ${normalize_action}\n  data_path: ${oc.env:DATASET_DIR}/pusht_noise\n  split_ratio: 0.9\n  transform:\n    _target_: \"datasets.img_transforms.default_transform\"\n    img_size: ${img_size}\n\ndecoder_path: null\nnum_workers: 16"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/gaoyuezhou/dino_wm/0a9492fa12044b852ae9e001cc74604b79c8bb0c/environment.yaml",
+      "status": 200,
+      "sha256": "d8784d1f11f93f3b11bd858c68ca19d15eb0d24ca8d80463cd0aeed614e1da6c",
+      "bytes": 7588,
+      "dependency_lines": [
+        "  - numpy=1.26.4=py39h474f0d3_0",
+        "  - python=3.9.19=h0755675_0_cpython",
+        "      - gitpython==3.1.43",
+        "      - gym==0.23.1",
+        "      - ipython==8.18.1",
+        "      - opencv-python==4.6.0.66",
+        "      - pygame==2.5.2",
+        "      - pymunk==6.8.0",
+        "      - scikit-image==0.19.3",
+        "      - shapely==2.0.3"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/real-stanford/diffusion_policy/main/diffusion_policy/env/pusht/pusht_image_env.py",
+      "status": 200,
+      "sha256": "b0a15ddbdfedfea1ffbd6119fd1266fc2b238ef08b1758dc3e1db0f7054353cc",
+      "bytes": 1957,
+      "excerpt": "from gym import spaces\nfrom diffusion_policy.env.pusht.pusht_env import PushTEnv\nimport numpy as np\nimport cv2\n\nclass PushTImageEnv(PushTEnv):\n    metadata = {\"render.modes\": [\"rgb_array\"], \"video.frames_per_second\": 10}\n\n    def __init__(self,\n            legacy=False,\n            block_cog=None, \n            damping=None,\n            render_size=96):\n        super().__init__(\n            legacy=legacy, \n            block_cog=block_cog,\n            damping=damping,\n            render_size=render_size,\n            render_action=False)\n        ws = self.window_size\n        self.observation_space = spaces.Dict({\n            'image': spaces.Box(\n                low=0,\n                high=1,\n                shape=(3,render_size,render_size),\n                dtype=np.float32\n            ),\n            'agent_pos': spaces.Box(\n                low=0,\n                high=ws,\n                shape=(2,),\n                dtype=np.float32\n            )\n        })\n        self.render_cache = None\n    \n    def _get_obs(self):\n        img = super()._render_frame(mode='rgb_array')\n\n        agent_pos = np.array(self.agent.position)\n        img_obs = np.moveaxis(img.astype(np.float32) / 255, -1, 0)\n        obs = {\n            'image': img_obs,\n            'agent_pos': agent_pos\n        }\n\n        # draw action\n        if self.latest_action is not None:\n            action = np.array(self.latest_action)\n            coord = (action / 512 * 96).astype(np.int32)\n            marker_size = int(8/96*self.render_size)\n            thickness = int(1/96*self.render_size)\n            cv2.drawMarker(img, coord,\n                color=(255,0,0), markerType=cv2.MARKER_CROSS,\n                markerSize=marker_size, thickness=thickness)\n        self.render_cache = img\n\n        return obs\n\n    def render(self, mode):\n        assert mode == 'rgb_array'\n\n        if self.render_cache is None:\n            self._get_obs()\n        \n        return self.render_cache\n"
+    },
+    {
+      "url": "https://www.pymunk.org/en/latest/pymunk.html",
+      "error": "HTTP Error 403: Forbidden",
+      "bytes": 0,
+      "excerpt": ""
+    }
+  ],
+  "immutable_references": {
+    "diffusion_policy_pusht_file_last_commit": "27395b75008269ebac3ceb2192fadd647f288e7f",
+    "dino_wm_tree_commit": "0a9492fa12044b852ae9e001cc74604b79c8bb0c"
+  },
+  "interpretation": {
+    "standard_action": "2D absolute pusher position target; 10Hz control, 100Hz PD velocity update of kinematic pusher. Not force controlled.",
+    "standard_observation": "5D pusher xy, block xy, block angle; image wrapper 3x96x96 float image plus pusher xy.",
+    "identifiability": "Unknown mass not guaranteed observable. Kinematic pusher does not respond to reaction forces; scaling object mass and inertia together can leave motion unchanged in this setting. Must test parameter sensitivity or use COG/damping variations and avoid mass-recovery claims.",
+    "dino_wm_action": "By default relative=True and action_scale=100: target=current pusher position+100*action. Same kinematic pusher/PD velocity update, not commanded force. Action-space Box remains inherited absolute-style bounds, so actual step implementation is authoritative.",
+    "dino_wm_observation": "visual RGB default224x224; proprio pusher xy and optional vx/vy. Default wrapper/config with_velocity=True gives7D evaluation state; true block pose lives in evaluator info state, not visual/proprio observation.",
+    "dino_wm_evaluation": "Wrapper eval_state compares both pusher and block positions (norm of first4 coords<20) and wrapped block angle error<pi/9. step done=False; differs from diffusion-policy coverage>0.95 termination. Must report which protocol."
+  }
+}

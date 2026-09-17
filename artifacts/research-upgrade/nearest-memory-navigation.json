@@ -1,0 +1,85 @@
+{
+  "accessed_at": "2026-09-17T04:23:27.953339+00:00",
+  "records": [
+    {
+      "url": "https://arxiv.org/abs/2510.08713",
+      "status": 200,
+      "sha256": "64fca3ca22e6fc36aa194a0412fe358ee2f4abb382f9d832c5581678e555bcf0",
+      "excerpt": "\n             Abstract: Enabling embodied agents to imagine future states is essential for robust and generalizable visual navigation. Yet, state-of-the-art systems typically rely on modular designs that decouple navigation planning from visual world modeling, which often induces state-action misalignment and weak adaptability in novel or dynamic scenarios. We propose UniWM, a unified, memory-augmented world model that integrates egocentric visual foresight and planning within a single multimodal autoregressive backbone. UniWM explicitly grounds action selection in visually imagined outcomes, tightly aligning prediction with control. Meanwhile, a hierarchical memory mechanism fuses short-term perceptual cues with longer-term trajectory context, supporting stable and coherent reasoning over extended horizons. Extensive experiments on four challenging benchmarks (Go Stanford, ReCon, SCAND, HuRoN) and the 1X Humanoid Dataset show that UniWM improves navigation success rates by up to 30%, substantially reduces trajectory errors against strong baselines, generalizes zero-shot to the unseen TartanDrive dataset, and scales naturally to high-dimensional humanoid navigation. These results position UniWM as a principled step toward unified, imagination-driven embodied navigation. The code and models are available at  this https URL .\n    ",
+      "links": [
+        "https://arxiv.org/abs/2510.08713",
+        "https://static.arxiv.org/js/bibex-dev/bibex.css?20200709",
+        "https://arxiv.org/IgnoreMe",
+        "https://arxiv.org/",
+        "https://arxiv.org/search",
+        "https://arxiv.org/user/create",
+        "https://info.arxiv.org/about/donate.html",
+        "https://arxiv.org/login",
+        "https://arxiv.org/search/advanced",
+        "https://arxiv.org/abs/2510.08713v1",
+        "https://arxiv.org/search/cs?searchtype=author&amp;query=Dong,+Y",
+        "https://arxiv.org/search/cs?searchtype=author&amp;query=Wu,+F",
+        "https://arxiv.org/search/cs?searchtype=author&amp;query=Chen,+G",
+        "https://arxiv.org/search/cs?searchtype=author&amp;query=Kong,+L",
+        "https://arxiv.org/search/cs?searchtype=author&amp;query=Hu,+Q",
+        "https://arxiv.org/search/cs?searchtype=author&amp;query=Zhou,+Y",
+        "https://arxiv.org/search/cs?searchtype=author&amp;query=Zhu,+X",
+        "https://arxiv.org/search/cs?searchtype=author&amp;query=Sun,+J",
+        "https://arxiv.org/search/cs?searchtype=author&amp;query=He,+J",
+        "https://arxiv.org/search/cs?searchtype=author&amp;query=Dai,+Q",
+        "https://arxiv.org/search/cs?searchtype=author&amp;query=Hauptmann,+A+G",
+        "https://arxiv.org/search/cs?searchtype=author&amp;query=Cheng,+Z",
+        "https://arxiv.org/html/2510.08713v3",
+        "https://github.com/UWMILab/UniWM",
+        "https://arxiv.org/abs/2510.08713v3"
+      ]
+    },
+    {
+      "url": "https://arxiv.org/html/2510.08713v1",
+      "status": 200,
+      "sha256": "a2c02de38c80246ccff144134083b55d028081efcd3b49e14a67c1c519adee60",
+      "excerpt": " Unified World Models: Memory-Augmented Planning and Foresight for Visual Navigation // Restore the saved color scheme preference, or // enact the browser preference if \"automatic\", // without expecting DOM load to have completed. // // Also restore any saved readingmode and ToC display preferences. function initializeReadingPreferences() { let saved_theme = localStorage.getIt\non 2 UniWM Framework 2.1 Preliminaries and Unified Formulation 2.2 Unified Training Scheme 2.3 Inference with Memory Bank 3 Experiments 3.1 Comparison to State-of-the-Art Methods 3.2 Ablation Studies 3.3 Generalization in Unseen Environments 4 Conclusion References A Related Work B Method Details B.1 Prompt Design and Examples B.2 Pseudo-code for Hierarchical Memory Bank Mechanism C Experiments and Results C.1 Evaluation Metric Details C.2 More Qualitative Resul\non References A Related Work B Method Details B.1 Prompt Design and Examples B.2 Pseudo-code for Hierarchical Memory Bank Mechanism C Experiments and Results C.1 Evaluation Metric Details C.2 More Qualitative Results License: arXiv.org perpetual non-exclusive license arXiv:2510.08713v1 [cs.AI] 09 Oct 2025 Unified World Models: Memory-Augmented Planning and Foresight for Visual Navigation Yifei Dong Fengyi Wu Guangyu Chen Zhi-Qi Cheng Affiliation: University of W\ncense: arXiv.org perpetual non-exclusive license arXiv:2510.08713v1 [cs.AI] 09 Oct 2025 Unified World Models: Memory-Augmented Planning and Foresight for Visual Navigation Yifei Dong Fengyi Wu Guangyu Chen Zhi-Qi Cheng Affiliation: University of Washington Qiyu Hu Affiliation: University of Washington Yuxuan Zhou Affiliation: University of Washington Jingdong Sun Affiliation: Carnegie Mellon University Jun-Yan He Affiliation: University of Washington Qi Dai Affi\nW for 20 epochs using a learning rate of 2 × 10 − 4 2\\times 10^{-4} . Training runs on 4 × \\times NVIDIA A100 GPUs (80GB each) with a global batch size of 8 (per-GPU batch = 1, gradient accumulation = 2). For inference, we designate two special tokens < < boss > > and < < eoss > > (token IDs 8196 and 8197) to trigger the key–value (KV) deposit of intra-step memory bank, and extract KV for enhancement from decoder layers { l 0 , l 7 , l 15 , l 23 , l 31 } \\{l_\n2\\times 10^{-4} . Training runs on 4 × \\times NVIDIA A100 GPUs (80GB each) with a global batch size of 8 (per-GPU batch = 1, gradient accumulation = 2). For inference, we designate two special tokens < < boss > > and < < eoss > > (token IDs 8196 and 8197) to trigger the key–value (KV) deposit of intra-step memory bank, and extract KV for enhancement from decoder layers { l 0 , l 7 , l 15 , l 23 , l 31 } \\{l_{0},l_{7},l_{15},l_{23},l_{31}\\} . 3.1 Comparison to\n AdamW for 20 epochs using a learning rate of 2 × 10 − 4 2\\times 10^{-4} . Training runs on 4 × \\times NVIDIA A100 GPUs (80GB each) with a global batch size of 8 (per-GPU batch = 1, gradient accumulation = 2). For inference, we designate two special tokens < < boss > > and < < eoss > > (token IDs 8196 and 8197) to trigger the key–value (KV) deposit of intra-step memory bank, and extract KV for enhancement from decoder layers { l 0 , l 7 , l 15 , l 23 , l 31 } \n, Edward Hughes, Matthew Lai, Aditi Mavalankar, Richie Steigerwald, Chris Apps, et al. Genie: Generative interactive environments. In Forty-first International Conference on Machine Learning , 2024. Chaplot et al. (2020) Devendra Singh Chaplot, Dhiraj Gandhi, Saurabh Gupta, Abhinav Gupta, and Ruslan Salakhutdinov. Learning to explore using active neural slam. arXiv preprint arXiv:2004.05155 , 2020. Cheng et al. (2024) Zhi-Qi Cheng, Yifei Dong, Aike Shi, Wei Liu,\nngh Chaplot, Dhiraj Gandhi, Saurabh Gupta, Abhinav Gupta, and Ruslan Salakhutdinov. Learning to explore using active neural slam. arXiv preprint arXiv:2004.05155 , 2020. Cheng et al. (2024) Zhi-Qi Cheng, Yifei Dong, Aike Shi, Wei Liu, Yuzhi Hu, Jason O’Connor, Alexander G Hauptmann, and Kate S Whitefoot. Shield: Llm-driven schema induction for predictive analytics in ev battery supply chain disruptions. arXiv preprint arXiv:2408.05357 , 2024. Chern et al. (2024)\n Qin, Xintao Wang, Pengfei Wan, Di Zhang, and Xihui Liu. Gamefactory: Creating new games with generative interactive videos. arXiv preprint arXiv:2501.08325 , 2025. Zhang et al. (2018) Richard Zhang, Phillip Isola, Alexei A Efros, Eli Shechtman, and Oliver Wang. The unreasonable effectiveness of deep features as a perceptual metric. In Proceedings of the IEEE conference on computer vision and pattern recognition , pp. 586–595, 2018. Zhao et al. (2025) Guosheng Z\no-robot artifacts) and a fixed token budget, which future work can address through adaptive token allocation, uncertainty-aware planning, and closed-loop deployment on real robots. References Agarwal et al. (2025) Niket Agarwal, Arslan Ali, Maciej Bala, Yogesh Balaji, Erik Barker, Tiffany Cai, Prithvijit Chattopadhyay, Yongxin Chen, Yin Cui, Yifan Ding, et al. Cosmos world foundation model platform for physical ai. arXiv preprint arXiv:2501.03575 , 2025. Alonso et \n Download PDF Abstract 1 Introduction 2 UniWM Framework 2.1 Preliminaries and Unified Formulation 2.2 Unified Training Scheme 2.3 Inference with Memory Bank 3 Experiments 3.1 Comparison to State-of-the-Art Methods 3.2 Ablation Studies 3.3 Generalization in Unseen Environments 4 Conclusion References A Related Work B Method Details B.1 Prompt Design and Examples B.2 Pseudo-code for Hierarchical Memory Bank Mechanism C Experiments and Results C.1 Evaluation Metric D\nctly to action sequences. Although effective within familiar distributions, such policies are rigidly tied to training data and fail to adapt in novel environments Song et al. (2025) . (b) Modular pipelines seek to remedy this by coupling a planner with a separate world model: NavCoT Lin et al. (2024) textualizes future observations, inevitably discarding spatial fidelity, while NWM Bar et al. (2025) employs diffusion models to generate candidate visual rollouts t\nanning and visual imagination within a single multimodal autoregressive backbone (Fig. 2 ; Sec. 2.1 ). During training we interleave planner and world-model samples and jointly optimize bin-token classification for actions and reconstruction for images in a shared tokenization space for actions, text, pose, and vision; the framework scales with parameter-efficient fine-tuning such as LoRA (Fig. 2 (a); Sec. 2.2 ). At inference UniWM alternates between predicting th\nive backbone, effectively addressing representational fragmentation inherent in modular approaches. • Unified training. We propose an end-to-end interleaved training strategy that unifies planner and world-model instances within a single autoregressive backbone, jointly optimizing discretized action prediction and visual reconstruction to tightly align imagination with control. • Hierarchical memory. We introduce a hierarchical memory mechanism that fuses short-te",
+      "links": [
+        "https://use.typekit.net/utz6mli.css",
+        "https://info.arxiv.org/about",
+        "https://info.arxiv.org/about/accessible_HTML.html",
+        "https://info.arxiv.org/help/license/index.html#licenses-available",
+        "https://github.com/F1y1113/UniWM",
+        "https://arxiv.org/abs/2010.02193",
+        "https://arxiv.org/abs/2301.04104",
+        "https://math.nist.gov/~BMiller/LaTeXML/",
+        "https://github.com/arXiv/html_feedback/issues",
+        "https://github.com/brucemiller/LaTeXML/wiki/Porting-LaTeX-packages-for-LaTeXML",
+        "https://github.com/brucemiller/LaTeXML/issues",
+        "https://info.arxiv.org/about/ourmembers.html",
+        "https://info.arxiv.org/help",
+        "https://info.arxiv.org/help/contact.html",
+        "https://info.arxiv.org/help/subscribe",
+        "https://info.arxiv.org/help/license/index.html",
+        "https://info.arxiv.org/help/policies/privacy_policy.html",
+        "https://info.arxiv.org/help/web_accessibility.html",
+        "https://status.arxiv.org\" target=\"_blank\" rel=\"noopener noreferrer\">Operational Status<span class=\"is-sr-only\"> (opens in new tab)</span></a>\n      </nav>\n    </div>\n\n    <div class=",
+        "https://www.simonsfoundation.org/",
+        "https://www.sfi.org.bm/",
+        "https://www.schmidtsciences.org/"
+      ]
+    },
+    {
+      "url": "https://www.amirbar.net/nwm/",
+      "status": 200,
+      "sha256": "4cfd0c9907c33349f5ab593541c2facb3587dd000944ea635cdf6bf183e34411",
+      "excerpt": "en autoregressively predicts the subsequent frames given the input actions. The environments were seen during training, the trajectories are novel. Your browser does not support the video tag. Your browser does not support the video tag. Your browser does not support the video tag. Your browser does not support the video tag. Your browser does not support the video tag. Your browser does not support the video tag. Your browser does not support the video tag. Your \nn unknown environments is mode collapse, where the model slowly generates frames that are more similar to the training data. Your browser does not support the video tag. BibTeX @misc{bar2024navigationworldmodels, title={Navigation World Models}, author={Amir Bar and Gaoyue Zhou and Danny Tran and Trevor Darrell and Yann LeCun}, year={2024}, eprint={2412.03572}, archivePrefix={arXiv}, primaryClass={cs.CV}, url={https://arxiv.org/abs/2412.03572}, } // Set playback s",
+      "links": [
+        "https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro",
+        "https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css",
+        "https://amirbar.net\" target=\"_blank\">Amir Bar</a>\n                        <span>FAIR at Meta</span>\n                    </span>\n                    <span>\n                        <a href=",
+        "https://dannytran123.github.io/",
+        "https://people.eecs.berkeley.edu/~trevor/",
+        "https://yann.lecun.com/",
+        "https://arxiv.org/abs/2412.03572",
+        "https://github.com/facebookresearch/nwm/",
+        "https://huggingface.co/facebook/nwm"
+      ]
+    }
+  ]
+}
