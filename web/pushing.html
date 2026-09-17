@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#081316">
+  <title>预见 · 推物世界模型试验台</title>
+  <link rel="stylesheet" href="pushing.css">
+  <script defer src="pushing.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">◈</span>预见 <span>FORESIGHT LAB</span></a>
+    <nav aria-label="实验室导航"><a href="compare.html">导航对照实验 ↗</a><a href="https://github.com/LuckyLivio/GraduationProject" target="_blank" rel="noopener noreferrer">实验记录 ↗</a></nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div><p class="eyebrow">OBJECT WORLD MODEL / FIRST PILOT</p><h1>动手之前，<em>先推演。</em></h1><p class="hero-copy">相同的箱子，相同的推动动作。模型能否从过去的交互中，学会接下来会发生什么？</p></div>
+      <div class="phase"><span class="status-dot"></span><div><strong id="stage-label">等待实验数据</strong><span>自训练对象状态世界模型 · 可行性试验</span></div></div>
+    </section>
+
+    <section class="data-status" id="data-status" role="status" aria-live="polite"><span id="load-message">正在读取本机生成的实验回放…</span><button id="reload" type="button">重新加载 ↻</button></section>
+    <section class="experiment-facts" aria-label="实验规模与来源">
+      <div><span>训练数据</span><strong id="training-count">—</strong></div>
+      <div><span>评估规模</span><strong id="evaluation-count">—</strong></div>
+      <div><span>已记录回放</span><strong id="case-count">—</strong></div>
+      <div><span>动作时间</span><strong id="action-duration">—</strong></div>
+    </section>
+
+    <section class="branches-section" aria-labelledby="branches-title">
+      <div class="section-title"><div><p class="eyebrow">01 / ONE STATE, FOUR POSSIBLE ACTIONS</p><h2 id="branches-title">同一箱子，四种推法，四个未来。</h2></div><span class="section-note">有历史世界模型 · 0.5 s 预测</span></div>
+      <div class="branch-controls"><p class="section-copy">从完全相同的初始状态分别执行四种动作。比较模型想象的结果与真实模拟结果，观察接触位置怎样改变移动和旋转。</p><div id="branch-cases" class="branch-cases" role="group" aria-label="动作分支场景"></div></div>
+      <div class="legend"><span><i class="legend-box initial-key"></i>灰色：同一初始状态</span><span><i class="legend-box model-key"></i>彩色：0.5 秒后预测</span><span><i class="legend-box truth-key"></i>白色：实际结果</span><span id="branch-history">固定开发场景 · 等待真实结果</span></div>
+      <div id="branch-grid" class="branch-grid"><div class="planning-empty">尚未加载同状态动作分支。数据导出后将显示四种推法的真实对照。</div></div>
+      <p class="branch-scope">边侧以箱子自身坐标定义，会随箱子旋转。四格从同一初态独立重放，不能按从左到右当作一条执行轨迹。固定开发场景用于解释动作条件预测，不代表模型优于物理基线。</p>
+    </section>
+
+    <section class="prediction-section" aria-labelledby="prediction-title">
+      <div class="section-title"><div><p class="eyebrow">02 / SAME ACTIONS, DIFFERENT PREDICTIONS</p><h2 id="prediction-title">看见过去，能否预测得更准？</h2></div><span class="section-note">三种方法共享起点与未来动作</span></div>
+      <div class="controls">
+        <label class="case-label">诊断案例<select id="case-select" disabled><option>等待导出案例</option></select></label>
+        <p id="case-description">训练结束并导出真实结果后，页面会显示预测与执行的差距。</p>
+        <label class="checkbox-label"><input id="show-truth" type="checkbox" checked>叠加真实执行</label>
+      </div>
+      <div class="legend"><span><i class="legend-box truth-key"></i>白色箱子：真实执行</span><span><i class="legend-box model-key"></i>彩色箱子：模型预测</span><span><i class="legend-line"></i>虚线：模型轨迹</span><span><i class="legend-pusher"></i>推杆：宏动作起始位置示意</span></div>
+      <div class="prediction-grid" id="prediction-grid" aria-label="三种方法同步预测"></div>
+      <div class="playback">
+        <button type="button" id="play" disabled>▶ 播放预测</button><button type="button" class="reset" id="reset" aria-label="回到起点" disabled>↺</button>
+        <span class="frame-readout" id="frame-label">— / —</span><input type="range" id="timeline" min="0" max="1" value="0" step="0.01" aria-label="同步预测时间轴" disabled>
+        <span id="time-label" class="time-readout">— s</span><select id="speed" aria-label="播放速度"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
+      </div>
+      <div class="action-detail"><div><span class="detail-label">本步动作</span><strong id="action-label">等待数据</strong></div><div><span class="detail-label">已提供历史</span><strong id="history-label">—</strong></div><div class="replay-note">预测记录在每个宏动作终点。帧间插值仅用于回放，推杆位置仅为起始示意。</div></div>
+      <div class="case-note"><span aria-hidden="true">↳</span><p id="case-note">单个回放用来解释模型行为；整体能力应结合独立场景上的统计结果判断。</p></div>
+    </section>
+
+    <section class="planning-section" aria-labelledby="planning-title">
+      <div class="section-title"><div><p class="eyebrow">03 / PREDICT, THEN ACT</p><h2 id="planning-title">把预测变成推箱子的决策。</h2></div><span class="section-note">各自规划 · 同一起点与目标</span></div>
+      <p class="section-copy">虚线框是目标位置和朝向，实线是已执行路径。此处“达标”只表示宏步终点进入位姿阈值，不要求已经停稳；共享的前置历史推动另计。真实参数方法用于参考上限。</p>
+      <div class="planning-grid" id="planning-grid"><div class="planning-empty">尚未加载闭环规划结果。完成真实规划评估后，这里将展示到位状态与误差。</div></div>
+      <div class="planning-controls" id="planning-controls" hidden><button type="button" id="planning-play">▶ 回放闭环执行</button><span id="planning-frame">—</span><input type="range" id="planning-timeline" min="0" max="1" step="0.01" value="0" aria-label="闭环执行时间轴"><span class="section-note">短轨迹到终点后保持</span></div>
+    </section>
+
+    <details class="evidence" id="evidence"><summary><span><span class="eyebrow">READ THE EXPERIMENT</span><strong>实验汇总与范围</strong></span><span aria-hidden="true">＋</span></summary><div class="evidence-body"><p id="summary-description">汇总只使用导出的实际评估结果。</p><div id="summary-table" class="table-wrap"></div><dl id="source-details" class="source-details"></dl></div></details>
+    <div class="scope"><strong>这一阶段验证什么？</strong><p>验证动作与交互历史能否帮助预测箱子的位置和转角，并初步检验规划。画面由模型预测的对象状态渲染，属于对象状态世界模型；当前没有生成未来视频。宏动作允许推杆重新定位，未模拟机械臂绕行。</p></div>
+    <footer><span>FORESIGHT LAB / 本科毕业设计</span><a href="../artifacts/pushing-pilot/demo.json" target="_blank" rel="noopener">查看原始回放数据 ↗</a></footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{
+  "browser": "Edge / Playwright",
+  "checkedAt": "2026-09-17T04:55:04.920Z",
+  "errors": [],
+  "branchCards": 4,
+  "branchScenes": 2,
+  "predictionCards": 3,
+  "planningCards": 4,
+  "branchScene0": [
+    "0.010m",
+    "0.020m",
+    "0.015m",
+    "0.021m"
+  ],
+  "branchScene1": [
+    "0.016m",
+    "0.025m",
+    "0.102m",
+    "0.071m"
+  ],
+  "initialErrors": [
+    "0.000m",
+    "0.000m",
+    "0.000m"
+  ],
+  "pausedFrame": "1.04",
+  "changedCase": "1",
+  "planningFrame": "1.5 / 3 步",
+  "capacityRow": "方法位置 RMSE（m）角度 MAE（°）案例数无历史世界模型0.47033.240有历史世界模型0.46230.840错误历史对照0.66548.340在线物理辨识0.1307.940保持静止0.95269.940恒定速度外推1.56970.440无历史 MLP（匹配容量 42.6k）0.46033.040",
+  "mobileOverflow": false,
+  "canvasPainted": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "ok": true
+}

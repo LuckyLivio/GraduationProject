@@ -27,6 +27,10 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def load_model(args, kind, seed):
+    return PushWorldModel.load(args.output/f'{kind}-{seed}.npz')
+
+
 def collect(count, steps, seed_start, ood_half=False):
     states = np.zeros((count, steps+1, 6), np.float32)
     actions = np.zeros((count, steps, 3), np.float32)
@@ -97,14 +101,15 @@ def train(args):
     args.weights.mkdir(parents=True, exist_ok=True)
     runs=[]
     for seed in args.seeds:
-        for use_history in [False, True]:
-            kind = 'history' if use_history else 'no_history'
+        for use_history in ([False] if args.matched else [False, True]):
+            kind = 'matched_no_history' if args.matched else ('history' if use_history else 'no_history')
             path = args.weights/f'{kind}-{seed}.pt'
-            if path.exists():
-                raise ValueError(f'Will not overwrite checkpoint: {path}')
+            export=args.output/f'{kind}-{seed}.npz'
+            if path.exists() or export.exists():
+                raise ValueError(f'Will not overwrite checkpoint or published export: {path}')
             torch.manual_seed(seed)
             rng = np.random.default_rng(seed)
-            model = PushWorldModel(use_history)
+            model = PushWorldModel(use_history, width=198 if args.matched else 128)
             model.set_normalization(arrays[0], arrays[2])
             model.to(device)
             optimizer=torch.optim.AdamW(model.parameters(), lr=.001, weight_decay=1e-5)
@@ -142,11 +147,11 @@ def train(args):
                   'samples_per_second':args.updates*512/elapsed,'curve':curves}
             model.load_state_dict(best_weights);model.save(path,meta)
             # Small, portable parameters are published without pickle.
-            export=args.output/f'{kind}-{seed}.npz'
             np.savez_compressed(export, **{k:v.numpy() for k,v in best_weights.items()})
             meta['checkpoint_sha256']=sha(path);meta['export_sha256']=sha(export)
             runs.append(meta)
-            write_json(args.output/'training.json', {'runs':runs,'data_manifest_sha256':sha(args.output/'manifest.json')})
+            filename = 'matched-training.json' if args.matched else 'training.json'
+            write_json(args.output/filename, {'runs':runs,'data_manifest_sha256':sha(args.output/'manifest.json')})
 
 
 def error_metrics(prediction, truth):
@@ -158,10 +163,12 @@ def error_metrics(prediction, truth):
 
 
 def evaluate(args):
+    if (args.output/'prediction.json').exists():
+        raise ValueError('Prediction results already exist; use a new output version')
     data=np.load(args.data/'development.npz')
     states,actions=data['states'],data['actions']
     torch.set_num_threads(1)
-    models={(kind,seed):PushWorldModel.load(args.weights/f'{kind}-{seed}.pt') for seed in args.seeds for kind in ['no_history','history']}
+    models={(kind,seed):load_model(args,kind,seed) for seed in args.seeds for kind in ['no_history','history']}
     rows=[]; cases=[]; started=time.perf_counter()
     for episode in range(len(states)):
         hs,ha=states[episode,:7], actions[episode,:6]
@@ -240,7 +247,7 @@ def candidate_actions():
     return np.array([[face,offset,speed] for face in range(4) for offset in [-.65,0,.65] for speed in [.2,.55,.9]])
 
 
-def plan_action(state,goal,predict_batch,horizon=2):
+def plan_action(state,goal,predict_batch):
     """Shared two-step beam search: 36 first actions, six beams, 36 second."""
     actions=candidate_actions()
     first=predict_batch(np.tile(state,(len(actions),1)),actions)
@@ -255,8 +262,10 @@ def plan_action(state,goal,predict_batch,horizon=2):
 
 
 def planning(args):
+    if (args.output/'planning.json').exists():
+        raise ValueError('Planning results already exist; use a new output version')
     data=np.load(args.data/'development.npz'); torch.set_num_threads(1)
-    models={kind:PushWorldModel.load(args.weights/f'{kind}-{args.seeds[0]}.pt') for kind in ['no_history','history']}
+    models={kind:load_model(args,kind,args.seeds[0]) for kind in ['no_history','history']}
     rows=[];first_runs=[];started=time.perf_counter()
     # Fixed indices established in code, no ranking or winner selection.
     for episode in [0,1,2,3,20,21,22,23]:
@@ -303,15 +312,38 @@ def planning(args):
     print(json.dumps({'planning_summary':summary}),flush=True)
 
 
+def matched_evaluate(args):
+    """Post-pilot capacity check; original results remain untouched."""
+    if (args.output/'matched-prediction.json').exists():
+        raise ValueError('Capacity-control results already exist; use a new output version')
+    data=np.load(args.data/'development.npz');torch.set_num_threads(1)
+    rows=[]
+    for seed in args.seeds:
+        model=load_model(args,'matched_no_history',seed)
+        for e in range(40):
+            hs,ha=data['states'][e,:7],data['actions'][e,:6]
+            truth=data['states'][e,6:17]
+            pred=model.rollout(hs[-1],data['actions'][e,6:16],hs,ha)
+            for horizon in [1,5,10]:
+                rows.append({'episode':e,'seed':seed,'method':'matched_no_history','horizon':horizon,
+                             **error_metrics(pred[:horizon+1],truth[:horizon+1])})
+    summary=[{'horizon':h,**{k:float(np.mean([r[k] for r in rows if r['horizon']==h])) for k in ['position_rmse','angle_mae','omega_rmse']}} for h in [1,5,10]]
+    write_json(args.output/'matched-prediction.json',{'note':'Capacity control added after initial pilot; same development set, no new confirmatory claims.','rows':rows,'summary':summary})
+    print(json.dumps({'matched_summary':summary}),flush=True)
+
+
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
-    parser.add_argument('stage',choices=['generate','train','evaluate','planning'])
-    parser.add_argument('--output',type=Path,default=ROOT/'artifacts/pushing-pilot')
-    parser.add_argument('--data',type=Path,default=ROOT/'data/processed/pushing-pilot')
-    parser.add_argument('--weights',type=Path,default=ROOT/'checkpoints/pushing-pilot')
+    parser.add_argument('stage',choices=['generate','train','evaluate','planning','matched_evaluate'])
+    parser.add_argument('--output',type=Path,default=ROOT/'artifacts/local-pushing-run')
+    parser.add_argument('--data',type=Path,help='Defaults to data/processed/<output directory name>')
+    parser.add_argument('--weights',type=Path,help='Defaults to checkpoints/<output directory name>')
     parser.add_argument('--train-episodes',type=int,default=1200)
     parser.add_argument('--updates',type=int,default=2000)
     parser.add_argument('--seeds',type=int,nargs='+',default=[17,29,43])
     parser.add_argument('--cpu',action='store_true')
+    parser.add_argument('--matched',action='store_true',help='Separate capacity-control training, does not replace initial models')
     args=parser.parse_args();args.output.mkdir(parents=True,exist_ok=True)
+    args.data=args.data or ROOT/'data/processed'/args.output.name
+    args.weights=args.weights or ROOT/'checkpoints'/args.output.name
     globals()[args.stage](args)

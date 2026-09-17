@@ -120,6 +120,15 @@ class PushWorldModel(nn.Module):
 
     @classmethod
     def load(cls, path, device='cpu'):
+        if str(path).endswith('.npz'):
+            with np.load(path, allow_pickle=False) as data:
+                values = {k:torch.from_numpy(data[k].copy()) for k in data.files}
+            use_history = 'memory.weight_ih_l0' in values
+            width = values['head.0.weight'].shape[0]
+            context = values['memory.weight_hh_l0'].shape[1] if use_history else 64
+            model = cls(use_history, width, context)
+            model.load_state_dict(values)
+            return model.to(device).eval()
         saved = torch.load(path, map_location=device, weights_only=True)
         model = cls(saved['use_history'], saved['width'], saved['context'])
         model.load_state_dict(saved['state_dict'])

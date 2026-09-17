@@ -1,0 +1,52 @@
+{
+  "checks": {
+    "dataset_hashes": true,
+    "portable_weight_hashes": true,
+    "portable_parameter_counts": true,
+    "all_visual_case_position_metrics": true,
+    "all_planning_success_and_errors": true
+  },
+  "paired_capacity_control": [
+    {
+      "horizon": 1,
+      "scene_mean_difference_m": -0.00937327329108181,
+      "bootstrap95_scene_difference_m": [
+        -0.015913241417874816,
+        -0.0029999215310090232
+      ],
+      "history_relative_reduction": 0.2061777300603036,
+      "independent_scenarios": 40,
+      "note": "Exploratory CI over scenes, conditional on 3 fitted seeds; not full training-seed uncertainty."
+    },
+    {
+      "horizon": 5,
+      "scene_mean_difference_m": -0.02456428157165646,
+      "bootstrap95_scene_difference_m": [
+        -0.07047662374485905,
+        0.021208289577625675
+      ],
+      "history_relative_reduction": 0.0976757791887729,
+      "independent_scenarios": 40,
+      "note": "Exploratory CI over scenes, conditional on 3 fitted seeds; not full training-seed uncertainty."
+    },
+    {
+      "horizon": 10,
+      "scene_mean_difference_m": 0.002177355096985889,
+      "bootstrap95_scene_difference_m": [
+        -0.09789222201177228,
+        0.10585417660884552
+      ],
+      "history_relative_reduction": -0.004730656261461741,
+      "independent_scenarios": 40,
+      "note": "Exploratory CI over scenes, conditional on 3 fitted seeds; not full training-seed uncertainty."
+    }
+  ],
+  "source_sha256": {
+    "foresight/pushing_env.py": "a442e07e36d007fbed5b84f3f541316d4baee25d88f1c7428c64575c8470ecee",
+    "foresight/pushing_baselines.py": "185b9586bc256d9a2c97c58214dcafb081023667dcab3911634d54d31361a2b0",
+    "foresight/pushing_model.py": "a5700bd6aefe013e54e76e650bea402cc24cb8a40cfd14dbb184c71afa004e46",
+    "scripts/pushing_pilot.py": "15902c43d615a570ef0f7eaab2d80ac1f9561ea3393db353ca248f9677f3089b",
+    "scripts/analyze_pushing.py": "561a5aef8ad0d0423af8c695b823450cc0a611c63ac2de2ccf5f73ce1ae5cbaf"
+  },
+  "note": "Code hashes describe delivered implementation, including portable loading and post-pilot capacity control."
+}
