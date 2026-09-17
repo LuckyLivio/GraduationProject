@@ -1,0 +1,38 @@
+# Python / local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Frontend dependencies / generated bundles
+node_modules/
+dist/
+build/
+
+# Private configuration
+.env
+.env.*
+!.env.example
+
+# Generated datasets, model weights, and experiment outputs
+data/raw/
+data/processed/
+checkpoints/
+runs/
+wandb/
+outputs/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# Editor / operating system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
