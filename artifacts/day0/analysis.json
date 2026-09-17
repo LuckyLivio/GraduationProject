@@ -1,0 +1,888 @@
+{
+  "source": "Saved day-zero pilot; no episodes rerun",
+  "episode_count": 144,
+  "independent_training_runs": 1,
+  "total_seconds": 50.39954300000045,
+  "training_seconds": 9.669071099999655,
+  "selected_fixed_method": "fixed_5",
+  "metrics": [
+    {
+      "condition": "in_distribution",
+      "method": "global_physics",
+      "episodes": 12,
+      "successes": 11,
+      "collisions": 1,
+      "timeouts": 0,
+      "planning_ms_p50": 3.586400000131107,
+      "planning_ms_p95": 4.416959999889512,
+      "mean_model_steps": 4500.0,
+      "max_model_steps": 4500,
+      "horizon_counts": {
+        "5": 0,
+        "10": 395,
+        "16": 0
+      },
+      "horizon_percent": {
+        "5": 0.0,
+        "10": 100.0,
+        "16": 0.0
+      }
+    },
+    {
+      "condition": "in_distribution",
+      "method": "local_identification",
+      "episodes": 12,
+      "successes": 12,
+      "collisions": 0,
+      "timeouts": 0,
+      "planning_ms_p50": 3.5866999999143445,
+      "planning_ms_p95": 5.086025000082373,
+      "mean_model_steps": 4500.0,
+      "max_model_steps": 4500,
+      "horizon_counts": {
+        "5": 0,
+        "10": 396,
+        "16": 0
+      },
+      "horizon_percent": {
+        "5": 0.0,
+        "10": 100.0,
+        "16": 0.0
+      }
+    },
+    {
+      "condition": "in_distribution",
+      "method": "fixed_5",
+      "episodes": 12,
+      "successes": 12,
+      "collisions": 0,
+      "timeouts": 0,
+      "planning_ms_p50": 4.195750000008047,
+      "planning_ms_p95": 5.835529999922073,
+      "mean_model_steps": 4500.0,
+      "max_model_steps": 4500,
+      "horizon_counts": {
+        "5": 380,
+        "10": 0,
+        "16": 0
+      },
+      "horizon_percent": {
+        "5": 100.0,
+        "10": 0.0,
+        "16": 0.0
+      }
+    },
+    {
+      "condition": "in_distribution",
+      "method": "fixed_10",
+      "episodes": 12,
+      "successes": 12,
+      "collisions": 0,
+      "timeouts": 0,
+      "planning_ms_p50": 5.167799999981071,
+      "planning_ms_p95": 5.922030000010633,
+      "mean_model_steps": 4500.0,
+      "max_model_steps": 4500,
+      "horizon_counts": {
+        "5": 0,
+        "10": 395,
+        "16": 0
+      },
+      "horizon_percent": {
+        "5": 0.0,
+        "10": 100.0,
+        "16": 0.0
+      }
+    },
+    {
+      "condition": "in_distribution",
+      "method": "fixed_16",
+      "episodes": 12,
+      "successes": 12,
+      "collisions": 0,
+      "timeouts": 0,
+      "planning_ms_p50": 6.447949999937919,
+      "planning_ms_p95": 8.093490000305792,
+      "mean_model_steps": 4464.0,
+      "max_model_steps": 4464,
+      "horizon_counts": {
+        "5": 0,
+        "10": 0,
+        "16": 424
+      },
+      "horizon_percent": {
+        "5": 0.0,
+        "10": 0.0,
+        "16": 100.0
+      }
+    },
+    {
+      "condition": "in_distribution",
+      "method": "adaptive",
+      "episodes": 12,
+      "successes": 12,
+      "collisions": 0,
+      "timeouts": 0,
+      "planning_ms_p50": 7.4321999995845545,
+      "planning_ms_p95": 9.38289999976405,
+      "mean_model_steps": 4493.763779527559,
+      "max_model_steps": 4494,
+      "horizon_counts": {
+        "5": 323,
+        "10": 55,
+        "16": 3
+      },
+      "horizon_percent": {
+        "5": 84.7769028871391,
+        "10": 14.435695538057743,
+        "16": 0.7874015748031497
+      }
+    },
+    {
+      "condition": "damping_shift",
+      "method": "global_physics",
+      "episodes": 12,
+      "successes": 10,
+      "collisions": 2,
+      "timeouts": 0,
+      "planning_ms_p50": 3.618199999891658,
+      "planning_ms_p95": 5.331094999792185,
+      "mean_model_steps": 4500.0,
+      "max_model_steps": 4500,
+      "horizon_counts": {
+        "5": 0,
+        "10": 494,
+        "16": 0
+      },
+      "horizon_percent": {
+        "5": 0.0,
+        "10": 100.0,
+        "16": 0.0
+      }
+    },
+    {
+      "condition": "damping_shift",
+      "method": "local_identification",
+      "episodes": 12,
+      "successes": 12,
+      "collisions": 0,
+      "timeouts": 0,
+      "planning_ms_p50": 3.569950000155586,
+      "planning_ms_p95": 4.989580000233218,
+      "mean_model_steps": 4500.0,
+      "max_model_steps": 4500,
+      "horizon_counts": {
+        "5": 0,
+        "10": 518,
+        "16": 0
+      },
+      "horizon_percent": {
+        "5": 0.0,
+        "10": 100.0,
+        "16": 0.0
+      }
+    },
+    {
+      "condition": "damping_shift",
+      "method": "fixed_5",
+      "episodes": 12,
+      "successes": 10,
+      "collisions": 2,
+      "timeouts": 0,
+      "planning_ms_p50": 4.1454000001976965,
+      "planning_ms_p95": 4.786500000136584,
+      "mean_model_steps": 4500.0,
+      "max_model_steps": 4500,
+      "horizon_counts": {
+        "5": 481,
+        "10": 0,
+        "16": 0
+      },
+      "horizon_percent": {
+        "5": 100.0,
+        "10": 0.0,
+        "16": 0.0
+      }
+    },
+    {
+      "condition": "damping_shift",
+      "method": "fixed_10",
+      "episodes": 12,
+      "successes": 11,
+      "collisions": 1,
+      "timeouts": 0,
+      "planning_ms_p50": 5.1898499998515035,
+      "planning_ms_p95": 6.296670000142512,
+      "mean_model_steps": 4500.0,
+      "max_model_steps": 4500,
+      "horizon_counts": {
+        "5": 0,
+        "10": 512,
+        "16": 0
+      },
+      "horizon_percent": {
+        "5": 0.0,
+        "10": 100.0,
+        "16": 0.0
+      }
+    },
+    {
+      "condition": "damping_shift",
+      "method": "fixed_16",
+      "episodes": 12,
+      "successes": 12,
+      "collisions": 0,
+      "timeouts": 0,
+      "planning_ms_p50": 6.4159999997173145,
+      "planning_ms_p95": 8.713550000265968,
+      "mean_model_steps": 4464.0,
+      "max_model_steps": 4464,
+      "horizon_counts": {
+        "5": 0,
+        "10": 0,
+        "16": 571
+      },
+      "horizon_percent": {
+        "5": 0.0,
+        "10": 0.0,
+        "16": 100.0
+      }
+    },
+    {
+      "condition": "damping_shift",
+      "method": "adaptive",
+      "episodes": 12,
+      "successes": 10,
+      "collisions": 2,
+      "timeouts": 0,
+      "planning_ms_p50": 7.496199999877717,
+      "planning_ms_p95": 9.670660000028873,
+      "mean_model_steps": 4492.993710691824,
+      "max_model_steps": 4494,
+      "horizon_counts": {
+        "5": 390,
+        "10": 71,
+        "16": 16
+      },
+      "horizon_percent": {
+        "5": 81.76100628930817,
+        "10": 14.884696016771489,
+        "16": 3.3542976939203353
+      }
+    }
+  ],
+  "paired_outcomes": [
+    {
+      "condition": "in_distribution",
+      "baseline": "global_physics",
+      "only_adaptive_succeeds": [
+        {
+          "seed": 20004,
+          "scenario": "crossing"
+        }
+      ],
+      "only_baseline_succeeds": [],
+      "both_succeed": [
+        {
+          "seed": 20000,
+          "scenario": "open"
+        },
+        {
+          "seed": 20001,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20002,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20003,
+          "scenario": "open"
+        },
+        {
+          "seed": 20005,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20006,
+          "scenario": "open"
+        },
+        {
+          "seed": 20007,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20008,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20009,
+          "scenario": "open"
+        },
+        {
+          "seed": 20010,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20011,
+          "scenario": "slalom"
+        }
+      ],
+      "both_fail": []
+    },
+    {
+      "condition": "in_distribution",
+      "baseline": "local_identification",
+      "only_adaptive_succeeds": [],
+      "only_baseline_succeeds": [],
+      "both_succeed": [
+        {
+          "seed": 20000,
+          "scenario": "open"
+        },
+        {
+          "seed": 20001,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20002,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20003,
+          "scenario": "open"
+        },
+        {
+          "seed": 20004,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20005,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20006,
+          "scenario": "open"
+        },
+        {
+          "seed": 20007,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20008,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20009,
+          "scenario": "open"
+        },
+        {
+          "seed": 20010,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20011,
+          "scenario": "slalom"
+        }
+      ],
+      "both_fail": []
+    },
+    {
+      "condition": "in_distribution",
+      "baseline": "fixed_5",
+      "only_adaptive_succeeds": [],
+      "only_baseline_succeeds": [],
+      "both_succeed": [
+        {
+          "seed": 20000,
+          "scenario": "open"
+        },
+        {
+          "seed": 20001,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20002,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20003,
+          "scenario": "open"
+        },
+        {
+          "seed": 20004,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20005,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20006,
+          "scenario": "open"
+        },
+        {
+          "seed": 20007,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20008,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20009,
+          "scenario": "open"
+        },
+        {
+          "seed": 20010,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20011,
+          "scenario": "slalom"
+        }
+      ],
+      "both_fail": []
+    },
+    {
+      "condition": "in_distribution",
+      "baseline": "fixed_10",
+      "only_adaptive_succeeds": [],
+      "only_baseline_succeeds": [],
+      "both_succeed": [
+        {
+          "seed": 20000,
+          "scenario": "open"
+        },
+        {
+          "seed": 20001,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20002,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20003,
+          "scenario": "open"
+        },
+        {
+          "seed": 20004,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20005,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20006,
+          "scenario": "open"
+        },
+        {
+          "seed": 20007,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20008,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20009,
+          "scenario": "open"
+        },
+        {
+          "seed": 20010,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20011,
+          "scenario": "slalom"
+        }
+      ],
+      "both_fail": []
+    },
+    {
+      "condition": "in_distribution",
+      "baseline": "fixed_16",
+      "only_adaptive_succeeds": [],
+      "only_baseline_succeeds": [],
+      "both_succeed": [
+        {
+          "seed": 20000,
+          "scenario": "open"
+        },
+        {
+          "seed": 20001,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20002,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20003,
+          "scenario": "open"
+        },
+        {
+          "seed": 20004,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20005,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20006,
+          "scenario": "open"
+        },
+        {
+          "seed": 20007,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20008,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20009,
+          "scenario": "open"
+        },
+        {
+          "seed": 20010,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20011,
+          "scenario": "slalom"
+        }
+      ],
+      "both_fail": []
+    },
+    {
+      "condition": "damping_shift",
+      "baseline": "global_physics",
+      "only_adaptive_succeeds": [],
+      "only_baseline_succeeds": [],
+      "both_succeed": [
+        {
+          "seed": 20000,
+          "scenario": "open"
+        },
+        {
+          "seed": 20001,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20002,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20003,
+          "scenario": "open"
+        },
+        {
+          "seed": 20005,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20006,
+          "scenario": "open"
+        },
+        {
+          "seed": 20007,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20008,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20009,
+          "scenario": "open"
+        },
+        {
+          "seed": 20011,
+          "scenario": "slalom"
+        }
+      ],
+      "both_fail": [
+        {
+          "seed": 20004,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20010,
+          "scenario": "crossing"
+        }
+      ]
+    },
+    {
+      "condition": "damping_shift",
+      "baseline": "local_identification",
+      "only_adaptive_succeeds": [],
+      "only_baseline_succeeds": [
+        {
+          "seed": 20004,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20010,
+          "scenario": "crossing"
+        }
+      ],
+      "both_succeed": [
+        {
+          "seed": 20000,
+          "scenario": "open"
+        },
+        {
+          "seed": 20001,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20002,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20003,
+          "scenario": "open"
+        },
+        {
+          "seed": 20005,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20006,
+          "scenario": "open"
+        },
+        {
+          "seed": 20007,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20008,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20009,
+          "scenario": "open"
+        },
+        {
+          "seed": 20011,
+          "scenario": "slalom"
+        }
+      ],
+      "both_fail": []
+    },
+    {
+      "condition": "damping_shift",
+      "baseline": "fixed_5",
+      "only_adaptive_succeeds": [],
+      "only_baseline_succeeds": [],
+      "both_succeed": [
+        {
+          "seed": 20000,
+          "scenario": "open"
+        },
+        {
+          "seed": 20001,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20002,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20003,
+          "scenario": "open"
+        },
+        {
+          "seed": 20005,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20006,
+          "scenario": "open"
+        },
+        {
+          "seed": 20007,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20008,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20009,
+          "scenario": "open"
+        },
+        {
+          "seed": 20011,
+          "scenario": "slalom"
+        }
+      ],
+      "both_fail": [
+        {
+          "seed": 20004,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20010,
+          "scenario": "crossing"
+        }
+      ]
+    },
+    {
+      "condition": "damping_shift",
+      "baseline": "fixed_10",
+      "only_adaptive_succeeds": [],
+      "only_baseline_succeeds": [
+        {
+          "seed": 20010,
+          "scenario": "crossing"
+        }
+      ],
+      "both_succeed": [
+        {
+          "seed": 20000,
+          "scenario": "open"
+        },
+        {
+          "seed": 20001,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20002,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20003,
+          "scenario": "open"
+        },
+        {
+          "seed": 20005,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20006,
+          "scenario": "open"
+        },
+        {
+          "seed": 20007,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20008,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20009,
+          "scenario": "open"
+        },
+        {
+          "seed": 20011,
+          "scenario": "slalom"
+        }
+      ],
+      "both_fail": [
+        {
+          "seed": 20004,
+          "scenario": "crossing"
+        }
+      ]
+    },
+    {
+      "condition": "damping_shift",
+      "baseline": "fixed_16",
+      "only_adaptive_succeeds": [],
+      "only_baseline_succeeds": [
+        {
+          "seed": 20004,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20010,
+          "scenario": "crossing"
+        }
+      ],
+      "both_succeed": [
+        {
+          "seed": 20000,
+          "scenario": "open"
+        },
+        {
+          "seed": 20001,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20002,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20003,
+          "scenario": "open"
+        },
+        {
+          "seed": 20005,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20006,
+          "scenario": "open"
+        },
+        {
+          "seed": 20007,
+          "scenario": "crossing"
+        },
+        {
+          "seed": 20008,
+          "scenario": "slalom"
+        },
+        {
+          "seed": 20009,
+          "scenario": "open"
+        },
+        {
+          "seed": 20011,
+          "scenario": "slalom"
+        }
+      ],
+      "both_fail": []
+    }
+  ],
+  "prediction_comparison": [
+    {
+      "horizon": 1,
+      "global_physics_rmse": 0.008800280966867247,
+      "learned_rmse": 0.0007893408740229224,
+      "relative_rmse_reduction_percent": 91.0305037192021,
+      "windows": 160
+    },
+    {
+      "horizon": 5,
+      "global_physics_rmse": 0.10147244562970624,
+      "learned_rmse": 0.00868489143903677,
+      "relative_rmse_reduction_percent": 91.44113322080585,
+      "windows": 160
+    },
+    {
+      "horizon": 10,
+      "global_physics_rmse": 0.28015551039794945,
+      "learned_rmse": 0.020694512885364637,
+      "relative_rmse_reduction_percent": 92.61320512455067,
+      "windows": 160
+    },
+    {
+      "horizon": 16,
+      "global_physics_rmse": 0.4792095583541608,
+      "learned_rmse": 0.028922744598519512,
+      "relative_rmse_reduction_percent": 93.9644892105545,
+      "windows": 160
+    }
+  ],
+  "limits": [
+    "descriptive results only; no statistical superiority claim",
+    "160 possibly overlapping prediction windows are not 160 independent episodes",
+    "time quantiles pool planning calls and may differ with hardware/load"
+  ]
+}
