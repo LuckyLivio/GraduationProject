@@ -1,0 +1,3 @@
+# Minimal CPU runtime for the included trained demo; PyTorch is only for training.
+numpy>=1.21,<3
+threadpoolctl>=3.1

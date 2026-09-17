@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#081218">
+  <title>预见 Foresight Lab · 世界模型研究实验室</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="预见 Foresight Lab 首页"><span class="brand-icon" aria-hidden="true"><i></i></span><span>预见<span class="brand-en">FORESIGHT LAB</span></span></a>
+    <div class="topbar-meta"><span class="phase">第一轮选题验证</span><span class="data-status" id="data-status"><i></i>正在读取实验数据</span></div>
+  </header>
+  <main>
+    <section class="intro">
+      <div><p class="eyebrow">WORLD MODELS / ADAPTIVE PLANNING</p><h1>行动之前，<span>预见未来。</span></h1><p class="intro-text">基于世界模型不确定性估计的动态环境自适应规划</p></div>
+      <div class="research-question"><span class="question-label">本轮研究问题</span><p>当预测变得不可靠，<br>缩短规划视野能否让决策更好？</p><span class="small-note">结论以真实实验为准</span></div>
+    </section>
+
+    <div class="notice" id="experiment-notice" role="status"><span class="notice-dot"></span><div><strong id="notice-title">等待第一轮实验</strong><p id="notice-text">实验完成后，这里将展示真实轨迹、对比指标和选题验证结果。</p></div><button class="text-button" id="reload-data" type="button">刷新数据 <span aria-hidden="true">↗</span></button></div>
+
+    <div class="mode-toolbar"><div class="mode-switch" role="group" aria-label="运行模式"><button type="button" id="mode-live" aria-pressed="false">实时推理</button><button type="button" id="mode-replay" class="active" aria-pressed="true">实验回放</button></div><span class="mode-status" id="mode-status">正在查看已记录的真实实验</span></div>
+    <section class="lab-grid" aria-label="实验工作台">
+      <div class="scene-panel panel">
+        <div class="panel-heading"><div><span class="section-index">01</span><h2>预测与现实</h2><span class="panel-subtitle" id="view-label">真实实验回放</span></div><span class="scene-tag" id="scene-tag">2D DYNAMIC WORLD</span></div>
+        <div class="world" id="world-container"><canvas id="world-canvas" aria-label="机器人在动态障碍环境中的真实位置、候选预测轨迹与实际后续轨迹"></canvas><div class="scene-overlay"><span class="scene-coordinate" id="scene-coordinate">ENV / 10 × 10</span><span id="scene-outcome" class="outcome"></span></div><div class="scene-empty" id="scene-empty"><span class="empty-orbit" aria-hidden="true"></span><h3>未来，从第一次实验开始</h3><p>正在等待真实回放数据。<br>模型完成评估后，即可逐帧检查它的预测。</p></div><div class="scene-caption" id="scene-caption" hidden><span class="caption-dot"></span><span id="scene-caption-text"></span></div></div>
+        <div class="scene-legend"><span><i class="legend-line teal"></i>选中预测</span><span><i class="legend-line muted"></i>候选未来</span><span><i class="legend-line white"></i>已执行</span><span id="actual-legend"><i class="legend-line amber dashed"></i>后续实际执行</span><span><i class="legend-dot coral"></i>移动障碍</span></div>
+        <div class="playback"><div class="timeline"><span id="frame-current">000</span><input type="range" id="timeline" min="0" max="0" value="0" aria-label="回放时间轴" disabled><span id="frame-total">000</span></div><div class="playback-controls"><div class="transport"><button id="play-button" class="play-button" type="button" disabled aria-label="播放回放">▶ <span>播放</span></button><button id="reset-button" class="icon-button" type="button" aria-label="回到回合起点" title="回到起点" disabled>↺</button><label class="speed-label" for="playback-speed">速度</label><select id="playback-speed" aria-label="回放速度"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="4">4×</option></select></div><span class="keyboard-hint">空格 播放 / 暂停 <span>← → 逐帧</span></span></div></div>
+      </div>
+
+      <aside class="inspector panel" aria-label="回放配置与决策详情">
+        <div class="panel-heading"><div><span class="section-index">02</span><h2>观察一次决策</h2></div><span class="little-cross" aria-hidden="true">＋</span></div>
+        <div class="inspector-body"><div class="field"><label for="method-select">规划方法<span>METHOD</span></label><select id="method-select" disabled><option>等待数据</option></select></div><p class="method-description" id="method-description">从多个方法的真实记录中，观察模型如何预测和规划。</p><div class="live-fields" id="live-fields" hidden><div class="field"><label for="live-scenario">交互场景<span>SCENARIO</span></label><select id="live-scenario"><option value="crossing">交叉穿行</option><option value="slalom">曲折通行</option><option value="open">开放空间</option></select></div><div class="live-split"><div class="field"><label for="live-seed">场景种子</label><input id="live-seed" type="number" value="2026" min="0" max="999999"></div><div class="field"><label for="live-damping">阻尼倍率 <output id="damping-value">1.00×</output></label><input type="range" id="live-damping" min="0.5" max="2.5" step="0.1" value="1"></div></div><p class="live-help">参数修改后点「重置场景」生效。点击地图任意空位，可重新指定目标。</p></div><div class="field replay-field"><label for="condition-select">环境工况<span>CONDITION</span></label><select id="condition-select" disabled><option>等待数据</option></select></div><div class="field replay-field"><label for="episode-select">评估回合<span>EPISODE</span></label><select id="episode-select" disabled><option>等待数据</option></select></div>
+        <div class="decision-readout"><div class="readout-title"><span>当前决策</span><span class="mono" id="step-label">STEP —</span></div><div class="primary-readout"><div><span class="readout-label">规划视野</span><p><strong id="frame-horizon">—</strong><span>步</span></p></div><div class="horizon-viz" id="horizon-viz" aria-hidden="true"></div></div><div class="readout-row"><span>规划耗时</span><strong><span id="frame-latency">—</span> <small>ms</small></strong></div><div class="readout-row"><span>模型计算量</span><strong><span id="frame-model-steps">—</span> <small>steps</small></strong></div><div class="readout-row"><span>集成模型分歧</span><strong id="frame-disagreement">—</strong></div><p class="readout-footnote">分歧是模型不确定性的代理指标，并非经过校准的置信概率。模型计算量按实验日志口径统计。</p></div>
+        <div class="view-options"><label><input type="checkbox" id="show-candidates" checked><span>显示候选未来</span></label><label id="actual-option"><input type="checkbox" id="show-actual" checked><span>显示后续实际执行</span></label></div><p class="inspector-note" id="inspector-note"><span aria-hidden="true">↳</span>实际后续含重新规划，偏差也包含动作改变，不能直接当作同动作预测误差。</p></div>
+      </aside>
+    </section>
+
+    <section class="evidence panel" aria-label="实验对比指标">
+      <div class="panel-heading evidence-heading"><div><span class="section-index">03</span><h2>让实验说话</h2><span class="panel-subtitle">离线实验指标 · 实时操作不改变结果</span></div><div class="evidence-pickers"><label class="metric-picker"><span class="sr-only">统计环境工况</span><select id="evidence-condition"><option value="in_distribution">训练分布内</option><option value="damping_shift">阻尼变化</option></select></label><label class="metric-picker"><span class="sr-only">图表展示指标</span><select id="chart-metric"><option value="success_rate">成功率 ↑</option><option value="collision_rate">碰撞率 ↓</option><option value="planning_ms_p95">规划耗时 P95 ↓</option><option value="mean_model_steps">平均模型计算量 ↓</option></select></label></div></div>
+      <div id="evidence-empty" class="evidence-empty">主实验结果尚未生成。这里不填入演示数值。</div>
+      <div id="evidence-content" hidden><div class="metric-chart" id="metric-chart" aria-label="方法对比条形图"></div><div class="table-scroll"><table><caption class="sr-only">各方法在选定环境工况下的实测指标</caption><thead><tr><th>规划方法</th><th>回合数</th><th>成功率 ↑</th><th>碰撞率 ↓</th><th>超时率 ↓</th><th>平均步数</th><th>耗时 P50 / P95</th><th>平均计算量</th></tr></thead><tbody id="results-body"></tbody></table></div><div class="evidence-footnote"><span id="evidence-scope"></span><span>初筛结果用于判断可行性；正式结论需要更多种子与消融实验。</span></div></div>
+    </section>
+
+    <section class="protocol-strip" aria-label="研究方法说明"><div><span class="protocol-number">A</span><p><strong>学习环境如何变化</strong><span>物理先验结合学习到的阻尼，构成轻量混合世界模型。</span></p></div><div><span class="protocol-number">B</span><p><strong>在模型里推演行动</strong><span>比较候选动作序列，选出代价较低的未来。</span></p></div><div><span class="protocol-number">C</span><p><strong>检验何时该看得更近</strong><span>用分歧调节预测长度，再以真实环境评估效果。</span></p></div></section>
+    <footer><span>FORESIGHT LAB <i>/</i> 本科毕业设计 · 智能科学与技术</span><span id="data-provenance">实验记录回放 · 非在线模型推理</span></footer>
+  </main>
+</body>
+</html>
