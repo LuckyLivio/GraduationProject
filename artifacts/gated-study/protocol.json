@@ -1,0 +1,110 @@
+{
+  "created_at": "2026-09-17T03:53:57.773180+00:00",
+  "stage": "gate_validation",
+  "training_seeds": [
+    142,
+    242,
+    342
+  ],
+  "models": "frozen ensembles trained before this gate study; no retraining or selection on this test panel",
+  "hypothesis": "preserve nominal prediction while retaining global-shift adaptation; inspect failure under local/noisy/recovering conditions",
+  "threshold_rule": "nominal-validation q99 of absolute log WLS scale, floor .03; persistence3,min_samples3,off_ratio.6",
+  "validation_collection_seed": 60100,
+  "validation_episodes": 50,
+  "navigation_seeds": [
+    70000,
+    70001,
+    70002,
+    70003,
+    70004,
+    70005,
+    70006,
+    70007,
+    70008,
+    70009,
+    70010,
+    70011,
+    70012,
+    70013,
+    70014,
+    70015,
+    70016,
+    70017
+  ],
+  "prediction_seeds": [
+    75000,
+    75001,
+    75002,
+    75003,
+    75004,
+    75005,
+    75006,
+    75007,
+    75008,
+    75009,
+    75010,
+    75011,
+    75012,
+    75013,
+    75014,
+    75015,
+    75016,
+    75017,
+    75018,
+    75019,
+    75020,
+    75021,
+    75022,
+    75023
+  ],
+  "conditions": [
+    "nominal",
+    "global_shift",
+    "local_patch",
+    "switch_recover",
+    "sensor_noise"
+  ],
+  "methods": [
+    "frozen_learned",
+    "residual_calibrated",
+    "gated_calibrated",
+    "local_identification"
+  ],
+  "condition_definitions": {
+    "nominal": "scale1",
+    "global_shift": "scale1.7",
+    "local_patch": "1+1.2*exp(-((x-5.2)/1.3)^2-((y-5)/3)^2)",
+    "switch_recover": "scale1.7 for transitions8..23 then scale1",
+    "sensor_noise": "scale1, iid robot position sigma.005 and velocity sigma.02; other state exact"
+  },
+  "horizon": 10,
+  "budget": 4500,
+  "update_budget": "separately count neural member evaluations, controller time includes observe updates",
+  "valid_filter": "all online methods use model.transition_targets; retain five valid past transitions",
+  "prediction_measure": "same actions, open loop; online histories exclude future; truth for evaluator only",
+  "seed_layout_convention": "explicit reset(seed), first layout",
+  "source_sha256": {
+    "foresight/__init__.py": "96e35e22e9a2921165bfd726efbefca9d653e4acb01f2b18293b62cecd46b4f6",
+    "foresight/benchmark.py": "999ecc46b90ef1c7318d30a60c71258c4cf75a4e946e45753ac539da01b29719",
+    "foresight/data.py": "8ef436cb6a5ea7bf2dd093ea68fcec5af68c1f7c082e3da515fc321d326bee0e",
+    "foresight/env.py": "c98e48484cae3ad19833b8f833a7ecde87e97f1deb83d692c809066054aae72b",
+    "foresight/experiment.py": "d2013336323f87f177c7f59ed6d2d6c91a7c88e0d207bc1e8acf078e2301d648",
+    "foresight/gated.py": "5a59357c975434ac340997ec1918b3a6688d8456f1b93ee973c2aaaebe8ad7e5",
+    "foresight/model.py": "7410b620167e37cf8b0a782eab22959d13d198203cd97bf94292e949d3aa39bd",
+    "foresight/planner.py": "cd17d7956956046312a05b334c78606af3de53e268edc43924c96c7cccb7fe90",
+    "foresight/residual.py": "eeca7ebbd3689c5213b3cdcee7037a41a2e68501cc8f56790c7e58b8d7d5fd00"
+  },
+  "runner_sha256": "7a0df6aa975d448a115c1397cbc5f06d730a31923042ef95bb36b7e198c958bc",
+  "checkpoint_sha256": {
+    "142": "43109d71e129cc8e91275c199be5baecdf216ccb4e8cbc214f66e3f5e43e651c",
+    "242": "8aaffe2e2440469b01456bfbc626463bf716973a071d7cc8b4c1e8051664447a",
+    "342": "26792b47a5383f60652fcddb5cec26dfda31a870f004e5dfcacc1233ccb17cd6"
+  },
+  "git_commit": "fedac77abfd39c73fa5f5be0367551f47777e9a1",
+  "cautions": [
+    "validation percentile not trajectory false-alarm probability",
+    "three seeds and paired repeated layouts, not pooled iid samples",
+    "noise test is nominal noisy dynamics only",
+    "no threshold changes after inspecting test results"
+  ]
+}

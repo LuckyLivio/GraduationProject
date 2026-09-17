@@ -12,7 +12,9 @@ python -m venv .venv
 
 浏览器打开 `http://127.0.0.1:8765/web/`。实时模式调用本机 Python 推理；回放模式读取保存的 JSON。若端口已占用，改成 `--port 8766` 并打开对应地址。
 
-实时模式支持三种场景、七种方法、阻尼倍率与点击修改目标。阻尼修改在重置场景时生效。它是二维仿真导航，不连接真实机器人。网页中的离线成绩不随交互操作改变。
+实时模式支持三种场景、八种方法、阻尼倍率与点击修改目标。选择门控校准时，加载复核种子 142 的冻结模型及独立验证阈值；可在途中施加阻尼变化而不清空历史，也可重置开始新回合。它是二维仿真导航，不连接真实机器人。网页中的离线成绩仍为清楚标注的首轮六方法实验，不随交互操作改变。
+
+演示示例：门控方法、open 场景、种子 2026、阻尼 1.0，运行到约第 8 步并暂停；将阻尼改为 1.7，点击“施加阻尼变化”后继续。观察门控从保留先验到启用校准。显示的是实际启停状态和 `abs(log(scale))` 分数，不是变化概率。动力学修改只作用于仿真器，模型需通过后续转移自行发现变化。
 
 ## 训练与实验
 
@@ -39,6 +41,15 @@ python -m venv .venv
 ```
 
 ## 结果文件
+
+复现门控研究（仓库已带冻结模型，运行无需重训；输出到新目录）：
+
+```powershell
+.\.venv\Scripts\python scripts/study_gate.py --output artifacts/local-gated-study --episodes 18
+.\.venv\Scripts\python scripts/analyze_gate.py --input artifacts/local-gated-study
+```
+
+对应预先固定的[门控协议](gated-protocol.md)。默认 `artifacts/gated-study` 已有证据，脚本拒绝覆盖。新研究的 `calibration.json` 记录验证阈值，`seed*-episodes.json` 记录逐步门控与导航结果，`prediction-windows.json` 记录同动作完整 16 步窗口，`detection.json` 记录检出和未检出。提交的小模型来自原复核训练，无需本地原始检查点即可运行；若要重新训练，请按复核流程生成自己的模型，并单独保留新模型来源。
 
 | 文件 | 含义 |
 | --- | --- |

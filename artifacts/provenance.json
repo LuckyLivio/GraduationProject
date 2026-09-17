@@ -11,6 +11,13 @@
     "implementation_commit": "99002b6",
     "base_checkpoint": "artifacts/day0/model.npz"
   },
+  "gated_study": {
+    "implementation_commit": "fedac77",
+    "protocol": "artifacts/gated-study/protocol.json",
+    "checkpoints": "artifacts/models/seed{142,242,342}.npz",
+    "analysis": "artifacts/gated-study/analysis.json",
+    "display_correction": "Original replays.json preserved; scripts/align_gate_replay.py derives replays-aligned.json with pre-action gate_score and original gate_score_after. No experiment metrics changed."
+  },
   "notes": [
     "Later changes protect existing output directories but do not change these stored result numbers.",
     "Runtime model source is in foresight/model.py; hybrid structure and training targets are documented."

@@ -1,0 +1,54 @@
+{
+  "models": {
+    "142": {
+      "threshold": 0.09502814637293455,
+      "quantile": 0.99,
+      "observed_quantile": 0.09502814637293455,
+      "threshold_floor": 0.03,
+      "score": "abs(log(clipped_scale))",
+      "window": 5,
+      "min_samples": 3,
+      "score_count": 2549,
+      "n": 2549,
+      "transitions": 2753,
+      "accepted_transitions": 2649,
+      "filtered_fraction": 0.03777697057755176,
+      "episode_segments": 50,
+      "provenance_requirement": "nominal validation only; no evaluation threshold tuning"
+    },
+    "242": {
+      "threshold": 0.11252104886111296,
+      "quantile": 0.99,
+      "observed_quantile": 0.11252104886111296,
+      "threshold_floor": 0.03,
+      "score": "abs(log(clipped_scale))",
+      "window": 5,
+      "min_samples": 3,
+      "score_count": 2549,
+      "n": 2549,
+      "transitions": 2753,
+      "accepted_transitions": 2649,
+      "filtered_fraction": 0.03777697057755176,
+      "episode_segments": 50,
+      "provenance_requirement": "nominal validation only; no evaluation threshold tuning"
+    },
+    "342": {
+      "threshold": 0.09639610139019902,
+      "quantile": 0.99,
+      "observed_quantile": 0.09639610139019902,
+      "threshold_floor": 0.03,
+      "score": "abs(log(clipped_scale))",
+      "window": 5,
+      "min_samples": 3,
+      "score_count": 2549,
+      "n": 2549,
+      "transitions": 2753,
+      "accepted_transitions": 2649,
+      "filtered_fraction": 0.03777697057755176,
+      "episode_segments": 50,
+      "provenance_requirement": "nominal validation only; no evaluation threshold tuning"
+    }
+  },
+  "demo_training_seed": 142,
+  "validation_seed": 60100
+}

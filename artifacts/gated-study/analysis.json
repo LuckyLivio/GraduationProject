@@ -1,0 +1,3746 @@
+{
+  "study": "Frozen gate calibration study; descriptive analysis only",
+  "training_seeds": [
+    142,
+    242,
+    342
+  ],
+  "conditions": [
+    "nominal",
+    "global_shift",
+    "local_patch",
+    "switch_recover",
+    "sensor_noise"
+  ],
+  "methods": [
+    "frozen_learned",
+    "residual_calibrated",
+    "gated_calibrated",
+    "local_identification"
+  ],
+  "total_episode_runs": 1080,
+  "unique_navigation_layouts": 18,
+  "independent_learning_runs": 3,
+  "physics_panels_identical_except_timing": true,
+  "source_sha256": {
+    "protocol.json": "d1285dbece62d67f61a33af17551e63860e086fb463a37ae03b7e6dbc47e724b",
+    "summary.json": "ed873faee10e6941799d2735b1a4cf23fec0aba80d0df7fe2cd9015964029280",
+    "detection.json": "575bf11920fdcb46cd1f9f7e2d6c316c11589632860794a045e02dbd07c1ec2f",
+    "calibration.json": "6492074930f1596a2898c967bf903c91f9c5c0ba2367868390ab1203dd591079",
+    "seed142-episodes.json": "a8edc03a061cd75e1e34b3c76672f56d211a2d7188d246767a06b50811df885f",
+    "seed242-episodes.json": "ca37d0e04b4451f32fda241b12c6ce8fb7c9440d54b4ffa583d3cf2275f4b185",
+    "seed342-episodes.json": "79c98a20adf71ca58af9a81159bc8b39eb631ffbc42d1bfa56eac77212fca48f",
+    "prediction-windows.json": "f373e3618e40a552db5f0c0cb58ddc87a69490d4c799f7f0031794fcbc94e2f5"
+  },
+  "analyzer_sha256": "761b99a0adcd57062782ee36a81192318e91bd4a598bb18f006cc42452ca31f8",
+  "sanity_checks": {
+    "expected_episode_runs": 1080,
+    "unique_episode_keys": 1080,
+    "paired_prediction_windows": true,
+    "summary_matches_raw": true,
+    "detection_matches_raw": true,
+    "terminal_reasons_valid": true,
+    "within_planning_budget": true
+  },
+  "metrics": [
+    {
+      "condition": "nominal",
+      "method": "frozen_learned",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 7.52065999968181,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.950330000268877,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 7.474990000628167,
+          "gate_any_activation_episodes": null
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 5.755450000378914,
+      "controller_ms_p95": 7.3373400004584255,
+      "controller_call_count": 1780,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 0.0
+    },
+    {
+      "condition": "nominal",
+      "method": "residual_calibrated",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 7.509780000418686,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.812789999890811,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 7.586260000607581,
+          "gate_any_activation_episodes": null
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 5.816700000650599,
+      "controller_ms_p95": 7.431009999436354,
+      "controller_call_count": 1783,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 1.6657319125070107
+    },
+    {
+      "condition": "nominal",
+      "method": "gated_calibrated",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 7.591560000219031,
+          "gate_any_activation_episodes": 0
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.940379999719879,
+          "gate_any_activation_episodes": 0
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 7.745510000086142,
+          "gate_any_activation_episodes": 0
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 5.827850000059698,
+      "controller_ms_p95": 7.475865000196791,
+      "controller_call_count": 1780,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 1.6820224719101124,
+      "gate": {
+        "any_activation_episodes": 0,
+        "episode_run_denominator": 54,
+        "any_activation_episode_fraction": 0.0,
+        "active_after_observe_steps": 0,
+        "active_before_action_steps": 0,
+        "step_denominator": 1780,
+        "active_after_observe_step_fraction": 0.0,
+        "active_before_action_step_fraction": 0.0,
+        "interpretation": "False activation under nominal; noisy-nominal activation under sensor_noise; activation only for other conditions"
+      }
+    },
+    {
+      "condition": "nominal",
+      "method": "local_identification",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.420230000345327,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 4.323150000527675,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.1568799998676695,
+          "gate_any_activation_episodes": null
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 4.053100000419363,
+      "controller_ms_p95": 5.224380000072414,
+      "controller_call_count": 1809,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 0.0
+    },
+    {
+      "condition": "global_shift",
+      "method": "frozen_learned",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 6.646625000121275,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 6.583550000414107,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 7.470700000340003,
+          "gate_any_activation_episodes": null
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 5.6955999998535844,
+      "controller_ms_p95": 7.279725000535109,
+      "controller_call_count": 2374,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 0.0
+    },
+    {
+      "condition": "global_shift",
+      "method": "residual_calibrated",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 7.195169999658901,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 6.008215000611017,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 7.548499999120394,
+          "gate_any_activation_episodes": null
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 5.699949999780074,
+      "controller_ms_p95": 7.355360000065048,
+      "controller_call_count": 2282,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 2.4846625766871164
+    },
+    {
+      "condition": "global_shift",
+      "method": "gated_calibrated",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 7.9113399999187095,
+          "gate_any_activation_episodes": 18
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.734219999612833,
+          "gate_any_activation_episodes": 18
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 6.928775000460519,
+          "gate_any_activation_episodes": 18
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 5.424149999726069,
+      "controller_ms_p95": 7.237924999571987,
+      "controller_call_count": 2296,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 2.533536585365854,
+      "gate": {
+        "any_activation_episodes": 54,
+        "episode_run_denominator": 54,
+        "any_activation_episode_fraction": 1.0,
+        "active_after_observe_steps": 2026,
+        "active_before_action_steps": 1972,
+        "step_denominator": 2296,
+        "active_after_observe_step_fraction": 0.882404181184669,
+        "active_before_action_step_fraction": 0.8588850174216028,
+        "interpretation": "False activation under nominal; noisy-nominal activation under sensor_noise; activation only for other conditions"
+      }
+    },
+    {
+      "condition": "global_shift",
+      "method": "local_identification",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 4.85717499987004,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 4.251150000072812,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.075049999959447,
+          "gate_any_activation_episodes": null
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 3.7836999999854015,
+      "controller_ms_p95": 4.907469999989189,
+      "controller_call_count": 2328,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 0.0
+    },
+    {
+      "condition": "local_patch",
+      "method": "frozen_learned",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 6.160860000454704,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 17,
+          "collisions": 1,
+          "timeouts": 0,
+          "controller_ms_p95": 5.905164999285262,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 17,
+          "collisions": 1,
+          "timeouts": 0,
+          "controller_ms_p95": 7.38009999940914,
+          "gate_any_activation_episodes": null
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        17,
+        17
+      ],
+      "mean_success_rate": 0.9629629629629629,
+      "controller_ms_p50": 5.383199999414501,
+      "controller_ms_p95": 7.092900000225199,
+      "controller_call_count": 2107,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 0.0
+    },
+    {
+      "condition": "local_patch",
+      "method": "residual_calibrated",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 6.451349999679223,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.958739999732643,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 7.585649999782618,
+          "gate_any_activation_episodes": null
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 5.55759999951988,
+      "controller_ms_p95": 7.295609999982844,
+      "controller_call_count": 2135,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 2.2988290398126465
+    },
+    {
+      "condition": "local_patch",
+      "method": "gated_calibrated",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 6.231900000329915,
+          "gate_any_activation_episodes": 18
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 7.43474500009142,
+          "gate_any_activation_episodes": 18
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 6.131724999704603,
+          "gate_any_activation_episodes": 18
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 5.413099998804682,
+      "controller_ms_p95": 6.438360000174725,
+      "controller_call_count": 2137,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 2.313523631258774,
+      "gate": {
+        "any_activation_episodes": 54,
+        "episode_run_denominator": 54,
+        "any_activation_episode_fraction": 1.0,
+        "active_after_observe_steps": 1179,
+        "active_before_action_steps": 1179,
+        "step_denominator": 2137,
+        "active_after_observe_step_fraction": 0.5517080018717829,
+        "active_before_action_step_fraction": 0.5517080018717829,
+        "interpretation": "False activation under nominal; noisy-nominal activation under sensor_noise; activation only for other conditions"
+      }
+    },
+    {
+      "condition": "local_patch",
+      "method": "local_identification",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 4.300260000218259,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.958725000027698,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.151249999744323,
+          "gate_any_activation_episodes": null
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 3.834350000033737,
+      "controller_ms_p95": 5.419000000892993,
+      "controller_call_count": 2142,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 0.0
+    },
+    {
+      "condition": "switch_recover",
+      "method": "frozen_learned",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 6.175060000168742,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 6.372780000674536,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 7.3158600005626795,
+          "gate_any_activation_episodes": null
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 5.396500000642845,
+      "controller_ms_p95": 7.1216199998161756,
+      "controller_call_count": 1993,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 0.0
+    },
+    {
+      "condition": "switch_recover",
+      "method": "residual_calibrated",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 6.330805000470718,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.882865000694436,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 7.570299999315466,
+          "gate_any_activation_episodes": null
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 5.452599999443919,
+      "controller_ms_p95": 7.212989998970443,
+      "controller_call_count": 1987,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 2.4292903875188725
+    },
+    {
+      "condition": "switch_recover",
+      "method": "gated_calibrated",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 6.157349999739381,
+          "gate_any_activation_episodes": 18
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.861425000375675,
+          "gate_any_activation_episodes": 18
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 7.50350000034814,
+          "gate_any_activation_episodes": 18
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 5.427300000064861,
+      "controller_ms_p95": 7.224644999678276,
+      "controller_call_count": 1994,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 2.4448345035105317,
+      "gate": {
+        "any_activation_episodes": 54,
+        "episode_run_denominator": 54,
+        "any_activation_episode_fraction": 1.0,
+        "active_after_observe_steps": 960,
+        "active_before_action_steps": 960,
+        "step_denominator": 1994,
+        "active_after_observe_step_fraction": 0.48144433299899697,
+        "active_before_action_step_fraction": 0.48144433299899697,
+        "interpretation": "False activation under nominal; noisy-nominal activation under sensor_noise; activation only for other conditions"
+      }
+    },
+    {
+      "condition": "switch_recover",
+      "method": "local_identification",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 4.1838999997708015,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 4.127619999599119,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 4.097900000488153,
+          "gate_any_activation_episodes": null
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 3.6031999998158426,
+      "controller_ms_p95": 4.133279999950901,
+      "controller_call_count": 1995,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 0.0
+    },
+    {
+      "condition": "sensor_noise",
+      "method": "frozen_learned",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.956900000001042,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.730145000052288,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.807600000480306,
+          "gate_any_activation_episodes": null
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 5.2044000003661495,
+      "controller_ms_p95": 5.841014999896288,
+      "controller_call_count": 1774,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 0.0
+    },
+    {
+      "condition": "sensor_noise",
+      "method": "residual_calibrated",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 6.081074999747216,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.865395000137141,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.915719999848079,
+          "gate_any_activation_episodes": null
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 5.2949000000808155,
+      "controller_ms_p95": 5.9658000005583744,
+      "controller_call_count": 1783,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 2.1301177790241166
+    },
+    {
+      "condition": "sensor_noise",
+      "method": "gated_calibrated",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 6.091110000215849,
+          "gate_any_activation_episodes": 18
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.896724999956859,
+          "gate_any_activation_episodes": 18
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 6.0335749999467225,
+          "gate_any_activation_episodes": 18
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 5.307199999151635,
+      "controller_ms_p95": 6.024840000191033,
+      "controller_call_count": 1787,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 2.1538891997761613,
+      "gate": {
+        "any_activation_episodes": 54,
+        "episode_run_denominator": 54,
+        "any_activation_episode_fraction": 1.0,
+        "active_after_observe_steps": 762,
+        "active_before_action_steps": 762,
+        "step_denominator": 1787,
+        "active_after_observe_step_fraction": 0.4264129826524902,
+        "active_before_action_step_fraction": 0.4264129826524902,
+        "interpretation": "False activation under nominal; noisy-nominal activation under sensor_noise; activation only for other conditions"
+      }
+    },
+    {
+      "condition": "sensor_noise",
+      "method": "local_identification",
+      "episode_runs": 54,
+      "unique_layouts": 18,
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 4.166999999824839,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 5.164824999610573,
+          "gate_any_activation_episodes": null
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "successes": 18,
+          "collisions": 0,
+          "timeouts": 0,
+          "controller_ms_p95": 4.192825000473022,
+          "gate_any_activation_episodes": null
+        }
+      ],
+      "success_counts_by_seed": [
+        18,
+        18,
+        18
+      ],
+      "mean_success_rate": 1.0,
+      "controller_ms_p50": 3.667550000045594,
+      "controller_ms_p95": 4.961214999821095,
+      "controller_call_count": 1788,
+      "mean_model_steps": 4500.0,
+      "mean_update_member_evals": 0.0
+    }
+  ],
+  "prediction_h16": [
+    {
+      "condition": "nominal",
+      "method": "frozen_learned",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.03282569753289406,
+        0.03727975822548782,
+        0.035293692550197014
+      ],
+      "mean_rmse": 0.03513304943619296,
+      "windows_per_seed": [
+        134,
+        134,
+        134
+      ],
+      "contributing_episodes_per_seed": [
+        18,
+        18,
+        18
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": null,
+      "gate_active_forecast_window_fraction": null
+    },
+    {
+      "condition": "nominal",
+      "method": "residual_calibrated",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.04382703739706723,
+        0.05098739604466928,
+        0.04909600354454965
+      ],
+      "mean_rmse": 0.04797014566209539,
+      "windows_per_seed": [
+        134,
+        134,
+        134
+      ],
+      "contributing_episodes_per_seed": [
+        18,
+        18,
+        18
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": null,
+      "gate_active_forecast_window_fraction": null
+    },
+    {
+      "condition": "nominal",
+      "method": "gated_calibrated",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.03911761804924908,
+        0.040990130789963095,
+        0.041735401329670976
+      ],
+      "mean_rmse": 0.040614383389627716,
+      "windows_per_seed": [
+        134,
+        134,
+        134
+      ],
+      "contributing_episodes_per_seed": [
+        18,
+        18,
+        18
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": [
+        3,
+        1,
+        3
+      ],
+      "gate_active_forecast_window_fraction": 0.017412935323383085
+    },
+    {
+      "condition": "nominal",
+      "method": "local_identification",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.585277962608665,
+        0.585277962608665,
+        0.585277962608665
+      ],
+      "mean_rmse": 0.585277962608665,
+      "windows_per_seed": [
+        134,
+        134,
+        134
+      ],
+      "contributing_episodes_per_seed": [
+        18,
+        18,
+        18
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": null,
+      "gate_active_forecast_window_fraction": null
+    },
+    {
+      "condition": "global_shift",
+      "method": "frozen_learned",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.7734170223065653,
+        0.76999011471209,
+        0.7712112367665154
+      ],
+      "mean_rmse": 0.7715394579283902,
+      "windows_per_seed": [
+        228,
+        228,
+        228
+      ],
+      "contributing_episodes_per_seed": [
+        19,
+        19,
+        19
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": null,
+      "gate_active_forecast_window_fraction": null
+    },
+    {
+      "condition": "global_shift",
+      "method": "residual_calibrated",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.04563815721466672,
+        0.05244881569936823,
+        0.05143639371509336
+      ],
+      "mean_rmse": 0.04984112220970944,
+      "windows_per_seed": [
+        228,
+        228,
+        228
+      ],
+      "contributing_episodes_per_seed": [
+        19,
+        19,
+        19
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": null,
+      "gate_active_forecast_window_fraction": null
+    },
+    {
+      "condition": "global_shift",
+      "method": "gated_calibrated",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.04563815721466672,
+        0.05244881569936823,
+        0.05143639371509336
+      ],
+      "mean_rmse": 0.04984112220970944,
+      "windows_per_seed": [
+        228,
+        228,
+        228
+      ],
+      "contributing_episodes_per_seed": [
+        19,
+        19,
+        19
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": [
+        228,
+        228,
+        228
+      ],
+      "gate_active_forecast_window_fraction": 1.0
+    },
+    {
+      "condition": "global_shift",
+      "method": "local_identification",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.36313424228503,
+        0.36313424228503,
+        0.36313424228503
+      ],
+      "mean_rmse": 0.36313424228503005,
+      "windows_per_seed": [
+        228,
+        228,
+        228
+      ],
+      "contributing_episodes_per_seed": [
+        19,
+        19,
+        19
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": null,
+      "gate_active_forecast_window_fraction": null
+    },
+    {
+      "condition": "local_patch",
+      "method": "frozen_learned",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.5922663342907986,
+        0.5879327090007443,
+        0.5873735965937305
+      ],
+      "mean_rmse": 0.5891908799617577,
+      "windows_per_seed": [
+        183,
+        183,
+        183
+      ],
+      "contributing_episodes_per_seed": [
+        18,
+        18,
+        18
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": null,
+      "gate_active_forecast_window_fraction": null
+    },
+    {
+      "condition": "local_patch",
+      "method": "residual_calibrated",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.37644700341969417,
+        0.37474868809223144,
+        0.37321427313738825
+      ],
+      "mean_rmse": 0.37480332154977125,
+      "windows_per_seed": [
+        183,
+        183,
+        183
+      ],
+      "contributing_episodes_per_seed": [
+        18,
+        18,
+        18
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": null,
+      "gate_active_forecast_window_fraction": null
+    },
+    {
+      "condition": "local_patch",
+      "method": "gated_calibrated",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.41308506672685225,
+        0.421635603167901,
+        0.4126813628555358
+      ],
+      "mean_rmse": 0.4158006775834297,
+      "windows_per_seed": [
+        183,
+        183,
+        183
+      ],
+      "contributing_episodes_per_seed": [
+        18,
+        18,
+        18
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": [
+        132,
+        127,
+        131
+      ],
+      "gate_active_forecast_window_fraction": 0.7103825136612022
+    },
+    {
+      "condition": "local_patch",
+      "method": "local_identification",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.8070206627850273,
+        0.8070206627850273,
+        0.8070206627850273
+      ],
+      "mean_rmse": 0.8070206627850273,
+      "windows_per_seed": [
+        183,
+        183,
+        183
+      ],
+      "contributing_episodes_per_seed": [
+        18,
+        18,
+        18
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": null,
+      "gate_active_forecast_window_fraction": null
+    },
+    {
+      "condition": "switch_recover",
+      "method": "frozen_learned",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.45016771420048224,
+        0.44920231261612237,
+        0.4509905702061993
+      ],
+      "mean_rmse": 0.4501201990076013,
+      "windows_per_seed": [
+        166,
+        166,
+        166
+      ],
+      "contributing_episodes_per_seed": [
+        19,
+        19,
+        19
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": null,
+      "gate_active_forecast_window_fraction": null
+    },
+    {
+      "condition": "switch_recover",
+      "method": "residual_calibrated",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.4374787554088005,
+        0.43658988055701914,
+        0.44007523377872937
+      ],
+      "mean_rmse": 0.4380479565815163,
+      "windows_per_seed": [
+        166,
+        166,
+        166
+      ],
+      "contributing_episodes_per_seed": [
+        19,
+        19,
+        19
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": null,
+      "gate_active_forecast_window_fraction": null
+    },
+    {
+      "condition": "switch_recover",
+      "method": "gated_calibrated",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.4446283856591412,
+        0.44478599055695184,
+        0.447423460991852
+      ],
+      "mean_rmse": 0.4456126124026483,
+      "windows_per_seed": [
+        166,
+        166,
+        166
+      ],
+      "contributing_episodes_per_seed": [
+        19,
+        19,
+        19
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": [
+        94,
+        91,
+        93
+      ],
+      "gate_active_forecast_window_fraction": 0.5582329317269076
+    },
+    {
+      "condition": "switch_recover",
+      "method": "local_identification",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.5689228398507225,
+        0.5689228398507225,
+        0.5689228398507225
+      ],
+      "mean_rmse": 0.5689228398507225,
+      "windows_per_seed": [
+        166,
+        166,
+        166
+      ],
+      "contributing_episodes_per_seed": [
+        19,
+        19,
+        19
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": null,
+      "gate_active_forecast_window_fraction": null
+    },
+    {
+      "condition": "sensor_noise",
+      "method": "frozen_learned",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.03688948492147253,
+        0.0410462764170271,
+        0.03889723649879994
+      ],
+      "mean_rmse": 0.03894433261243319,
+      "windows_per_seed": [
+        134,
+        134,
+        134
+      ],
+      "contributing_episodes_per_seed": [
+        18,
+        18,
+        18
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": null,
+      "gate_active_forecast_window_fraction": null
+    },
+    {
+      "condition": "sensor_noise",
+      "method": "residual_calibrated",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.07065570743206603,
+        0.07489668873095506,
+        0.07398925563992645
+      ],
+      "mean_rmse": 0.07318055060098251,
+      "windows_per_seed": [
+        134,
+        134,
+        134
+      ],
+      "contributing_episodes_per_seed": [
+        18,
+        18,
+        18
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": null,
+      "gate_active_forecast_window_fraction": null
+    },
+    {
+      "condition": "sensor_noise",
+      "method": "gated_calibrated",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.04171208015538041,
+        0.0410462764170271,
+        0.04093144571904601
+      ],
+      "mean_rmse": 0.04122993409715117,
+      "windows_per_seed": [
+        134,
+        134,
+        134
+      ],
+      "contributing_episodes_per_seed": [
+        18,
+        18,
+        18
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": [
+        4,
+        0,
+        3
+      ],
+      "gate_active_forecast_window_fraction": 0.017412935323383085
+    },
+    {
+      "condition": "sensor_noise",
+      "method": "local_identification",
+      "horizon": 16,
+      "rmse_by_training_seed": [
+        0.5799297972553096,
+        0.5799297972553096,
+        0.5799297972553096
+      ],
+      "mean_rmse": 0.5799297972553096,
+      "windows_per_seed": [
+        134,
+        134,
+        134
+      ],
+      "contributing_episodes_per_seed": [
+        18,
+        18,
+        18
+      ],
+      "generated_episodes_per_condition": 24,
+      "gate_active_at_forecast_windows_by_seed": null,
+      "gate_active_forecast_window_fraction": null
+    }
+  ],
+  "events": [
+    {
+      "condition": "global_shift",
+      "episode_runs": 54,
+      "shift_exposed": 54,
+      "shift_eligible_not_pre_active": 54,
+      "detection_counts": {
+        "detected": 54
+      },
+      "detected_fraction_of_eligible": 1.0,
+      "detection_delay_conditional_on_observed_detection": {
+        "n": 54,
+        "observations": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "median": 6.0,
+        "p95": 6.0,
+        "max": 6
+      },
+      "recovery_exposed": 0,
+      "recovery_eligible_active_at_return": 0,
+      "recovery_counts": {
+        "not_applicable": 54
+      },
+      "deactivated_fraction_of_eligible": null,
+      "recovery_delay_conditional_on_observed_deactivation": {
+        "n": 0,
+        "observations": [],
+        "median": null,
+        "p95": null,
+        "max": null
+      },
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "shift_exposed": 18,
+          "shift_eligible_not_pre_active": 18,
+          "detection_counts": {
+            "detected": 18
+          },
+          "detected_fraction_of_eligible": 1.0,
+          "detection_delay_conditional_on_observed_detection": {
+            "n": 18,
+            "observations": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ],
+            "median": 6.0,
+            "p95": 6.0,
+            "max": 6
+          },
+          "recovery_exposed": 0,
+          "recovery_eligible_active_at_return": 0,
+          "recovery_counts": {
+            "not_applicable": 18
+          },
+          "deactivated_fraction_of_eligible": null,
+          "recovery_delay_conditional_on_observed_deactivation": {
+            "n": 0,
+            "observations": [],
+            "median": null,
+            "p95": null,
+            "max": null
+          }
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "shift_exposed": 18,
+          "shift_eligible_not_pre_active": 18,
+          "detection_counts": {
+            "detected": 18
+          },
+          "detected_fraction_of_eligible": 1.0,
+          "detection_delay_conditional_on_observed_detection": {
+            "n": 18,
+            "observations": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ],
+            "median": 6.0,
+            "p95": 6.0,
+            "max": 6
+          },
+          "recovery_exposed": 0,
+          "recovery_eligible_active_at_return": 0,
+          "recovery_counts": {
+            "not_applicable": 18
+          },
+          "deactivated_fraction_of_eligible": null,
+          "recovery_delay_conditional_on_observed_deactivation": {
+            "n": 0,
+            "observations": [],
+            "median": null,
+            "p95": null,
+            "max": null
+          }
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "shift_exposed": 18,
+          "shift_eligible_not_pre_active": 18,
+          "detection_counts": {
+            "detected": 18
+          },
+          "detected_fraction_of_eligible": 1.0,
+          "detection_delay_conditional_on_observed_detection": {
+            "n": 18,
+            "observations": [
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6,
+              6
+            ],
+            "median": 6.0,
+            "p95": 6.0,
+            "max": 6
+          },
+          "recovery_exposed": 0,
+          "recovery_eligible_active_at_return": 0,
+          "recovery_counts": {
+            "not_applicable": 18
+          },
+          "deactivated_fraction_of_eligible": null,
+          "recovery_delay_conditional_on_observed_deactivation": {
+            "n": 0,
+            "observations": [],
+            "median": null,
+            "p95": null,
+            "max": null
+          }
+        }
+      ]
+    },
+    {
+      "condition": "switch_recover",
+      "episode_runs": 54,
+      "shift_exposed": 54,
+      "shift_eligible_not_pre_active": 54,
+      "detection_counts": {
+        "detected": 54
+      },
+      "detected_fraction_of_eligible": 1.0,
+      "detection_delay_conditional_on_observed_detection": {
+        "n": 54,
+        "observations": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "median": 4.0,
+        "p95": 9.0,
+        "max": 9
+      },
+      "recovery_exposed": 54,
+      "recovery_eligible_active_at_return": 54,
+      "recovery_counts": {
+        "deactivated": 54
+      },
+      "deactivated_fraction_of_eligible": 1.0,
+      "recovery_delay_conditional_on_observed_deactivation": {
+        "n": 54,
+        "observations": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7
+        ],
+        "median": 7.0,
+        "p95": 7.0,
+        "max": 7
+      },
+      "per_seed": [
+        {
+          "training_seed": 142,
+          "episode_runs": 18,
+          "shift_exposed": 18,
+          "shift_eligible_not_pre_active": 18,
+          "detection_counts": {
+            "detected": 18
+          },
+          "detected_fraction_of_eligible": 1.0,
+          "detection_delay_conditional_on_observed_detection": {
+            "n": 18,
+            "observations": [
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              4,
+              4,
+              7,
+              7,
+              7,
+              7,
+              8,
+              8,
+              9,
+              9
+            ],
+            "median": 4.0,
+            "p95": 9.0,
+            "max": 9
+          },
+          "recovery_exposed": 18,
+          "recovery_eligible_active_at_return": 18,
+          "recovery_counts": {
+            "deactivated": 18
+          },
+          "deactivated_fraction_of_eligible": 1.0,
+          "recovery_delay_conditional_on_observed_deactivation": {
+            "n": 18,
+            "observations": [
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7
+            ],
+            "median": 7.0,
+            "p95": 7.0,
+            "max": 7
+          }
+        },
+        {
+          "training_seed": 242,
+          "episode_runs": 18,
+          "shift_exposed": 18,
+          "shift_eligible_not_pre_active": 18,
+          "detection_counts": {
+            "detected": 18
+          },
+          "detected_fraction_of_eligible": 1.0,
+          "detection_delay_conditional_on_observed_detection": {
+            "n": 18,
+            "observations": [
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              4,
+              4,
+              7,
+              7,
+              7,
+              7,
+              8,
+              8,
+              9,
+              9
+            ],
+            "median": 4.0,
+            "p95": 9.0,
+            "max": 9
+          },
+          "recovery_exposed": 18,
+          "recovery_eligible_active_at_return": 18,
+          "recovery_counts": {
+            "deactivated": 18
+          },
+          "deactivated_fraction_of_eligible": 1.0,
+          "recovery_delay_conditional_on_observed_deactivation": {
+            "n": 18,
+            "observations": [
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7
+            ],
+            "median": 7.0,
+            "p95": 7.0,
+            "max": 7
+          }
+        },
+        {
+          "training_seed": 342,
+          "episode_runs": 18,
+          "shift_exposed": 18,
+          "shift_eligible_not_pre_active": 18,
+          "detection_counts": {
+            "detected": 18
+          },
+          "detected_fraction_of_eligible": 1.0,
+          "detection_delay_conditional_on_observed_detection": {
+            "n": 18,
+            "observations": [
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              3,
+              4,
+              4,
+              7,
+              7,
+              7,
+              7,
+              8,
+              8,
+              9,
+              9
+            ],
+            "median": 4.0,
+            "p95": 9.0,
+            "max": 9
+          },
+          "recovery_exposed": 18,
+          "recovery_eligible_active_at_return": 18,
+          "recovery_counts": {
+            "deactivated": 18
+          },
+          "deactivated_fraction_of_eligible": 1.0,
+          "recovery_delay_conditional_on_observed_deactivation": {
+            "n": 18,
+            "observations": [
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7,
+              7
+            ],
+            "median": 7.0,
+            "p95": 7.0,
+            "max": 7
+          }
+        }
+      ]
+    }
+  ],
+  "event_records": [
+    {
+      "training_seed": 142,
+      "condition": "global_shift",
+      "seed": 70000,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 39,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 142,
+      "condition": "global_shift",
+      "seed": 70001,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 42,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 142,
+      "condition": "global_shift",
+      "seed": 70002,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 43,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 142,
+      "condition": "global_shift",
+      "seed": 70003,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 40,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 142,
+      "condition": "global_shift",
+      "seed": 70004,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 45,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 142,
+      "condition": "global_shift",
+      "seed": 70005,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 41,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 142,
+      "condition": "global_shift",
+      "seed": 70006,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 47,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 142,
+      "condition": "global_shift",
+      "seed": 70007,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 45,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 142,
+      "condition": "global_shift",
+      "seed": 70008,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 40,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 142,
+      "condition": "global_shift",
+      "seed": 70009,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 43,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 142,
+      "condition": "global_shift",
+      "seed": 70010,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 42,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 142,
+      "condition": "global_shift",
+      "seed": 70011,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 46,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 142,
+      "condition": "global_shift",
+      "seed": 70012,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 44,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 142,
+      "condition": "global_shift",
+      "seed": 70013,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 39,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 142,
+      "condition": "global_shift",
+      "seed": 70014,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 44,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 142,
+      "condition": "global_shift",
+      "seed": 70015,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 46,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 142,
+      "condition": "global_shift",
+      "seed": 70016,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 39,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 142,
+      "condition": "global_shift",
+      "seed": 70017,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 40,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 142,
+      "condition": "switch_recover",
+      "seed": 70000,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 11
+    },
+    {
+      "training_seed": 142,
+      "condition": "switch_recover",
+      "seed": 70001,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 13
+    },
+    {
+      "training_seed": 142,
+      "condition": "switch_recover",
+      "seed": 70002,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 7,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 12
+    },
+    {
+      "training_seed": 142,
+      "condition": "switch_recover",
+      "seed": 70003,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 8,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 11
+    },
+    {
+      "training_seed": 142,
+      "condition": "switch_recover",
+      "seed": 70004,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 4,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 15
+    },
+    {
+      "training_seed": 142,
+      "condition": "switch_recover",
+      "seed": 70005,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 7,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 12
+    },
+    {
+      "training_seed": 142,
+      "condition": "switch_recover",
+      "seed": 70006,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 15
+    },
+    {
+      "training_seed": 142,
+      "condition": "switch_recover",
+      "seed": 70007,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 14
+    },
+    {
+      "training_seed": 142,
+      "condition": "switch_recover",
+      "seed": 70008,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 9,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 12
+    },
+    {
+      "training_seed": 142,
+      "condition": "switch_recover",
+      "seed": 70009,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 7,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 13
+    },
+    {
+      "training_seed": 142,
+      "condition": "switch_recover",
+      "seed": 70010,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 14
+    },
+    {
+      "training_seed": 142,
+      "condition": "switch_recover",
+      "seed": 70011,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 14
+    },
+    {
+      "training_seed": 142,
+      "condition": "switch_recover",
+      "seed": 70012,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 13
+    },
+    {
+      "training_seed": 142,
+      "condition": "switch_recover",
+      "seed": 70013,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 9,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 11
+    },
+    {
+      "training_seed": 142,
+      "condition": "switch_recover",
+      "seed": 70014,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 4,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 13
+    },
+    {
+      "training_seed": 142,
+      "condition": "switch_recover",
+      "seed": 70015,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 15
+    },
+    {
+      "training_seed": 142,
+      "condition": "switch_recover",
+      "seed": 70016,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 8,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 11
+    },
+    {
+      "training_seed": 142,
+      "condition": "switch_recover",
+      "seed": 70017,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 7,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 12
+    },
+    {
+      "training_seed": 242,
+      "condition": "global_shift",
+      "seed": 70000,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 39,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 242,
+      "condition": "global_shift",
+      "seed": 70001,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 42,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 242,
+      "condition": "global_shift",
+      "seed": 70002,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 42,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 242,
+      "condition": "global_shift",
+      "seed": 70003,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 40,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 242,
+      "condition": "global_shift",
+      "seed": 70004,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 45,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 242,
+      "condition": "global_shift",
+      "seed": 70005,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 41,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 242,
+      "condition": "global_shift",
+      "seed": 70006,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 47,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 242,
+      "condition": "global_shift",
+      "seed": 70007,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 45,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 242,
+      "condition": "global_shift",
+      "seed": 70008,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 40,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 242,
+      "condition": "global_shift",
+      "seed": 70009,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 43,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 242,
+      "condition": "global_shift",
+      "seed": 70010,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 42,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 242,
+      "condition": "global_shift",
+      "seed": 70011,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 46,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 242,
+      "condition": "global_shift",
+      "seed": 70012,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 44,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 242,
+      "condition": "global_shift",
+      "seed": 70013,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 39,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 242,
+      "condition": "global_shift",
+      "seed": 70014,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 44,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 242,
+      "condition": "global_shift",
+      "seed": 70015,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 46,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 242,
+      "condition": "global_shift",
+      "seed": 70016,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 40,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 242,
+      "condition": "global_shift",
+      "seed": 70017,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 40,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 242,
+      "condition": "switch_recover",
+      "seed": 70000,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 11
+    },
+    {
+      "training_seed": 242,
+      "condition": "switch_recover",
+      "seed": 70001,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 13
+    },
+    {
+      "training_seed": 242,
+      "condition": "switch_recover",
+      "seed": 70002,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 7,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 13
+    },
+    {
+      "training_seed": 242,
+      "condition": "switch_recover",
+      "seed": 70003,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 8,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 11
+    },
+    {
+      "training_seed": 242,
+      "condition": "switch_recover",
+      "seed": 70004,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 4,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 14
+    },
+    {
+      "training_seed": 242,
+      "condition": "switch_recover",
+      "seed": 70005,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 7,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 12
+    },
+    {
+      "training_seed": 242,
+      "condition": "switch_recover",
+      "seed": 70006,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 15
+    },
+    {
+      "training_seed": 242,
+      "condition": "switch_recover",
+      "seed": 70007,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 15
+    },
+    {
+      "training_seed": 242,
+      "condition": "switch_recover",
+      "seed": 70008,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 9,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 12
+    },
+    {
+      "training_seed": 242,
+      "condition": "switch_recover",
+      "seed": 70009,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 7,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 13
+    },
+    {
+      "training_seed": 242,
+      "condition": "switch_recover",
+      "seed": 70010,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 15
+    },
+    {
+      "training_seed": 242,
+      "condition": "switch_recover",
+      "seed": 70011,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 14
+    },
+    {
+      "training_seed": 242,
+      "condition": "switch_recover",
+      "seed": 70012,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 14
+    },
+    {
+      "training_seed": 242,
+      "condition": "switch_recover",
+      "seed": 70013,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 9,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 11
+    },
+    {
+      "training_seed": 242,
+      "condition": "switch_recover",
+      "seed": 70014,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 4,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 13
+    },
+    {
+      "training_seed": 242,
+      "condition": "switch_recover",
+      "seed": 70015,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 15
+    },
+    {
+      "training_seed": 242,
+      "condition": "switch_recover",
+      "seed": 70016,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 8,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 11
+    },
+    {
+      "training_seed": 242,
+      "condition": "switch_recover",
+      "seed": 70017,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 7,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 12
+    },
+    {
+      "training_seed": 342,
+      "condition": "global_shift",
+      "seed": 70000,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 39,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 342,
+      "condition": "global_shift",
+      "seed": 70001,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 42,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 342,
+      "condition": "global_shift",
+      "seed": 70002,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 42,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 342,
+      "condition": "global_shift",
+      "seed": 70003,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 40,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 342,
+      "condition": "global_shift",
+      "seed": 70004,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 46,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 342,
+      "condition": "global_shift",
+      "seed": 70005,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 41,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 342,
+      "condition": "global_shift",
+      "seed": 70006,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 47,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 342,
+      "condition": "global_shift",
+      "seed": 70007,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 44,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 342,
+      "condition": "global_shift",
+      "seed": 70008,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 40,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 342,
+      "condition": "global_shift",
+      "seed": 70009,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 43,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 342,
+      "condition": "global_shift",
+      "seed": 70010,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 42,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 342,
+      "condition": "global_shift",
+      "seed": 70011,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 46,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 342,
+      "condition": "global_shift",
+      "seed": 70012,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 44,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 342,
+      "condition": "global_shift",
+      "seed": 70013,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 39,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 342,
+      "condition": "global_shift",
+      "seed": 70014,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 44,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 342,
+      "condition": "global_shift",
+      "seed": 70015,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 46,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 342,
+      "condition": "global_shift",
+      "seed": 70016,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 41,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 342,
+      "condition": "global_shift",
+      "seed": 70017,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 6,
+      "shift_observation_count": 40,
+      "exposed_recovery": false,
+      "active_before_recovery": null,
+      "recovery_observations": null,
+      "detection_status": "detected",
+      "recovery_status": "not_applicable",
+      "recovery_observation_count": 0
+    },
+    {
+      "training_seed": 342,
+      "condition": "switch_recover",
+      "seed": 70000,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 11
+    },
+    {
+      "training_seed": 342,
+      "condition": "switch_recover",
+      "seed": 70001,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 13
+    },
+    {
+      "training_seed": 342,
+      "condition": "switch_recover",
+      "seed": 70002,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 7,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 13
+    },
+    {
+      "training_seed": 342,
+      "condition": "switch_recover",
+      "seed": 70003,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 8,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 11
+    },
+    {
+      "training_seed": 342,
+      "condition": "switch_recover",
+      "seed": 70004,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 4,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 15
+    },
+    {
+      "training_seed": 342,
+      "condition": "switch_recover",
+      "seed": 70005,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 7,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 12
+    },
+    {
+      "training_seed": 342,
+      "condition": "switch_recover",
+      "seed": 70006,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 15
+    },
+    {
+      "training_seed": 342,
+      "condition": "switch_recover",
+      "seed": 70007,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 14
+    },
+    {
+      "training_seed": 342,
+      "condition": "switch_recover",
+      "seed": 70008,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 9,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 12
+    },
+    {
+      "training_seed": 342,
+      "condition": "switch_recover",
+      "seed": 70009,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 7,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 13
+    },
+    {
+      "training_seed": 342,
+      "condition": "switch_recover",
+      "seed": 70010,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 14
+    },
+    {
+      "training_seed": 342,
+      "condition": "switch_recover",
+      "seed": 70011,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 14
+    },
+    {
+      "training_seed": 342,
+      "condition": "switch_recover",
+      "seed": 70012,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 14
+    },
+    {
+      "training_seed": 342,
+      "condition": "switch_recover",
+      "seed": 70013,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 9,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 11
+    },
+    {
+      "training_seed": 342,
+      "condition": "switch_recover",
+      "seed": 70014,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 4,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 13
+    },
+    {
+      "training_seed": 342,
+      "condition": "switch_recover",
+      "seed": 70015,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 3,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 15
+    },
+    {
+      "training_seed": 342,
+      "condition": "switch_recover",
+      "seed": 70016,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 8,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 11
+    },
+    {
+      "training_seed": 342,
+      "condition": "switch_recover",
+      "seed": 70017,
+      "exposed_shift": true,
+      "already_active_before_shift": false,
+      "detection_observations": 7,
+      "shift_observation_count": 16,
+      "exposed_recovery": true,
+      "active_before_recovery": true,
+      "recovery_observations": 7,
+      "detection_status": "detected",
+      "recovery_status": "deactivated",
+      "recovery_observation_count": 12
+    }
+  ],
+  "event_timing": {
+    "shift_transition_zero_based": 8,
+    "recovery_transition_zero_based": 24,
+    "unit": "Completed observations since event; detection after observe affects the next decision",
+    "conditional_delay_warning": "Delay summaries include only observed endpoints. See exposed, pre-active, missed and censored counts."
+  },
+  "limits": [
+    "Three trained-model panels reuse the same layouts; pooled runs are not independent layouts.",
+    "Local physics has no learned seed; its three deterministic repeat panels add no independent performance evidence.",
+    "Prediction windows overlap; RMSE averages windows, then the three training-seed RMSE values.",
+    "Only episodes long enough for a 16-step rollout contribute prediction windows.",
+    "Prediction uses separate behavior-policy episodes; their gate activation differs from MPC navigation.",
+    "Open-loop forecasts do not know scheduled future changes or receive intermediate observations.",
+    "P95 controller latency pools control calls and includes calibration updates; it depends on hardware/load.",
+    "No threshold selection, significance test or general safety claim is made by this analysis.",
+    "Recovery is observed deactivation, not proof of permanently correct calibration thereafter.",
+    "Sensor noise occurs under nominal dynamics; activation is not evidence of an actual dynamics change."
+  ]
+}

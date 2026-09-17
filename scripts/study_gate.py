@@ -46,6 +46,7 @@ def episode(method,base,threshold,global_damping,condition,seed,replay=False):
         decision_ms=(time.perf_counter()-decision_started)*1000
         pre_gate=bool(getattr(model,'gate_active',False))
         pre_scale=float(getattr(model,'current_scale',1))
+        pre_score=float(getattr(model,'gate_score',0))
         next_truth,_,terminated,truncated,terminal=env.step(action)
         next_observed=sensed_state(next_truth,condition,seed,t+1)
         started=time.perf_counter();model.observe(observed,action,next_observed)
@@ -62,7 +63,7 @@ def episode(method,base,threshold,global_damping,condition,seed,replay=False):
         if replay:
             frames.append(compact({'state':truth,'observed_state':observed,'action':action,
                                    'gate_active':pre_gate,'learned_scale':pre_scale,
-                                   'gate_score':rows[-1]['gate_score'],
+                                   'gate_score':pre_score,'gate_score_after':rows[-1]['gate_score'],
                                    **{k:info[k] for k in ('predicted_path','candidate_paths','horizon','planning_ms','model_steps','disagreement')}}))
         truth,observed=next_truth,next_observed
         if terminated or truncated:break
