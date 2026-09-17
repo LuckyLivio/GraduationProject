@@ -11,7 +11,7 @@
 <body>
   <header class="topbar">
     <a class="brand" href="./" aria-label="预见 Foresight Lab 首页"><span class="brand-icon" aria-hidden="true"><i></i></span><span>预见<span class="brand-en">FORESIGHT LAB</span></span></a>
-    <div class="topbar-meta"><span class="phase">在线校准 · 第二轮验证</span><span class="data-status" id="data-status"><i></i>正在读取实验数据</span></div>
+    <div class="topbar-meta"><a class="phase" href="compare.html">四路预测对照 ↗</a><span class="data-status" id="data-status"><i></i>正在读取实验数据</span></div>
   </header>
   <main>
     <section class="intro">
@@ -19,6 +19,7 @@
       <div class="research-question"><span class="question-label">本轮研究问题</span><p>什么时候相信已有模型，<br>什么时候根据反馈修正它？</p><a class="small-note findings-link" href="https://github.com/LuckyLivio/GraduationProject/blob/main/docs/gated-findings.md" target="_blank" rel="noopener noreferrer">查看门控校准实验判断 ↗</a></div>
     </section>
 
+    <a class="compare-entry" href="compare.html"><span><strong>同样的动作，谁更懂这个世界？</strong><small>四种模型同步预测，对照同一段真实未来，直接看见误差。</small></span><span>打开对照实验台 ↗</span></a>
     <div class="notice" id="experiment-notice" role="status"><span class="notice-dot"></span><div><strong id="notice-title">等待第一轮实验</strong><p id="notice-text">实验完成后，这里将展示真实轨迹、对比指标和选题验证结果。</p></div><button class="text-button" id="reload-data" type="button">刷新数据 <span aria-hidden="true">↗</span></button></div>
 
     <div class="mode-toolbar"><div class="mode-switch" role="group" aria-label="运行模式"><button type="button" id="mode-live" aria-pressed="false">实时推理</button><button type="button" id="mode-replay" class="active" aria-pressed="true">实验回放</button></div><span class="mode-status" id="mode-status">正在查看已记录的真实实验</span></div>

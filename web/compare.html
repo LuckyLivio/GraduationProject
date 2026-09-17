@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#081316">
+  <title>预见 · 世界模型对照实验室</title>
+  <link rel="stylesheet" href="compare.css">
+  <script defer src="compare.js"></script>
+</head>
+<body>
+  <header class="topbar"><a href="./" class="brand"><span class="brand-mark" aria-hidden="true">◈</span>预见 <span>FORESIGHT LAB</span></a><div class="header-right"><span class="live-badge"><i></i>真实模型 · 按需推演</span><a href="./">进入交互工作台 ↗</a></div></header>
+  <main>
+    <section class="intro"><div><p class="eyebrow">WORLD MODEL / SIDE-BY-SIDE</p><h1 id="main-title">同一个动作，<em>四种未来。</em></h1><p id="intro-copy">先给四个模型完全相同的动作，再让真实环境执行。白线揭晓：谁真正预见了未来？</p></div><div class="experiment-mark"><span>受控对照实验</span><strong id="experiment-span">16 步 · 2.4 秒</strong><small>共享起点、历史与未来动作</small></div></section>
+    <div class="mode-tabs" role="group" aria-label="实验模式"><button type="button" data-view="prediction" class="selected" aria-pressed="true"><span>01</span>同动作预测检验</button><button type="button" data-view="navigation" aria-pressed="false"><span>02</span>同场景导航对照</button><span class="mode-hint" id="mode-hint">先检验“想得准”，再检验“走得好”</span></div>
+    <form id="controls" class="control-bar">
+      <label>环境条件<select id="condition"><option value="nominal">空间阻尼变化 · 正常环境</option><option value="global_shift">整体阻尼改变 · 1.7×</option></select></label>
+      <label id="action-control">相同未来动作<select id="action-mode"><option value="cruise">持续推进</option><option value="coast">松开动力滑行</option><option value="brake">短时制动后滑行</option></select></label>
+      <label id="scenario-control" hidden>导航场景<select id="scenario"><option value="crossing">交叉穿行</option><option value="slalom">曲折通行</option><option value="open">开放空间</option></select></label>
+      <label class="seed-control">导航种子<input id="seed" type="number" min="0" max="999999" value="2026" required></label>
+      <button class="run-button" id="run" type="submit">重新推演 <span aria-hidden="true">↗</span></button>
+      <span id="run-status" class="run-status" role="status" aria-live="polite">正在加载模型…</span>
+    </form>
+    <div class="read-guide"><div><i class="line-key truth"></i><span>真实执行</span><i class="line-key prediction"></i><span>模型预测</span><i class="distance-key"></i><span id="gap-legend">同一时刻的位置偏差</span></div><label><input type="checkbox" id="show-terrain" checked>模型估计的阻尼底图</label></div>
+    <section class="comparison-grid" id="comparison-grid" aria-label="四种模型的同步对照"></section>
+    <div class="playback"><button type="button" id="play" aria-label="播放同步轨迹" disabled>▶ 播放对照</button><button type="button" id="reset" class="reset-button" aria-label="回到对照起点" disabled>↺</button><span class="time-readout" id="frame-label">00 / 16 步</span><input type="range" id="timeline" min="0" max="16" value="16" aria-label="四个模型同步时间轴" disabled><span class="seconds" id="time-label">2.40 s</span><select id="speed" aria-label="播放速度"><option value="1">1×</option><option value="0.5">0.5×</option><option value="2">2×</option></select></div>
+    <section class="verdict" aria-label="本次对照解读"><span class="verdict-icon" aria-hidden="true">↳</span><div><h2 id="verdict-title">正在计算，等待真实结果</h2><p id="verdict-text">页面显示的轨迹和误差均来自本机模型推理。</p></div><span class="single-case">单次诊断<br>非总体结论</span></section>
+    <section class="explain-strip"><div><span>传统常数模型</span><p>用同一个阻尼描述整个空间。</p></div><div><span>在线物理辨识</span><p>用最近的反馈估计附近阻尼。</p></div><div><span>学习空间规律</span><p>提前预测还没走到的位置。</p></div><div><span>发现变化后校准</span><p>用新反馈修正已有空间模型。</p></div></section>
+    <details class="field-evidence" id="field-evidence"><summary><div><span class="eyebrow">LOOK INSIDE THE MODEL</span><strong>模型到底学到了什么？</strong><span class="summary-description">展开对照真实阻尼场与学习结果</span></div><span aria-hidden="true">＋</span></summary><div class="field-evidence-body"><p class="field-note">下面的真实阻尼场仅由评估器读取用于核对，控制器无法获取。四个模型上方底图表示各自估计；颜色越亮，阻尼越大。</p><div class="field-pair"><figure><canvas id="truth-field" aria-label="评估器读取的真实空间阻尼"></canvas><figcaption>真实空间阻尼 <span>仅评估器可见</span></figcaption></figure><figure><canvas id="learned-field" aria-label="冻结学习模型估计的空间阻尼"></canvas><figcaption>学习模型的空间阻尼 <span>冻结训练权重</span></figcaption></figure></div><div class="field-scale"><span>低阻尼</span><i></i><span>高阻尼</span></div><p id="field-source" class="field-source"></p></div></details>
+    <p class="scope-note" id="scope-note">研究范围：已知运动学 + 学习空间阻尼的轻量混合世界模型。不是视频生成模型，也不代表复杂真实机器人的完整世界模型。</p>
+    <footer><span>FORESIGHT LAB / 本科毕业设计</span><a href="https://github.com/LuckyLivio/GraduationProject/blob/main/docs/gated-findings.md" target="_blank" rel="noopener noreferrer">查看多种子实验与研究边界 ↗</a></footer>
+  </main>
+</body>
+</html>

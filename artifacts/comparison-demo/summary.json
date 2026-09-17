@@ -1,0 +1,203 @@
+{
+  "scope": "six predefined interactive diagnostics; not held-out benchmark evidence or seed selection",
+  "seed": 2026,
+  "training_seed": 142,
+  "horizon": 16,
+  "checkpoint_sha256": "43109d71e129cc8e91275c199be5baecdf216ccb4e8cbc214f66e3f5e43e651c",
+  "source_sha256": "e9d153a2b07e42a384f5c1d535a8f6b651f240093336c0ffcf64ebb95d72805f",
+  "git_commit": "e286c62457b201240d4f8ef3c62406a09b1f6c85",
+  "results": [
+    {
+      "condition": "nominal",
+      "action_mode": "cruise",
+      "method": "global_physics",
+      "endpoint_error": 0.26262855529785156,
+      "position_rmse": 0.24074194512797864,
+      "executed_steps": 16
+    },
+    {
+      "condition": "nominal",
+      "action_mode": "cruise",
+      "method": "local_identification",
+      "endpoint_error": 1.2762494087219238,
+      "position_rmse": 0.6309188405785213,
+      "executed_steps": 16
+    },
+    {
+      "condition": "nominal",
+      "action_mode": "cruise",
+      "method": "frozen_learned",
+      "endpoint_error": 0.0003981590270996094,
+      "position_rmse": 0.003407877681507613,
+      "executed_steps": 16
+    },
+    {
+      "condition": "nominal",
+      "action_mode": "cruise",
+      "method": "gated_calibrated",
+      "endpoint_error": 0.0003981590270996094,
+      "position_rmse": 0.003407877681507613,
+      "executed_steps": 16
+    },
+    {
+      "condition": "nominal",
+      "action_mode": "coast",
+      "method": "global_physics",
+      "endpoint_error": 0.36669063568115234,
+      "position_rmse": 0.2673092240056724,
+      "executed_steps": 16
+    },
+    {
+      "condition": "nominal",
+      "action_mode": "coast",
+      "method": "local_identification",
+      "endpoint_error": 0.5946316719055176,
+      "position_rmse": 0.3271044664960982,
+      "executed_steps": 16
+    },
+    {
+      "condition": "nominal",
+      "action_mode": "coast",
+      "method": "frozen_learned",
+      "endpoint_error": 0.006934642791748047,
+      "position_rmse": 0.005044647551409662,
+      "executed_steps": 16
+    },
+    {
+      "condition": "nominal",
+      "action_mode": "coast",
+      "method": "gated_calibrated",
+      "endpoint_error": 0.006934642791748047,
+      "position_rmse": 0.005044647551409662,
+      "executed_steps": 16
+    },
+    {
+      "condition": "nominal",
+      "action_mode": "brake",
+      "method": "global_physics",
+      "endpoint_error": 0.35741090774536133,
+      "position_rmse": 0.2556916411193356,
+      "executed_steps": 16
+    },
+    {
+      "condition": "nominal",
+      "action_mode": "brake",
+      "method": "local_identification",
+      "endpoint_error": 0.41073179244995117,
+      "position_rmse": 0.23111967634694378,
+      "executed_steps": 16
+    },
+    {
+      "condition": "nominal",
+      "action_mode": "brake",
+      "method": "frozen_learned",
+      "endpoint_error": 0.006985187530517578,
+      "position_rmse": 0.004860567485862136,
+      "executed_steps": 16
+    },
+    {
+      "condition": "nominal",
+      "action_mode": "brake",
+      "method": "gated_calibrated",
+      "endpoint_error": 0.006985187530517578,
+      "position_rmse": 0.004860567485862136,
+      "executed_steps": 16
+    },
+    {
+      "condition": "global_shift",
+      "action_mode": "cruise",
+      "method": "global_physics",
+      "endpoint_error": 0.20779180526733398,
+      "position_rmse": 0.08433613253171686,
+      "executed_steps": 16
+    },
+    {
+      "condition": "global_shift",
+      "action_mode": "cruise",
+      "method": "local_identification",
+      "endpoint_error": 0.7292709350585938,
+      "position_rmse": 0.36349596630255426,
+      "executed_steps": 16
+    },
+    {
+      "condition": "global_shift",
+      "action_mode": "cruise",
+      "method": "frozen_learned",
+      "endpoint_error": 0.631378173828125,
+      "position_rmse": 0.37584736855673617,
+      "executed_steps": 16
+    },
+    {
+      "condition": "global_shift",
+      "action_mode": "cruise",
+      "method": "gated_calibrated",
+      "endpoint_error": 0.06300067901611328,
+      "position_rmse": 0.03796986698522345,
+      "executed_steps": 16
+    },
+    {
+      "condition": "global_shift",
+      "action_mode": "coast",
+      "method": "global_physics",
+      "endpoint_error": 0.047652244567871094,
+      "position_rmse": 0.044446966987521035,
+      "executed_steps": 16
+    },
+    {
+      "condition": "global_shift",
+      "action_mode": "coast",
+      "method": "local_identification",
+      "endpoint_error": 0.2317962646484375,
+      "position_rmse": 0.1395026908746371,
+      "executed_steps": 16
+    },
+    {
+      "condition": "global_shift",
+      "action_mode": "coast",
+      "method": "frozen_learned",
+      "endpoint_error": 0.3826436996459961,
+      "position_rmse": 0.24957801575599525,
+      "executed_steps": 16
+    },
+    {
+      "condition": "global_shift",
+      "action_mode": "coast",
+      "method": "gated_calibrated",
+      "endpoint_error": 0.03454017639160156,
+      "position_rmse": 0.023149782555620224,
+      "executed_steps": 16
+    },
+    {
+      "condition": "global_shift",
+      "action_mode": "brake",
+      "method": "global_physics",
+      "endpoint_error": 0.06930851936340332,
+      "position_rmse": 0.05367678623982918,
+      "executed_steps": 16
+    },
+    {
+      "condition": "global_shift",
+      "action_mode": "brake",
+      "method": "local_identification",
+      "endpoint_error": 0.13338017463684082,
+      "position_rmse": 0.08465495826374532,
+      "executed_steps": 16
+    },
+    {
+      "condition": "global_shift",
+      "action_mode": "brake",
+      "method": "frozen_learned",
+      "endpoint_error": 0.2978942394256592,
+      "position_rmse": 0.19683864104021537,
+      "executed_steps": 16
+    },
+    {
+      "condition": "global_shift",
+      "action_mode": "brake",
+      "method": "gated_calibrated",
+      "endpoint_error": 0.024703264236450195,
+      "position_rmse": 0.016856668166341248,
+      "executed_steps": 16
+    }
+  ]
+}
