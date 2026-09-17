@@ -7,7 +7,9 @@ import tempfile
 import threading
 import unittest
 
-from scripts.serve import ROOT, create_server
+import numpy as np
+
+from scripts.serve import APIError, LiveApplication, ROOT, create_server
 
 
 class LiveServerTests(unittest.TestCase):
@@ -51,6 +53,17 @@ class LiveServerTests(unittest.TestCase):
         self.assertEqual(status, 403)
         status, _ = self.request("GET", "/api/status", headers={"Host": "example.com"})
         self.assertEqual(status, 403)
+
+    def test_gated_resources_are_required_without_affecting_old_model(self):
+        with tempfile.TemporaryDirectory() as directory:
+            app = LiveApplication(directory)
+            # A usable legacy model does not authorize silently falling back to
+            # unmatched weights when the new gate metadata is unavailable.
+            app.model = object()
+            with self.assertRaises(APIError) as caught:
+                app.reset({"method": "gated_calibrated"})
+            self.assertEqual(caught.exception.status, 503)
+            self.assertIn("matching calibration", str(caught.exception))
 
     def test_private_files_and_encoded_traversal_are_not_served(self):
         for path in ("/README.md", "/.git/config", "/web/%2e%2e/README.md",
@@ -137,6 +150,88 @@ class LiveServerTests(unittest.TestCase):
         _, first_step = self.request("POST", "/api/step", {"session_id": another["session_id"]})
         self.assertEqual(first_step["frame"]["learned_scale"], 1.0)
         self.assertEqual(first_step["frame"]["scale_updates"], 0)
+
+    @unittest.skipUnless((ROOT / "artifacts/day0/model.npz").exists() and
+                         (ROOT / "artifacts/day0/summary.json").exists(), "Trained checkpoint unavailable")
+    def test_mid_episode_dynamics_changes_physics_without_informing_planner(self):
+        app = self.server.RequestHandlerClass.keywords["app"]
+        session_ids = []
+        for _ in range(2):
+            status, episode = self.request("POST", "/api/reset", {
+                "method": "fixed_10", "seed": 41, "scenario": "open", "damping_scale": 1.0})
+            self.assertEqual(status, 200)
+            session_ids.append(episode["session_id"])
+            # Start with a visible, unsaturated velocity to make the physics
+            # difference identifiable even though both planners see one state.
+            env = app.sessions[episode["session_id"]].env
+            state = env.state
+            state[:4] = [2.0, 2.0, 0.4, 0.1]
+            env.state = state
+        session = app.sessions[session_ids[1]]
+        before = session.env.state.copy()
+        status, response = self.request("POST", "/api/dynamics", {
+            "session_id": session_ids[1], "damping_scale": 1.7})
+        self.assertEqual(status, 200)
+        self.assertEqual(response["damping_scale"], 1.7)
+        np.testing.assert_array_equal(session.env.state, before)
+        self.assertEqual(session.env.steps, 0)
+        self.assertIs(session.planner.predictor, app.model)
+        results = [self.request("POST", "/api/step", {"session_id": session_id})
+                   for session_id in session_ids]
+        for status, _ in results:
+            self.assertEqual(status, 200)
+        nominal, changed = (result[1] for result in results)
+        self.assertEqual(nominal["frame"]["state"], changed["frame"]["state"])
+        self.assertEqual(nominal["frame"]["action"], changed["frame"]["action"])
+        self.assertEqual(nominal["frame"]["predicted_path"], changed["frame"]["predicted_path"])
+        self.assertNotEqual(nominal["next_state"][:4], changed["next_state"][:4])
+        for invalid in (None, True, 0.49, 2.51):
+            status, _ = self.request("POST", "/api/dynamics", {
+                "session_id": session_ids[1], "damping_scale": invalid})
+            self.assertEqual(status, 400)
+        session.done = True
+        status, _ = self.request("POST", "/api/dynamics", {
+            "session_id": session_ids[1], "damping_scale": 1.0})
+        self.assertEqual(status, 409)
+
+    @unittest.skipUnless((ROOT / "artifacts/day0/model.npz").exists() and
+                         (ROOT / "artifacts/day0/summary.json").exists(), "Trained checkpoint unavailable")
+    def test_legacy_methods_remain_available(self):
+        for method in ("adaptive", "fixed_5", "fixed_10", "fixed_16",
+                       "global_physics", "local_identification", "residual_calibrated"):
+            with self.subTest(method=method):
+                status, episode = self.request("POST", "/api/reset", {
+                    "method": method, "seed": 91, "scenario": "open"})
+                self.assertEqual(status, 200)
+                status, result = self.request("POST", "/api/step", {"session_id": episode["session_id"]})
+                self.assertEqual(status, 200)
+                self.assertGreater(result["frame"]["model_steps"], 0)
+                self.assertNotIn("gate_active", result["frame"])
+
+    @unittest.skipUnless((ROOT / "artifacts/gated-study/calibration.json").exists(),
+                         "Gated calibration artifacts unavailable")
+    def test_gated_live_metadata_and_dynamics_preserve_calibration(self):
+        status, metadata = self.request("GET", "/api/status")
+        self.assertEqual(status, 200)
+        self.assertTrue(metadata["gated_ready"])
+        status, episode = self.request("POST", "/api/reset", {
+            "method": "gated_calibrated", "seed": 41, "scenario": "open"})
+        self.assertEqual(status, 200)
+        self.assertEqual(episode["frame"]["model_training_seed"], metadata["gated_model_training_seed"])
+        self.assertEqual(episode["frame"]["learned_scale"], 1.0)
+        self.assertFalse(episode["frame"]["gate_active"])
+        for _ in range(3):
+            status, result = self.request("POST", "/api/step", {"session_id": episode["session_id"]})
+            self.assertEqual(status, 200)
+        for name in ("gate_score", "gate_threshold", "raw_scale", "learned_scale", "calibration_ms"):
+            self.assertTrue(math.isfinite(result["frame"][name]))
+        app = self.server.RequestHandlerClass.keywords["app"]
+        session = app.sessions[episode["session_id"]]
+        diagnostic_before = app._diagnostics(session)
+        status, _ = self.request("POST", "/api/dynamics", {
+            "session_id": episode["session_id"], "damping_scale": 1.7})
+        self.assertEqual(status, 200)
+        self.assertEqual(app._diagnostics(session), diagnostic_before)
 
 
 if __name__ == "__main__":

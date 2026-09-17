@@ -24,8 +24,9 @@ from foresight.env import NavigationEnv, ROBOT_RADIUS
 from foresight.model import HybridWorldModel
 from foresight.planner import MPCPlanner, PhysicsPredictor
 from foresight.residual import ResidualCalibratedModel
+from foresight.gated import GatedCalibratedModel
 
-METHODS = ("adaptive", "fixed_5", "fixed_10", "fixed_16", "global_physics", "local_identification", "residual_calibrated")
+METHODS = ("gated_calibrated", "adaptive", "fixed_5", "fixed_10", "fixed_16", "global_physics", "local_identification", "residual_calibrated")
 SCENARIOS = ("open", "crossing", "slalom")
 MAX_BODY_BYTES = 8192
 SESSION_LIMIT = 16
@@ -70,6 +71,7 @@ class LiveSession:
     env: NavigationEnv
     planner: MPCPlanner
     method: str
+    model_training_seed: int | None = None
     touched: float = field(default_factory=time.monotonic)
     lock: threading.Lock = field(default_factory=threading.Lock)
     done: bool = False
@@ -83,6 +85,11 @@ class LiveApplication:
         self.sessions_lock = threading.Lock()
         self.model_lock = threading.Lock()
         self.model = None
+        self.model_training_seed = None
+        self.gated_model = None
+        self.gated_training_seed = None
+        self.gate_threshold = None
+        self.gated_load_error = None
         self.load_error = None
         self.budget = 4500
         self.threshold = 0.003
@@ -92,19 +99,48 @@ class LiveApplication:
             self.budget = int(summary["config"]["budget"])
             self.threshold = float(summary["calibration"]["threshold"])
             self.global_damping = float(summary["training"]["global_damping_fit"])
+            self.model_training_seed = summary["config"].get("training_seed")
             checkpoint = self.root / "artifacts/day0/model.npz"
             if not checkpoint.exists():
                 checkpoint = self.root / "checkpoints/day0_model.npz"
             self.model = HybridWorldModel.load(checkpoint)
         except (OSError, ValueError, KeyError, TypeError):
             self.load_error = "Run the day-zero experiment to create the trained checkpoint and summary."
+        try:
+            calibration = json.loads((self.root / "artifacts/gated-study/calibration.json").read_text(encoding="utf-8"))
+            self.gated_training_seed = int(calibration["demo_training_seed"])
+            self.gate_threshold = float(calibration["models"][str(self.gated_training_seed)]["threshold"])
+            if not math.isfinite(self.gate_threshold) or self.gate_threshold <= 0:
+                raise ValueError("Invalid calibration threshold")
+            self.gated_model = HybridWorldModel.load(
+                self.root / f"artifacts/models/seed{self.gated_training_seed}.npz")
+        except (OSError, ValueError, KeyError, TypeError):
+            self.gated_load_error = "Run the gated study to create matching calibration metadata and trained checkpoint."
 
     def status(self):
         return {"ready": self.model is not None, "model": "hybrid_world_model",
                 "members": self.model.n_members if self.model is not None else 0,
                 "methods": METHODS, "scenarios": SCENARIOS, "budget": self.budget,
                 "uncertainty_threshold": self.threshold, "damping_scale_range": [0.5, 2.5],
+                "gated_ready": self.gated_model is not None,
+                "gated_model_training_seed": self.gated_training_seed,
+                "gate_threshold": self.gate_threshold, "gated_error": self.gated_load_error,
                 "error": self.load_error, "mode": "live_inference"}
+
+    @staticmethod
+    def _diagnostics(session):
+        predictor = session.planner.predictor
+        result = {"model_training_seed": session.model_training_seed}
+        if hasattr(predictor, "current_scale"):
+            result.update(learned_scale=float(predictor.current_scale),
+                          scale_updates=int(predictor.updates),
+                          calibration_ms=float(predictor.last_calibration_ms))
+        if hasattr(predictor, "gate_active"):
+            result.update(gate_active=bool(predictor.gate_active),
+                          gate_score=float(predictor.gate_score),
+                          gate_threshold=float(predictor.gate_threshold),
+                          raw_scale=float(predictor.raw_scale))
+        return result
 
     def _cleanup(self):
         cutoff = time.monotonic() - SESSION_TTL_SECONDS
@@ -136,10 +172,14 @@ class LiveApplication:
             raise APIError("seed must be an integer between 0 and 2147483647")
         if not 0.5 <= scale <= 2.5:
             raise APIError("damping_scale must be between 0.5 and 2.5")
+        if method == "gated_calibrated" and self.gated_model is None:
+            raise APIError(self.gated_load_error, 503)
         predictor = (PhysicsPredictor(damping=self.global_damping, adaptive=method == "local_identification")
                      if method in {"global_physics", "local_identification"} else self.model)
         if method == "residual_calibrated":
             predictor = ResidualCalibratedModel(self.model)
+        if method == "gated_calibrated":
+            predictor = GatedCalibratedModel(self.gated_model, threshold=self.gate_threshold)
         horizon = int(method.split("_")[-1]) if method.startswith("fixed_") else 10
         planner = MPCPlanner(predictor, horizon=horizon, adaptive=method == "adaptive",
                              budget=self.budget, seed=seed + 70000, uncertainty_threshold=self.threshold)
@@ -151,8 +191,11 @@ class LiveApplication:
             if len(self.sessions) >= SESSION_LIMIT:
                 oldest = min(self.sessions, key=lambda key: self.sessions[key].touched)
                 del self.sessions[oldest]
-            self.sessions[session_id] = LiveSession(env=env, planner=planner, method=method)
-        return {"session_id": session_id, "frame": _empty_frame(state), "done": False,
+            training_seed = (self.gated_training_seed if method == "gated_calibrated" else
+                             None if method in {"global_physics", "local_identification"} else self.model_training_seed)
+            session = LiveSession(env=env, planner=planner, method=method, model_training_seed=training_seed)
+            self.sessions[session_id] = session
+        return {"session_id": session_id, "frame": {**_empty_frame(state), **self._diagnostics(session)}, "done": False,
                 "method": method, "seed": seed, "scenario": scenario, "damping_scale": scale}
 
     def step(self, body):
@@ -169,13 +212,8 @@ class LiveApplication:
             session.done = bool(terminated or truncated)
             frame = {**info, "state": state, "action": action}
             frame["candidate_paths"] = info.get("candidate_paths", [])[:5]
-            predictor = session.planner.predictor
-            if hasattr(predictor, "current_scale"):
-                # Calibration occurs after executing this action and is available
-                # to the next decision; planner timing remains a separate metric.
-                frame.update(learned_scale=float(predictor.current_scale),
-                             scale_updates=int(predictor.updates),
-                             calibration_ms=float(predictor.last_calibration_ms))
+            # Calibration is observed after this action and used by the next one.
+            frame.update(self._diagnostics(session))
             return {"frame": frame, "next_state": next_state, "done": session.done,
                     "success": terminal["success"], "collision": terminal["collision"],
                     "timeout": terminal["timeout"], "step": session.env.steps,
@@ -193,7 +231,21 @@ class LiveApplication:
             state[4:6] = [x, y]
             session.env.state = state
             session.planner.reset()
-            return {"session_id": body["session_id"], "frame": _empty_frame(state), "done": False}
+            return {"session_id": body["session_id"],
+                    "frame": {**_empty_frame(state), **self._diagnostics(session)}, "done": False}
+
+    def dynamics(self, body):
+        scale = _finite_number(body.get("damping_scale"), "damping_scale")
+        if not 0.5 <= scale <= 2.5:
+            raise APIError("damping_scale must be between 0.5 and 2.5")
+        session = self._session(body)
+        with session.lock:
+            if session.done:
+                raise APIError("Episode ended; reset before changing dynamics", 409)
+            # Change simulation physics only: no true scale is passed to a model,
+            # no state or planner history is reset, and the next transition reveals it.
+            session.env.damping_scale = scale
+            return {"session_id": body["session_id"], "damping_scale": scale, "done": False}
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -254,7 +306,8 @@ class Handler(SimpleHTTPRequestHandler):
         try:
             self._local_api()
             path = urlsplit(self.path).path
-            routes = {"/api/reset": self.app.reset, "/api/step": self.app.step, "/api/goal": self.app.goal}
+            routes = {"/api/reset": self.app.reset, "/api/step": self.app.step,
+                      "/api/goal": self.app.goal, "/api/dynamics": self.app.dynamics}
             if path not in routes:
                 raise APIError("Unknown API endpoint", 404)
             self._reply(200, routes[path](self._body()))

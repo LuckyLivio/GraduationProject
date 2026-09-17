@@ -1,0 +1,249 @@
+{
+  "verification_date": "2026-09-17",
+  "purpose": "Bounded primary-source verification of nearby online dynamics adaptation work; not an exhaustive novelty search.",
+  "external_code_executed": false,
+  "document": "docs/related-work-adaptation.md",
+  "notes": [
+    "Only stated review scopes were inspected. Document hashes identify fetched content; source text is not reproduced.",
+    "RMA project links to a later Cross-Modal Supervision repository built on RMA, not a verified original-paper commit.",
+    "Earlier GrBAL/ReBAL arXiv versions had different titles and method names; v6 used for current summary.",
+    "Page 1954 publisher full text inaccessible; only Crossref bibliographic metadata used.",
+    "No claim of comparison against full PETS, GrBAL/ReBAL, CaDM or RMA implementations."
+  ],
+  "sources": [
+    {
+      "label": "PETS abstract",
+      "url": "https://arxiv.org/abs/1805.12114",
+      "review_scope": "abstract_and_metadata",
+      "accessed_utc": "2026-09-17T03:50:43.907752+00:00",
+      "status": 200,
+      "resolved_url": "https://arxiv.org/abs/1805.12114",
+      "document_bytes": 43333,
+      "document_sha256": "9dc8509cf51c5d417e0db84ebef82608c80f2a4ab82c7998ae3c5ebbf1f22ef5",
+      "page_title": "Deep Reinforcement Learning in a Handful of Trials using Probabilistic Dynamics Models",
+      "citation_authors": [
+        "Chua, Kurtland",
+        "Calandra, Roberto",
+        "McAllister, Rowan",
+        "Levine, Sergey"
+      ],
+      "citation_first_submitted_date": "2018/05/30"
+    },
+    {
+      "label": "PETS author README",
+      "url": "https://raw.githubusercontent.com/kchua/handful-of-trials/master/README.md",
+      "review_scope": "repository_readme",
+      "accessed_utc": "2026-09-17T03:50:43.908749+00:00",
+      "status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/kchua/handful-of-trials/master/README.md",
+      "document_bytes": 9458,
+      "document_sha256": "b772a1b5c752662e07c65388e244fe119af968be73e7935036f6e15bb3cd3d22",
+      "readme_heading": "# Deep Reinforcement Learning in a Handful of Trials using Probabilistic Dynamics Models"
+    },
+    {
+      "label": "GrBAL ReBAL abstract",
+      "url": "https://arxiv.org/abs/1803.11347",
+      "review_scope": "abstract_and_metadata",
+      "accessed_utc": "2026-09-17T03:50:43.908749+00:00",
+      "status": 200,
+      "resolved_url": "https://arxiv.org/abs/1803.11347",
+      "document_bytes": 45830,
+      "document_sha256": "271e815d1781bf5632a873610e5188199b4433e1667f3578d9fc6c4574dcf252",
+      "page_title": "Learning to Adapt in Dynamic, Real-World Environments Through Meta-Reinforcement Learning",
+      "citation_authors": [
+        "Nagabandi, Anusha",
+        "Clavera, Ignasi",
+        "Liu, Simin",
+        "Fearing, Ronald S.",
+        "Abbeel, Pieter",
+        "Levine, Sergey",
+        "Finn, Chelsea"
+      ],
+      "citation_first_submitted_date": "2018/03/30"
+    },
+    {
+      "label": "GrBAL ReBAL v6 methods",
+      "url": "https://arxiv.org/html/1803.11347v6",
+      "review_scope": "selected_method_sections",
+      "accessed_utc": "2026-09-17T03:50:43.908749+00:00",
+      "status": 200,
+      "resolved_url": "https://arxiv.org/html/1803.11347v6",
+      "document_bytes": 229104,
+      "document_sha256": "12bf05a169694e484f041dc7b3d169df4bf9a8835823ea23c785d1645530bf63",
+      "page_title": "Learning to Adapt in Dynamic, Real-WorldEnvironments through Meta-ReinforcementLearning"
+    },
+    {
+      "label": "GrBAL ReBAL author README",
+      "url": "https://raw.githubusercontent.com/iclavera/learning_to_adapt/master/README.md",
+      "review_scope": "repository_readme",
+      "accessed_utc": "2026-09-17T03:50:43.909749+00:00",
+      "status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/iclavera/learning_to_adapt/master/README.md",
+      "document_bytes": 2217,
+      "document_sha256": "ec6c74f718fa9b153862c896f6dc418704af0787233cfc7bf8f28fcd963f2d04",
+      "readme_heading": "# Learning to Adapt in Dynamic, Real-World Environment through Meta-Reinforcement Learning"
+    },
+    {
+      "label": "CaDM abstract",
+      "url": "https://arxiv.org/abs/2005.06800",
+      "review_scope": "abstract_and_metadata",
+      "accessed_utc": "2026-09-17T03:50:43.909749+00:00",
+      "status": 200,
+      "resolved_url": "https://arxiv.org/abs/2005.06800",
+      "document_bytes": 43030,
+      "document_sha256": "969a9ec4676f2b8b48b8bcb5d41445c89e3f8d19c036009f2cf83cd243069f0e",
+      "page_title": "Context-aware Dynamics Model for Generalization in Model-Based Reinforcement Learning",
+      "citation_authors": [
+        "Lee, Kimin",
+        "Seo, Younggyo",
+        "Lee, Seunghyun",
+        "Lee, Honglak",
+        "Shin, Jinwoo"
+      ],
+      "citation_first_submitted_date": "2020/05/14"
+    },
+    {
+      "label": "CaDM v2 methods",
+      "url": "https://arxiv.org/html/2005.06800v2",
+      "review_scope": "selected_method_sections",
+      "accessed_utc": "2026-09-17T03:50:49.115769+00:00",
+      "status": 200,
+      "resolved_url": "https://arxiv.org/html/2005.06800v2",
+      "document_bytes": 361013,
+      "document_sha256": "216ab470931a4904e5326c93035f8bd457b1fc8af6ab86e10f8991c897728de4",
+      "page_title": "Context-aware Dynamics Model for Generalization in Model-Based Reinforcement Learning"
+    },
+    {
+      "label": "CaDM author README",
+      "url": "https://raw.githubusercontent.com/younggyoseo/CaDM/master/README.md",
+      "review_scope": "repository_readme",
+      "accessed_utc": "2026-09-17T03:50:49.270882+00:00",
+      "status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/younggyoseo/CaDM/master/README.md",
+      "document_bytes": 2299,
+      "document_sha256": "539d69883508f757e49200ebf48bcf6314739b7f8d544da13960b503d825320c",
+      "readme_heading": "# Context-aware Dynamics Model for Generalization in Model-based Reinforcement Learning"
+    },
+    {
+      "label": "RMA abstract",
+      "url": "https://arxiv.org/abs/2107.04034",
+      "review_scope": "abstract_and_metadata",
+      "accessed_utc": "2026-09-17T03:50:49.294347+00:00",
+      "status": 200,
+      "resolved_url": "https://arxiv.org/abs/2107.04034",
+      "document_bytes": 42881,
+      "document_sha256": "1867d1e1efc250a596593cd5488fdbb2f51acc3be0b6cb170b9d0696973dd47c",
+      "page_title": "RMA: Rapid Motor Adaptation for Legged Robots",
+      "citation_authors": [
+        "Kumar, Ashish",
+        "Fu, Zipeng",
+        "Pathak, Deepak",
+        "Malik, Jitendra"
+      ],
+      "citation_first_submitted_date": "2021/07/08"
+    },
+    {
+      "label": "RMA v1 methods",
+      "url": "https://arxiv.org/html/2107.04034v1",
+      "review_scope": "selected_method_sections",
+      "accessed_utc": "2026-09-17T03:50:49.301231+00:00",
+      "status": 200,
+      "resolved_url": "https://arxiv.org/html/2107.04034v1",
+      "document_bytes": 238528,
+      "document_sha256": "3c141ae73f4f8ae354f17cbea80744ffd210ee8b0a6f0dd65fbbd5ab5a8cf8a2",
+      "page_title": "RMA: Rapid Motor Adaptation for Legged Robots"
+    },
+    {
+      "label": "RMA project page",
+      "url": "https://ashish-kmr.github.io/rma-legged-robots/",
+      "review_scope": "author_project_and_code_link",
+      "accessed_utc": "2026-09-17T03:50:49.335807+00:00",
+      "status": 200,
+      "resolved_url": "https://ashish-kmr.github.io/rma-legged-robots/",
+      "document_bytes": 15357,
+      "document_sha256": "2934609eb8769e9a4070af7a28f12eb3614040af420624c078062b72df705adc",
+      "page_title": "RMA: Rapid Motor Adaptation for Legged Robots"
+    },
+    {
+      "label": "RMA-linked follow-on code",
+      "url": "https://raw.githubusercontent.com/antonilo/rl_locomotion/master/README.md",
+      "review_scope": "repository_readme_not_original_RMA_revision",
+      "accessed_utc": "2026-09-17T03:50:49.634853+00:00",
+      "status": 200,
+      "resolved_url": "https://raw.githubusercontent.com/antonilo/rl_locomotion/master/README.md",
+      "document_bytes": 6831,
+      "document_sha256": "52ecd31e083a1d1d9ba3d4541a33df970af5c8366b07112056e8fdc3e98e75cd",
+      "readme_heading": "# Cross-Modal Supervision (Policy Training Code using RMA)"
+    },
+    {
+      "label": "GP MPC abstract",
+      "url": "https://arxiv.org/abs/1705.10702",
+      "review_scope": "abstract_and_metadata_only",
+      "accessed_utc": "2026-09-17T03:50:54.470000+00:00",
+      "status": 200,
+      "resolved_url": "https://arxiv.org/abs/1705.10702",
+      "document_bytes": 43316,
+      "document_sha256": "d344f58ecf4d67d7b080e83c88d6365272509c7583755db26d09bd69bc16e4be",
+      "page_title": "Cautious Model Predictive Control using Gaussian Process Regression",
+      "citation_authors": [
+        "Hewing, Lukas",
+        "Kabzan, Juraj",
+        "Zeilinger, Melanie N."
+      ],
+      "citation_first_submitted_date": "2017/05/30"
+    },
+    {
+      "label": "Page 1954 Crossref",
+      "url": "https://api.crossref.org/works/10.1093/biomet/41.1-2.100",
+      "review_scope": "bibliographic_metadata_only",
+      "accessed_utc": "2026-09-17T03:50:54.589047+00:00",
+      "status": 200,
+      "resolved_url": "https://api.crossref.org/works/10.1093/biomet/41.1-2.100",
+      "document_bytes": 1778,
+      "document_sha256": "1d44a50e130099d7bbda92869c47b5ebca25a7676ca6a999cfaa144894a19c0c",
+      "bibliography": {
+        "title": [
+          "CONTINUOUS INSPECTION SCHEMES"
+        ],
+        "author": [
+          {
+            "given": "E. S.",
+            "family": "PAGE",
+            "sequence": "first",
+            "affiliation": [],
+            "role": [
+              {
+                "vocabulary": "crossref",
+                "role": "author"
+              }
+            ]
+          }
+        ],
+        "published": {
+          "date-parts": [
+            [
+              1954
+            ]
+          ]
+        },
+        "publisher": "Oxford University Press (OUP)",
+        "DOI": "10.1093/biomet/41.1-2.100",
+        "container-title": [
+          "Biometrika"
+        ]
+      }
+    },
+    {
+      "label": "Page 1954 publisher",
+      "url": "https://doi.org/10.1093/biomet/41.1-2.100",
+      "review_scope": "publisher_access_check",
+      "accessed_utc": "2026-09-17T03:50:54.606565+00:00",
+      "error": "<urlopen error [Errno 2] No such file or directory>",
+      "earlier_access_in_same_session": {
+        "status": 403,
+        "error": "HTTP Error 403: Forbidden",
+        "note": "Observed before the audit capture retry; no full text inspected."
+      }
+    }
+  ]
+}

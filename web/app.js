@@ -4,8 +4,10 @@
   const $ = id => document.getElementById(id);
   const ui = Object.fromEntries(["data-status","experiment-notice","notice-title","notice-text","reload-data","world-canvas","world-container","scene-empty","scene-coordinate","scene-outcome","scene-caption","scene-caption-text","method-select","method-description","condition-select","episode-select","frame-current","frame-total","timeline","play-button","reset-button","playback-speed","frame-horizon","horizon-viz","frame-latency","frame-model-steps","frame-disagreement","step-label","show-candidates","show-actual","chart-metric","evidence-empty","evidence-content","metric-chart","results-body","evidence-scope","data-provenance"].map(id => [id, $(id)]));
   ["mode-live","mode-replay","mode-status","live-fields","live-scenario","live-seed","live-damping","damping-value","view-label","actual-legend","actual-option","inspector-note","evidence-condition","frame-scale-row","frame-learned-scale","frame-calibration-row","frame-calibration-ms","scale-estimate-note"].forEach(id=>ui[id]=$(id));
+  ["apply-dynamics","trust-panel","gate-mode","gate-score","gate-meter","gate-explanation","raw-scale","gate-model","gate-evidence-status"].forEach(id=>ui[id]=$(id));
   const methods = {
-    residual_calibrated: ["残差校准 · 学习世界模型", "保持空间阻尼模型冻结，利用近期实际转移与模型预测的残差修正阻尼倍率；不重新训练网络。"],
+    gated_calibrated: ["门控校准 · 变化后再修正", "只有持续的变化证据超过独立验证集确定的阈值，才启用在线校准。使用本轮训练模型，与历史方法的模型版本不同。"],
+    residual_calibrated: ["持续校准 · 首轮学习模型", "使用首轮训练模型，持续利用近期实际转移修正阻尼倍率；不重新训练网络。与本轮门控方法的公平对比请看实验报告。"],
     global_physics: ["全局物理参数基线", "使用训练数据拟合的全局物理参数进行预测和规划。"],
     local_identification: ["局部参数辨识基线", "从近期状态转移中辨识局部动力学参数，用于后续预测。"],
     fixed_5: ["固定视野 · 5 步", "使用轻量混合世界模型，以固定 5 步视野推演候选动作。"],
@@ -61,6 +63,18 @@
     ui["frame-scale-row"].hidden=state.mode!=="live"||!finite(frame?.learned_scale);ui["frame-learned-scale"].textContent=finite(frame?.learned_scale)?`${number(frame.learned_scale,3)}×`:"—";
     ui["scale-estimate-note"].hidden=ui["frame-scale-row"].hidden;ui["scale-estimate-note"].textContent=`倍率根据本步执行后的观测校准，供下一次决策使用${finite(frame?.scale_updates)?`；已接受 ${number(frame.scale_updates,0)} 次更新`:""}。`;
     ui["frame-calibration-row"].hidden=state.mode!=="live"||!finite(frame?.calibration_ms);ui["frame-calibration-ms"].textContent=finite(frame?.calibration_ms)?`${number(frame.calibration_ms,2)} ms`:"—";
+    const gated=state.mode==="live"&&typeof frame?.gate_active==="boolean";
+    ui["trust-panel"].hidden=!gated;
+    ui["apply-dynamics"].disabled=state.mode!=="live"||!state.live.session||state.live.done||Boolean(state.live.controlsDisabled);
+    if(gated){
+      ui["trust-panel"].classList.toggle("calibrating",frame.gate_active);
+      ui["gate-mode"].textContent=frame.gate_active?"启用校准":"保留先验";
+      ui["gate-score"].textContent=`${number(frame.gate_score,3)} / ${number(frame.gate_threshold,3)}`;
+      ui["gate-meter"].style.width=`${Math.min(100,Math.max(0,frame.gate_score/Math.max(frame.gate_threshold,1e-9)*50))}%`;
+      ui["raw-scale"].textContent=`${number(frame.raw_scale,3)}×`;
+      ui["gate-explanation"].textContent=frame.gate_active?"持续偏差已触发校准，下一步预测将使用校准倍率。证据回落后恢复先验。":"当前使用原有模型。校准倍率的绝对对数偏差连续超阈值，才触发修正；这不是置信概率。";
+      ui["gate-model"].textContent=`本轮模型 · 训练种子 ${frame.model_training_seed??"—"} · 诊断在本步执行后更新`;
+    }
     const maxHorizon=state.mode==="live"?16:Math.max(1,...(state.episode?.frames||[]).map(f=>finite(f.horizon)?f.horizon:0));
     const blocks=Array.from({length:16},(_,i)=>{const block=element("i",frame&&i<16*(frame.horizon||0)/maxHorizon?"active":"");block.style.height=`${12+i*1.4}px`;return block;});ui["horizon-viz"].replaceChildren(...blocks);
     if(frame){const candidates=frame.candidate_paths?.length||0;ui["scene-caption-text"].textContent=frame.predicted_path?.length?`推演 ${frame.horizon??frame.predicted_path.length-1} 步未来${candidates?` · 展示 ${candidates} 条候选轨迹`:""} · 执行当前动作后重新规划`:state.mode==="live"?state.live.done?"本回合已结束 · 重置场景后可再次运行":"点击开始，观察模型实时预测 · 点击地图设置目标":"当前决策未记录模型预测轨迹";}
@@ -105,7 +119,7 @@
     const summary=state.summary;if(!summary)return;
     const decision=summary.decision||{};const status=String(decision.status||"pending");
     ui["experiment-notice"].dataset.state=/^(go|promising|positive|pass|proceed|viable)$/.test(status)?"positive":/^(no_go|negative|fail|pivot)$/.test(status)?"negative":"pending";
-    ui["notice-title"].textContent=summary.stage==="pilot"?"第一轮选题验证":summary.stage==="smoke"?"最小闭环检查":"实验记录";
+    ui["notice-title"].textContent=summary.stage==="pilot"?"历史结果 · 第一轮选题验证":summary.stage==="smoke"?"最小闭环检查":"实验记录";
     ui["notice-text"].textContent=decision.text||"已载入实验指标。请结合工况、样本量和方法定义解读结果。";
     const date=summary.generated_at?new Date(summary.generated_at):null;const stamp=date&&!Number.isNaN(date.valueOf())?date.toLocaleString("zh-CN",{month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hour12:false}):"";
     ui["data-provenance"].textContent=state.mode==="live"?"上方：本地模型实时推理 · 下方：已记录的独立离线实验":`${stamp?`数据生成 ${stamp} · `:""}实验记录回放 · 非在线模型推理`;
@@ -120,8 +134,8 @@
     const request=previous.catch(()=>{}).then(()=>liveRequest(endpoint,payload));state.live.pending=request;
     try{return await request;}finally{if(state.live.pending===request)state.live.pending=null;}
   }
-  function liveControls(disabled){ui["play-button"].disabled=disabled;ui["reset-button"].disabled=disabled;ui["method-select"].disabled=disabled;}
-  function showLiveError(error){setPlay(false);ui["mode-status"].textContent=`实时推理不可用：${error.message}`;ui["play-button"].disabled=!state.live.session;ui["reset-button"].disabled=false;ui["method-select"].disabled=false;}
+  function liveControls(disabled){state.live.controlsDisabled=disabled;ui["play-button"].disabled=disabled;ui["reset-button"].disabled=disabled;ui["method-select"].disabled=disabled;ui["apply-dynamics"].disabled=disabled||!state.live.session||state.live.done;}
+  function showLiveError(error){setPlay(false);liveControls(false);ui["mode-status"].textContent=`实时推理不可用：${error.message}`;ui["play-button"].disabled=!state.live.session||state.live.done;}
   async function setMode(mode){
     if(mode===state.mode)return;
     setPlay(false);state.live.generation++;state.mode=mode;document.body.classList.toggle("live-mode",mode==="live");
@@ -133,7 +147,7 @@
       ui["mode-status"].textContent="正在查看已记录的真实实验";const available=[...new Set(state.episodes.map(ep=>ep.method))];options(ui["method-select"],available,methodName,ui["method-select"].value);chooseMethod();updateSummary();return;
     }
     ui["mode-status"].textContent="连接本地模型服务…";ui.timeline.disabled=true;ui.timeline.max="1";ui.timeline.value="0";ui["frame-total"].textContent="LIVE";state.live.frame=null;ui["scene-empty"].hidden=true;ui["scene-caption"].hidden=false;ui["scene-outcome"].className="outcome";liveControls(true);updateFrame();
-    try{const status=await liveOperation("status");if(state.mode!=="live")return;if(!status.ready)throw new Error(status.message||"世界模型尚未准备好");state.live.ready=true;state.live.methods=status.methods||["adaptive","fixed_5","fixed_10","fixed_16","global_physics","local_identification"];options(ui["method-select"],state.live.methods,methodName,ui["method-select"].value||"adaptive");await resetLive();}
+    try{const status=await liveOperation("status");if(state.mode!=="live")return;if(!status.ready)throw new Error(status.message||"世界模型尚未准备好");state.live.ready=true;state.live.methods=(status.methods||["adaptive","fixed_5","fixed_10","fixed_16","global_physics","local_identification"]).filter(method=>method!=="gated_calibrated"||status.gated_ready);options(ui["method-select"],state.live.methods,methodName,status.gated_ready?"gated_calibrated":ui["method-select"].value||"adaptive");await resetLive();}
     catch(error){if(state.mode==="live")showLiveError(error);}
   }
   async function resetLive(){
@@ -153,15 +167,32 @@
     }catch(error){if(generation===state.live.generation&&state.mode==="live")showLiveError(error);}
   }
   async function setLiveGoal(event){
-    if(state.mode!=="live"||!state.live.session||!state.transform||state.live.done)return;const bounds=ui["world-canvas"].getBoundingClientRect(),t=state.transform;const x=(event.clientX-bounds.left-t.left)/t.scale,y=t.map-(event.clientY-bounds.top-t.top)/t.scale;if(x<.25||y<.25||x>t.map-.25||y>t.map-.25)return;
+    if(state.mode!=="live"||!state.live.session||!state.transform||state.live.done||state.live.controlsDisabled)return;const bounds=ui["world-canvas"].getBoundingClientRect(),t=state.transform;const x=(event.clientX-bounds.left-t.left)/t.scale,y=t.map-(event.clientY-bounds.top-t.top)/t.scale;if(x<.25||y<.25||x>t.map-.25||y>t.map-.25)return;
     const resume=state.playing;setPlay(false);const generation=++state.live.generation;liveControls(true);ui["mode-status"].textContent="正在设置新目标…";
     try{const result=await liveOperation("goal",{session_id:state.live.session,x,y});if(generation!==state.live.generation||state.mode!=="live")return;state.live.frame=result.frame;state.live.done=false;state.live.frames.push(result.frame);ui["scene-outcome"].className="outcome";ui["mode-status"].textContent=`目标已更新为 (${x.toFixed(1)}, ${y.toFixed(1)}) · ${resume?"继续规划":"点击开始"}`;liveControls(false);updateFrame();if(resume)setPlay(true);}
     catch(error){if(generation===state.live.generation&&state.mode==="live")showLiveError(error);}
   }
+  async function applyDynamics(){
+    if(state.mode!=="live"||!state.live.session||state.live.done||ui["apply-dynamics"].disabled)return;
+    const resume=state.playing;setPlay(false);const generation=state.live.generation;liveControls(true);
+    ui["mode-status"].textContent="正在改变环境阻尼…";
+    try{
+      // Queue behind any running step. Its result remains visible and the
+      // planner keeps all history; only the subsequent physics is changed.
+      const result=await liveOperation("dynamics",{session_id:state.live.session,damping_scale:Number(ui["live-damping"].value)});
+      if(generation!==state.live.generation||state.mode!=="live")return;
+      ui["mode-status"].textContent=`环境阻尼已变为 ${number(result.damping_scale,2)}× · 机器人将在后续行动中感知变化`;
+      liveControls(false);if(resume)setPlay(true);
+    }catch(error){if(generation===state.live.generation&&state.mode==="live")showLiveError(error);}
+  }
   async function loadData(){
     ui["reload-data"].disabled=true;clearTimeout(state.retry);
     const stamp=Date.now();const read=async name=>{const response=await fetch(`../artifacts/day0/${name}.json?t=${stamp}`,{cache:"no-store"});if(!response.ok)throw new Error(`${name}: HTTP ${response.status}`);return response.json();};
-    const [summary,replays]=await Promise.allSettled([read("summary"),read("replays")]);
+    const [summary,replays,gateStudy]=await Promise.allSettled([read("summary"),read("replays"),fetch(`../artifacts/gated-study/summary.json?t=${stamp}`,{cache:"no-store"}).then(response=>{if(!response.ok)throw new Error("Gate study pending");return response.json();})]);
+    if(gateStudy.status==="fulfilled"){
+      const study=gateStudy.value;
+      ui["gate-evidence-status"].textContent=`${study.training_seeds?.length??"—"} 次独立训练 · ${number(study.total_episode_runs,0)} 个方法运行回合。${study.decision?.text||"完整统计、消融与局限见本轮实验报告。"}`;
+    }
     if(summary.status==="fulfilled"){state.summary=summary.value;updateSummary();const conditions=[...new Set((state.summary.results||[]).map(row=>row.condition))];if(conditions.length)options(ui["evidence-condition"],conditions,conditionName,ui["evidence-condition"].value);}
     if(replays.status==="fulfilled"){
       state.meta={...state.meta,...replays.value.meta};state.episodes=(replays.value.episodes||[]).filter(ep=>Array.isArray(ep.frames)&&ep.frames.length&&ep.frames.every(f=>Array.isArray(f.state)&&f.state.length>=6));
@@ -176,6 +207,7 @@
   }
   ui["method-select"].addEventListener("change",chooseMethod);ui["condition-select"].addEventListener("change",chooseCondition);ui["episode-select"].addEventListener("change",chooseEpisode);ui["chart-metric"].addEventListener("change",renderEvidence);ui["evidence-condition"].addEventListener("change",renderEvidence);ui["reload-data"].addEventListener("click",loadData);
   ui["mode-live"].addEventListener("click",()=>void setMode("live"));ui["mode-replay"].addEventListener("click",()=>void setMode("replay"));ui["live-damping"].addEventListener("input",()=>{ui["damping-value"].textContent=`${Number(ui["live-damping"].value).toFixed(2)}×`;});ui["world-canvas"].addEventListener("click",event=>void setLiveGoal(event));
+  ui["apply-dynamics"].addEventListener("click",()=>void applyDynamics());
   ui["play-button"].addEventListener("click",()=>{if(state.mode==="live"){if(state.live.done){void resetLive();return;}setPlay(!state.playing);return;}if(state.frame>=state.episode.frames.length-1)seek(0);setPlay(!state.playing);});ui["reset-button"].addEventListener("click",()=>{if(state.mode==="live"){void resetLive();return;}setPlay(false);seek(0);});ui.timeline.addEventListener("input",()=>{if(state.mode==="live")return;setPlay(false);seek(Number(ui.timeline.value));});ui["show-candidates"].addEventListener("change",drawWorld);ui["show-actual"].addEventListener("change",drawWorld);
   document.addEventListener("keydown",event=>{if(/^(INPUT|SELECT|TEXTAREA|BUTTON|A)$/.test(event.target.tagName)||(state.mode==="replay"&&!state.episode))return;if(event.code==="Space"){event.preventDefault();if(state.mode==="replay"&&state.frame>=state.episode.frames.length-1)seek(0);setPlay(!state.playing);}else if(state.mode==="replay"&&(event.code==="ArrowLeft"||event.code==="ArrowRight")){event.preventDefault();setPlay(false);seek(state.frame+(event.code==="ArrowLeft"?-1:1));}});
   new ResizeObserver(drawWorld).observe(ui["world-container"]);
