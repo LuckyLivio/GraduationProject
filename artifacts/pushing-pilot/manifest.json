@@ -1,0 +1,29 @@
+{
+  "protocol": "docs/pushing-pilot-protocol.md",
+  "splits": {
+    "train": {
+      "episodes": 1200,
+      "steps_per_episode": 20,
+      "seed_start": 52000,
+      "sha256": "568a795b694563a79fa189d6f63bac3329806d825f1f9f198f5090edba954ed1",
+      "contact_fraction": 0.9235833333333333
+    },
+    "validation": {
+      "episodes": 120,
+      "steps_per_episode": 20,
+      "seed_start": 62000,
+      "sha256": "a2adba67705ae55f4d3872a44bb97df9015cfd6ebc1d9762d88a6c1a0a5249b4",
+      "contact_fraction": 0.9175
+    },
+    "development": {
+      "episodes": 40,
+      "steps_per_episode": 20,
+      "seed_start": 71000,
+      "sha256": "c819cccd05637484a93b8389bfc1303e769695dae209c4686e774acc9e648143",
+      "contact_fraction": 0.91125
+    }
+  },
+  "generation_seconds": 5.401221399999486,
+  "parameters_used_for_training": false,
+  "note": "Development screening; not final held-out thesis evaluation."
+}
