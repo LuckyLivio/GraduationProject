@@ -4,6 +4,7 @@ python -m foresight.experiment --output artifacts/day0 --episodes 12 --epochs 80
 """
 import argparse
 from datetime import datetime, timezone
+import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -160,7 +161,7 @@ def run(args):
     output.mkdir(parents=True, exist_ok=True)
     start = time.perf_counter()
     seeds = {'training_data': 1100, 'validation_data': 5100, 'prediction_test': 9100,
-             'planner_validation': 12000, 'navigation_test': 20000}
+             'planner_validation': 12000, 'navigation_test': args.navigation_seed}
     config = {'stage': 'pilot', 'training_seed': args.seed, 'training_episodes': args.train_episodes,
               'validation_episodes': 50, 'prediction_test_episodes': 50, 'test_episodes_per_condition': args.episodes,
               'budget': args.budget, 'horizons': [5,10,16], 'epochs': args.epochs, 'dt': DT,
@@ -176,6 +177,7 @@ def run(args):
         config['git_commit_before_run'] = subprocess.check_output(['git','rev-parse','HEAD'], text=True).strip()
     except Exception:
         config['git_commit_before_run'] = None
+    config['source_sha256'] = {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(Path('foresight').glob('*.py'))}
     write_json(output / 'protocol.json', config)
     print('Collecting disjoint episode datasets...', flush=True)
     train = collect_dataset(episodes=args.train_episodes, seed=seeds['training_data'])
@@ -187,7 +189,10 @@ def run(args):
         np.savez_compressed(data_path / f'day0_{name}.npz', **data)
     print(f"Training with {len(train['states'])} transitions...", flush=True)
     model, training = train_world_model(train, validation, seed=args.seed, epochs=args.epochs)
-    model.save('checkpoints/day0_model.npz')
+    checkpoint = Path(args.checkpoint) if args.checkpoint else Path('checkpoints') / f'{output.name}_seed{args.seed}.npz'
+    model.save(checkpoint)
+    training['checkpoint'] = str(checkpoint)
+    training['checkpoint_sha256'] = hashlib.sha256(checkpoint.read_bytes()).hexdigest()
     training['all_training_transitions'] = len(train['states'])
     training['validation_transitions'] = len(validation['states'])
     global_damping = training['global_damping_fit']
@@ -213,11 +218,10 @@ def run(args):
         for method in methods:
             for i in range(args.episodes):
                 row, replay = run_episode(method, model, global_damping, threshold, args.budget,
-                                          20000+i, ['open','crossing','slalom'][i % 3], scale, replay=(i == 1))
+                                          args.navigation_seed+i, ['open','crossing','slalom'][i % 3], scale, replay=(i == 1))
                 rows.append(row)
                 if replay['frames']:
                     replays.append(replay)
-            partial = summarize(rows)[-1]
             print(f"evaluated {method:22s} scale={scale}: {sum(r['success'] for r in rows[-args.episodes:])}/{args.episodes} success", flush=True)
             write_json(output / 'episodes.json', rows)
     results = summarize(rows)
@@ -253,6 +257,8 @@ def main():
     parser.add_argument('--epochs',type=int,default=80)
     parser.add_argument('--budget',type=int,default=4500)
     parser.add_argument('--seed',type=int,default=42)
+    parser.add_argument('--navigation-seed',type=int,default=20000)
+    parser.add_argument('--checkpoint',default=None)
     args=parser.parse_args()
     if args.episodes < 2 or args.train_episodes < 10 or args.epochs < 1 or args.budget < 1000:
         parser.error('Require episodes>=2, train-episodes>=10, epochs>=1, budget>=1000')
