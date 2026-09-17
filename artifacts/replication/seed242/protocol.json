@@ -1,0 +1,46 @@
+{
+  "stage": "pilot",
+  "training_seed": 242,
+  "training_episodes": 240,
+  "validation_episodes": 50,
+  "prediction_test_episodes": 50,
+  "test_episodes_per_condition": 24,
+  "budget": 4500,
+  "horizons": [
+    5,
+    10,
+    16
+  ],
+  "epochs": 80,
+  "dt": 0.15,
+  "damping_scales": [
+    1.0,
+    1.7
+  ],
+  "split_seeds": {
+    "training_data": 1100,
+    "validation_data": 5100,
+    "prediction_test": 9100,
+    "planner_validation": 12000,
+    "navigation_test": 30000
+  },
+  "threshold_rule": "validation spread percentile 0.65",
+  "model_type": "hybrid learned damping with known integration/obstacle dynamics",
+  "main_question": "Does learned spatial damping improve prediction/control; does disagreement-driven horizon add benefit?",
+  "limitations": [
+    "one independent training run; ensemble members are not independent experiment runs",
+    "pilot tests are diagnostic; do not tune on these seeds and reuse them as final paper test",
+    "history-based physical baseline receives recent transitions; frozen learned model is stateless",
+    "known obstacle dynamics and kinematic structure retained; not fully learned state/video prediction",
+    "model-step budget compares ensemble members; real latency differs across predictor families"
+  ],
+  "git_commit_before_run": "afb6e836e4bfe996387741e0a7a1c358b4ee13f0",
+  "source_sha256": {
+    "foresight\\__init__.py": "96e35e22e9a2921165bfd726efbefca9d653e4acb01f2b18293b62cecd46b4f6",
+    "foresight\\data.py": "8ef436cb6a5ea7bf2dd093ea68fcec5af68c1f7c082e3da515fc321d326bee0e",
+    "foresight\\env.py": "c98e48484cae3ad19833b8f833a7ecde87e97f1deb83d692c809066054aae72b",
+    "foresight\\experiment.py": "a2b2612bc2f8e7d867ad20e7e62974934fa168fa1ba156484921d37985834777",
+    "foresight\\model.py": "7410b620167e37cf8b0a782eab22959d13d198203cd97bf94292e949d3aa39bd",
+    "foresight\\planner.py": "cd17d7956956046312a05b334c78606af3de53e268edc43924c96c7cccb7fe90"
+  }
+}

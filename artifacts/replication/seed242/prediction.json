@@ -1,0 +1,68 @@
+{
+  "metrics": [
+    {
+      "model": "global_physics",
+      "horizon": 1,
+      "rmse": 0.008800280966867247,
+      "windows": 160,
+      "unit": "map units"
+    },
+    {
+      "model": "global_physics",
+      "horizon": 5,
+      "rmse": 0.10147244562970624,
+      "windows": 160,
+      "unit": "map units"
+    },
+    {
+      "model": "global_physics",
+      "horizon": 10,
+      "rmse": 0.28015551039794945,
+      "windows": 160,
+      "unit": "map units"
+    },
+    {
+      "model": "global_physics",
+      "horizon": 16,
+      "rmse": 0.4792095583541608,
+      "windows": 160,
+      "unit": "map units"
+    },
+    {
+      "model": "learned_world_model",
+      "horizon": 1,
+      "rmse": 0.0008489775963572922,
+      "windows": 160,
+      "unit": "map units"
+    },
+    {
+      "model": "learned_world_model",
+      "horizon": 5,
+      "rmse": 0.009512268629042933,
+      "windows": 160,
+      "unit": "map units"
+    },
+    {
+      "model": "learned_world_model",
+      "horizon": 10,
+      "rmse": 0.02326179649660548,
+      "windows": 160,
+      "unit": "map units"
+    },
+    {
+      "model": "learned_world_model",
+      "horizon": 16,
+      "rmse": 0.034568660175483275,
+      "windows": 160,
+      "unit": "map units"
+    }
+  ],
+  "calibration": {
+    "rule": "65th percentile of ensemble position spread on held-out validation windows",
+    "threshold": 0.005960140936076643,
+    "pearson_spread_error": 0.6210011379542981,
+    "samples": 480,
+    "mean_position_error": 0.014034971719168728,
+    "is_calibrated_probability": false
+  }
+}

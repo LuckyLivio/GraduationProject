@@ -1,0 +1,463 @@
+{
+  "stage": "pilot",
+  "generated_at": "2026-09-17T03:33:50.772287+00:00",
+  "training": {
+    "training_seed": 242,
+    "ensemble_members": 3,
+    "independent_training_runs": 1,
+    "architecture": "3 x MLP(2,32,32,1); learned position-dependent damping; known action integration and obstacle motion",
+    "epochs_per_member": 80,
+    "valid_training_transitions": 12490,
+    "valid_validation_transitions": 2609,
+    "training_seconds": 5.235252699999819,
+    "device": "cpu",
+    "history": [
+      [
+        {
+          "epoch": 1,
+          "validation_damping_mse": 0.13375017046928406
+        },
+        {
+          "epoch": 11,
+          "validation_damping_mse": 0.03493281081318855
+        },
+        {
+          "epoch": 21,
+          "validation_damping_mse": 0.01616300456225872
+        },
+        {
+          "epoch": 31,
+          "validation_damping_mse": 0.0065794032998383045
+        },
+        {
+          "epoch": 41,
+          "validation_damping_mse": 0.004942957311868668
+        },
+        {
+          "epoch": 51,
+          "validation_damping_mse": 0.004475818481296301
+        },
+        {
+          "epoch": 61,
+          "validation_damping_mse": 0.0041330535896122456
+        },
+        {
+          "epoch": 71,
+          "validation_damping_mse": 0.003755993442609906
+        },
+        {
+          "epoch": 80,
+          "validation_damping_mse": 0.0033883284777402878
+        }
+      ],
+      [
+        {
+          "epoch": 1,
+          "validation_damping_mse": 0.19210746884346008
+        },
+        {
+          "epoch": 11,
+          "validation_damping_mse": 0.04774991795420647
+        },
+        {
+          "epoch": 21,
+          "validation_damping_mse": 0.023022348061203957
+        },
+        {
+          "epoch": 31,
+          "validation_damping_mse": 0.016664870083332062
+        },
+        {
+          "epoch": 41,
+          "validation_damping_mse": 0.0084353256970644
+        },
+        {
+          "epoch": 51,
+          "validation_damping_mse": 0.006228338461369276
+        },
+        {
+          "epoch": 61,
+          "validation_damping_mse": 0.004702178295701742
+        },
+        {
+          "epoch": 71,
+          "validation_damping_mse": 0.0039483774453401566
+        },
+        {
+          "epoch": 80,
+          "validation_damping_mse": 0.003358067013323307
+        }
+      ],
+      [
+        {
+          "epoch": 1,
+          "validation_damping_mse": 0.17728044092655182
+        },
+        {
+          "epoch": 11,
+          "validation_damping_mse": 0.02875114418566227
+        },
+        {
+          "epoch": 21,
+          "validation_damping_mse": 0.018960334360599518
+        },
+        {
+          "epoch": 31,
+          "validation_damping_mse": 0.00764493690803647
+        },
+        {
+          "epoch": 41,
+          "validation_damping_mse": 0.0048255473375320435
+        },
+        {
+          "epoch": 51,
+          "validation_damping_mse": 0.0036856818478554487
+        },
+        {
+          "epoch": 61,
+          "validation_damping_mse": 0.0034505496732890606
+        },
+        {
+          "epoch": 71,
+          "validation_damping_mse": 0.0034807168412953615
+        },
+        {
+          "epoch": 80,
+          "validation_damping_mse": 0.003520387224853039
+        }
+      ]
+    ],
+    "global_damping_fit": 1.3285905122756958,
+    "checkpoint": "checkpoints\\seed242_seed242.npz",
+    "checkpoint_sha256": "8aaffe2e2440469b01456bfbc626463bf716973a071d7cc8b4c1e8051664447a",
+    "all_training_transitions": 12993,
+    "validation_transitions": 2736
+  },
+  "prediction_metrics": [
+    {
+      "model": "global_physics",
+      "horizon": 1,
+      "rmse": 0.008800280966867247,
+      "windows": 160,
+      "unit": "map units"
+    },
+    {
+      "model": "global_physics",
+      "horizon": 5,
+      "rmse": 0.10147244562970624,
+      "windows": 160,
+      "unit": "map units"
+    },
+    {
+      "model": "global_physics",
+      "horizon": 10,
+      "rmse": 0.28015551039794945,
+      "windows": 160,
+      "unit": "map units"
+    },
+    {
+      "model": "global_physics",
+      "horizon": 16,
+      "rmse": 0.4792095583541608,
+      "windows": 160,
+      "unit": "map units"
+    },
+    {
+      "model": "learned_world_model",
+      "horizon": 1,
+      "rmse": 0.0008489775963572922,
+      "windows": 160,
+      "unit": "map units"
+    },
+    {
+      "model": "learned_world_model",
+      "horizon": 5,
+      "rmse": 0.009512268629042933,
+      "windows": 160,
+      "unit": "map units"
+    },
+    {
+      "model": "learned_world_model",
+      "horizon": 10,
+      "rmse": 0.02326179649660548,
+      "windows": 160,
+      "unit": "map units"
+    },
+    {
+      "model": "learned_world_model",
+      "horizon": 16,
+      "rmse": 0.034568660175483275,
+      "windows": 160,
+      "unit": "map units"
+    }
+  ],
+  "calibration": {
+    "rule": "65th percentile of ensemble position spread on held-out validation windows",
+    "threshold": 0.005960140936076643,
+    "pearson_spread_error": 0.6210011379542981,
+    "samples": 480,
+    "mean_position_error": 0.014034971719168728,
+    "is_calibrated_probability": false
+  },
+  "results": [
+    {
+      "method": "global_physics",
+      "condition": "damping_shift",
+      "episodes": 24,
+      "success_rate": 0.9583333333333334,
+      "collision_rate": 0.041666666666666664,
+      "timeout_rate": 0.0,
+      "mean_steps": 42.916666666666664,
+      "planning_ms_p50": 3.486900000098103,
+      "planning_ms_p95": 5.157879999865145,
+      "mean_model_steps": 4500.0,
+      "horizon_counts": {
+        "5": 0,
+        "10": 1030,
+        "16": 0
+      }
+    },
+    {
+      "method": "local_identification",
+      "condition": "damping_shift",
+      "episodes": 24,
+      "success_rate": 1.0,
+      "collision_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_steps": 42.416666666666664,
+      "planning_ms_p50": 3.49740000001475,
+      "planning_ms_p95": 5.134110000108194,
+      "mean_model_steps": 4500.0,
+      "horizon_counts": {
+        "5": 0,
+        "10": 1018,
+        "16": 0
+      }
+    },
+    {
+      "method": "fixed_5",
+      "condition": "damping_shift",
+      "episodes": 24,
+      "success_rate": 0.9583333333333334,
+      "collision_rate": 0.041666666666666664,
+      "timeout_rate": 0.0,
+      "mean_steps": 41.291666666666664,
+      "planning_ms_p50": 4.101199999695382,
+      "planning_ms_p95": 5.925300000171774,
+      "mean_model_steps": 4500.0,
+      "horizon_counts": {
+        "5": 991,
+        "10": 0,
+        "16": 0
+      }
+    },
+    {
+      "method": "fixed_10",
+      "condition": "damping_shift",
+      "episodes": 24,
+      "success_rate": 0.9583333333333334,
+      "collision_rate": 0.041666666666666664,
+      "timeout_rate": 0.0,
+      "mean_steps": 43.5,
+      "planning_ms_p50": 5.161500000212982,
+      "planning_ms_p95": 7.543350000332794,
+      "mean_model_steps": 4500.0,
+      "horizon_counts": {
+        "5": 0,
+        "10": 1044,
+        "16": 0
+      }
+    },
+    {
+      "method": "fixed_16",
+      "condition": "damping_shift",
+      "episodes": 24,
+      "success_rate": 0.9583333333333334,
+      "collision_rate": 0.041666666666666664,
+      "timeout_rate": 0.0,
+      "mean_steps": 46.916666666666664,
+      "planning_ms_p50": 6.344399999989037,
+      "planning_ms_p95": 9.364125000161039,
+      "mean_model_steps": 4464.0,
+      "horizon_counts": {
+        "5": 0,
+        "10": 0,
+        "16": 1126
+      }
+    },
+    {
+      "method": "adaptive",
+      "condition": "damping_shift",
+      "episodes": 24,
+      "success_rate": 0.9166666666666666,
+      "collision_rate": 0.08333333333333333,
+      "timeout_rate": 0.0,
+      "mean_steps": 41.541666666666664,
+      "planning_ms_p50": 7.597100000111823,
+      "planning_ms_p95": 11.117779999767663,
+      "mean_model_steps": 4492.164493480442,
+      "horizon_counts": {
+        "5": 880,
+        "10": 56,
+        "16": 61
+      }
+    },
+    {
+      "method": "global_physics",
+      "condition": "in_distribution",
+      "episodes": 24,
+      "success_rate": 1.0,
+      "collision_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_steps": 33.5,
+      "planning_ms_p50": 3.6017499999161373,
+      "planning_ms_p95": 5.377970000336061,
+      "mean_model_steps": 4500.0,
+      "horizon_counts": {
+        "5": 0,
+        "10": 804,
+        "16": 0
+      }
+    },
+    {
+      "method": "local_identification",
+      "condition": "in_distribution",
+      "episodes": 24,
+      "success_rate": 1.0,
+      "collision_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_steps": 33.25,
+      "planning_ms_p50": 3.55424999997922,
+      "planning_ms_p95": 5.309765000083644,
+      "mean_model_steps": 4500.0,
+      "horizon_counts": {
+        "5": 0,
+        "10": 798,
+        "16": 0
+      }
+    },
+    {
+      "method": "fixed_5",
+      "condition": "in_distribution",
+      "episodes": 24,
+      "success_rate": 1.0,
+      "collision_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_steps": 31.625,
+      "planning_ms_p50": 4.1168999996443745,
+      "planning_ms_p95": 6.196120000049632,
+      "mean_model_steps": 4500.0,
+      "horizon_counts": {
+        "5": 759,
+        "10": 0,
+        "16": 0
+      }
+    },
+    {
+      "method": "fixed_10",
+      "condition": "in_distribution",
+      "episodes": 24,
+      "success_rate": 1.0,
+      "collision_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_steps": 32.958333333333336,
+      "planning_ms_p50": 5.0756999999066466,
+      "planning_ms_p95": 7.30745000009847,
+      "mean_model_steps": 4500.0,
+      "horizon_counts": {
+        "5": 0,
+        "10": 791,
+        "16": 0
+      }
+    },
+    {
+      "method": "fixed_16",
+      "condition": "in_distribution",
+      "episodes": 24,
+      "success_rate": 1.0,
+      "collision_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_steps": 35.375,
+      "planning_ms_p50": 6.184400000165624,
+      "planning_ms_p95": 8.835299999736888,
+      "mean_model_steps": 4464.0,
+      "horizon_counts": {
+        "5": 0,
+        "10": 0,
+        "16": 849
+      }
+    },
+    {
+      "method": "adaptive",
+      "condition": "in_distribution",
+      "episodes": 24,
+      "success_rate": 1.0,
+      "collision_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_steps": 31.875,
+      "planning_ms_p50": 7.374300000265066,
+      "planning_ms_p95": 11.037139999825738,
+      "mean_model_steps": 4492.823529411765,
+      "horizon_counts": {
+        "5": 688,
+        "10": 47,
+        "16": 30
+      }
+    }
+  ],
+  "decision": {
+    "status": "needs_more_evidence",
+    "text": "模型训练、规划与真实回放已形成闭环。自适应规划是否有效，需结合强物理基线和更多独立训练种子判断。",
+    "selected_fixed_method": "fixed_5",
+    "adaptive_success_delta_id": 0.0,
+    "independent_training_runs": 1,
+    "is_final_thesis_result": false
+  },
+  "config": {
+    "stage": "pilot",
+    "training_seed": 242,
+    "training_episodes": 240,
+    "validation_episodes": 50,
+    "prediction_test_episodes": 50,
+    "test_episodes_per_condition": 24,
+    "budget": 4500,
+    "horizons": [
+      5,
+      10,
+      16
+    ],
+    "epochs": 80,
+    "dt": 0.15,
+    "damping_scales": [
+      1.0,
+      1.7
+    ],
+    "split_seeds": {
+      "training_data": 1100,
+      "validation_data": 5100,
+      "prediction_test": 9100,
+      "planner_validation": 12000,
+      "navigation_test": 30000
+    },
+    "threshold_rule": "validation spread percentile 0.65",
+    "model_type": "hybrid learned damping with known integration/obstacle dynamics",
+    "main_question": "Does learned spatial damping improve prediction/control; does disagreement-driven horizon add benefit?",
+    "limitations": [
+      "one independent training run; ensemble members are not independent experiment runs",
+      "pilot tests are diagnostic; do not tune on these seeds and reuse them as final paper test",
+      "history-based physical baseline receives recent transitions; frozen learned model is stateless",
+      "known obstacle dynamics and kinematic structure retained; not fully learned state/video prediction",
+      "model-step budget compares ensemble members; real latency differs across predictor families"
+    ],
+    "git_commit_before_run": "afb6e836e4bfe996387741e0a7a1c358b4ee13f0",
+    "source_sha256": {
+      "foresight\\__init__.py": "96e35e22e9a2921165bfd726efbefca9d653e4acb01f2b18293b62cecd46b4f6",
+      "foresight\\data.py": "8ef436cb6a5ea7bf2dd093ea68fcec5af68c1f7c082e3da515fc321d326bee0e",
+      "foresight\\env.py": "c98e48484cae3ad19833b8f833a7ecde87e97f1deb83d692c809066054aae72b",
+      "foresight\\experiment.py": "a2b2612bc2f8e7d867ad20e7e62974934fa168fa1ba156484921d37985834777",
+      "foresight\\model.py": "7410b620167e37cf8b0a782eab22959d13d198203cd97bf94292e949d3aa39bd",
+      "foresight\\planner.py": "cd17d7956956046312a05b334c78606af3de53e268edc43924c96c7cccb7fe90"
+    }
+  },
+  "total_seconds": 80.61044829999992
+}

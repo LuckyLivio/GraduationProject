@@ -1,0 +1,14 @@
+{
+  "training_seeds": [
+    142,
+    242,
+    342
+  ],
+  "navigation_seed_start": 30000,
+  "episodes_per_condition_per_training_seed": 24,
+  "data": "same frozen collection seeds as day0; train data fixed across training seeds",
+  "frozen_hypothesis": "Ensemble-disagreement horizon selection adds value over validation-selected fixed horizon at same model-step budget.",
+  "independence": "three independent training runs; each run trains a three-member ensemble; shared paired test layouts",
+  "day0_used_to_change_hyperparameters": false,
+  "status": "predeclared-before-replication"
+}

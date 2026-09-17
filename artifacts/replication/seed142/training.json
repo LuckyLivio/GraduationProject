@@ -1,0 +1,132 @@
+{
+  "training_seed": 142,
+  "ensemble_members": 3,
+  "independent_training_runs": 1,
+  "architecture": "3 x MLP(2,32,32,1); learned position-dependent damping; known action integration and obstacle motion",
+  "epochs_per_member": 80,
+  "valid_training_transitions": 12490,
+  "valid_validation_transitions": 2609,
+  "training_seconds": 4.205809600000066,
+  "device": "cpu",
+  "history": [
+    [
+      {
+        "epoch": 1,
+        "validation_damping_mse": 0.12448146194219589
+      },
+      {
+        "epoch": 11,
+        "validation_damping_mse": 0.02598889358341694
+      },
+      {
+        "epoch": 21,
+        "validation_damping_mse": 0.02197280153632164
+      },
+      {
+        "epoch": 31,
+        "validation_damping_mse": 0.019671734422445297
+      },
+      {
+        "epoch": 41,
+        "validation_damping_mse": 0.008368979208171368
+      },
+      {
+        "epoch": 51,
+        "validation_damping_mse": 0.003889973508194089
+      },
+      {
+        "epoch": 61,
+        "validation_damping_mse": 0.0025836750864982605
+      },
+      {
+        "epoch": 71,
+        "validation_damping_mse": 0.002291191602125764
+      },
+      {
+        "epoch": 80,
+        "validation_damping_mse": 0.0018265133257955313
+      }
+    ],
+    [
+      {
+        "epoch": 1,
+        "validation_damping_mse": 0.23753851652145386
+      },
+      {
+        "epoch": 11,
+        "validation_damping_mse": 0.039401598274707794
+      },
+      {
+        "epoch": 21,
+        "validation_damping_mse": 0.023695768788456917
+      },
+      {
+        "epoch": 31,
+        "validation_damping_mse": 0.02121756784617901
+      },
+      {
+        "epoch": 41,
+        "validation_damping_mse": 0.011495535261929035
+      },
+      {
+        "epoch": 51,
+        "validation_damping_mse": 0.004648130852729082
+      },
+      {
+        "epoch": 61,
+        "validation_damping_mse": 0.0037583722732961178
+      },
+      {
+        "epoch": 71,
+        "validation_damping_mse": 0.0033093236852437258
+      },
+      {
+        "epoch": 80,
+        "validation_damping_mse": 0.0030392808839678764
+      }
+    ],
+    [
+      {
+        "epoch": 1,
+        "validation_damping_mse": 0.1744224578142166
+      },
+      {
+        "epoch": 11,
+        "validation_damping_mse": 0.047819722443819046
+      },
+      {
+        "epoch": 21,
+        "validation_damping_mse": 0.022489402443170547
+      },
+      {
+        "epoch": 31,
+        "validation_damping_mse": 0.005997078958898783
+      },
+      {
+        "epoch": 41,
+        "validation_damping_mse": 0.004045166540890932
+      },
+      {
+        "epoch": 51,
+        "validation_damping_mse": 0.0038305337075144053
+      },
+      {
+        "epoch": 61,
+        "validation_damping_mse": 0.0037541657220572233
+      },
+      {
+        "epoch": 71,
+        "validation_damping_mse": 0.0035212829243391752
+      },
+      {
+        "epoch": 80,
+        "validation_damping_mse": 0.0034218868240714073
+      }
+    ]
+  ],
+  "global_damping_fit": 1.3285905122756958,
+  "checkpoint": "checkpoints\\seed142_seed142.npz",
+  "checkpoint_sha256": "43109d71e129cc8e91275c199be5baecdf216ccb4e8cbc214f66e3f5e43e651c",
+  "all_training_transitions": 12993,
+  "validation_transitions": 2736
+}
