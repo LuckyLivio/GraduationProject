@@ -23,8 +23,9 @@ from threadpoolctl import threadpool_limits
 from foresight.env import NavigationEnv, ROBOT_RADIUS
 from foresight.model import HybridWorldModel
 from foresight.planner import MPCPlanner, PhysicsPredictor
+from foresight.residual import ResidualCalibratedModel
 
-METHODS = ("adaptive", "fixed_5", "fixed_10", "fixed_16", "global_physics", "local_identification")
+METHODS = ("adaptive", "fixed_5", "fixed_10", "fixed_16", "global_physics", "local_identification", "residual_calibrated")
 SCENARIOS = ("open", "crossing", "slalom")
 MAX_BODY_BYTES = 8192
 SESSION_LIMIT = 16
@@ -137,6 +138,8 @@ class LiveApplication:
             raise APIError("damping_scale must be between 0.5 and 2.5")
         predictor = (PhysicsPredictor(damping=self.global_damping, adaptive=method == "local_identification")
                      if method in {"global_physics", "local_identification"} else self.model)
+        if method == "residual_calibrated":
+            predictor = ResidualCalibratedModel(self.model)
         horizon = int(method.split("_")[-1]) if method.startswith("fixed_") else 10
         planner = MPCPlanner(predictor, horizon=horizon, adaptive=method == "adaptive",
                              budget=self.budget, seed=seed + 70000, uncertainty_threshold=self.threshold)
@@ -166,6 +169,13 @@ class LiveApplication:
             session.done = bool(terminated or truncated)
             frame = {**info, "state": state, "action": action}
             frame["candidate_paths"] = info.get("candidate_paths", [])[:5]
+            predictor = session.planner.predictor
+            if hasattr(predictor, "current_scale"):
+                # Calibration occurs after executing this action and is available
+                # to the next decision; planner timing remains a separate metric.
+                frame.update(learned_scale=float(predictor.current_scale),
+                             scale_updates=int(predictor.updates),
+                             calibration_ms=float(predictor.last_calibration_ms))
             return {"frame": frame, "next_state": next_state, "done": session.done,
                     "success": terminal["success"], "collision": terminal["collision"],
                     "timeout": terminal["timeout"], "step": session.env.steps,

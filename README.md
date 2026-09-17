@@ -28,6 +28,8 @@ python -m venv .venv
 
 [首轮完整分析](docs/day0-findings.md) · [工作记录](docs/worklog.md) · [真实数据](artifacts/day0/summary.json)
 
+**后续已完成：**3 个独立训练运行复核 864 回合，仍未支持原自适应视野假设；再以新场景完成 162 回合的转移校准探索。总计 1,170 个方法运行回合（配对布局重复，不等于 1,170 个独立场景）。校准改善了动力学变化后的预测与控制，但成功率尚未超过局部物理辨识，且原分布预测精度有所下降。见[最新选题判断与下一步](docs/latest-findings.md)。
+
 ![真实首轮实验图表](artifacts/day0/overview.png)
 
 复现训练与评估（额外安装 PyTorch、Matplotlib）：
@@ -36,7 +38,7 @@ python -m venv .venv
 .\.venv\Scripts\python -m pip install -r requirements.txt
 .\.venv\Scripts\python -m unittest discover -s tests -v
 .\.venv\Scripts\python -m foresight.experiment --output artifacts/local-run --episodes 12 --epochs 80 --budget 4500
-.\.venv\Scripts\python scripts/replicate.py --episodes 24
+.\.venv\Scripts\python scripts/replicate.py --episodes 24 --output artifacts/local-replication
 ```
 
 `artifacts/day0` 是保存的首轮证据，重跑请指定新目录；`scripts/replicate.py` 使用预先规定的 3 个训练种子和新测试面板。模型步预算包含自适应探测开销；实际耗时另行测量。复现详见[运行说明](docs/running.md)。
@@ -151,6 +153,7 @@ flowchart LR
 6. [已运行的首轮实验及失败分析](docs/day0-findings.md)
 7. [工作记录与方案变更](docs/worklog.md)
 8. [运行、复现与结果目录说明](docs/running.md)
+9. [三批真实实验后的选题判断](docs/latest-findings.md)
 
 ## 下一步
 

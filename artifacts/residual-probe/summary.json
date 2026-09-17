@@ -1,0 +1,450 @@
+{
+  "protocol": {
+    "stage": "exploratory_after_negative_result",
+    "model": "fixed day0 seed42 ensemble",
+    "new_mechanism": "5-transition residual WLS multiplicative correction of learned spatial damping",
+    "horizon": 10,
+    "budget": 4500,
+    "scales": [
+      1.0,
+      1.7,
+      2.2
+    ],
+    "scene_seeds": [
+      40000,
+      40001,
+      40002,
+      40003,
+      40004,
+      40005,
+      40006,
+      40007,
+      40008,
+      40009,
+      40010,
+      40011,
+      40012,
+      40013,
+      40014,
+      40015,
+      40016,
+      40017
+    ],
+    "prediction_data_seed": 45100,
+    "prediction_windows_per_scale": 60,
+    "known_scale_access": false,
+    "observe_overhead": "logged separately; added for end-to-end controller time",
+    "claim": "candidate engineering mechanism; novelty and generality unproven"
+  },
+  "results": [
+    {
+      "method": "frozen_learned",
+      "condition": "damping_x1",
+      "episodes": 18,
+      "success_rate": 1.0,
+      "collision_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_steps": 33.22222222222222,
+      "planning_ms_p50": 5.548550000412433,
+      "planning_ms_p95": 7.656619999875147,
+      "mean_model_steps": 4500.0,
+      "horizon_counts": {
+        "5": 0,
+        "10": 598,
+        "16": 0
+      }
+    },
+    {
+      "method": "residual_calibrated",
+      "condition": "damping_x1",
+      "episodes": 18,
+      "success_rate": 1.0,
+      "collision_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_steps": 33.22222222222222,
+      "planning_ms_p50": 7.43295000006583,
+      "planning_ms_p95": 8.310895000045093,
+      "mean_model_steps": 4500.0,
+      "horizon_counts": {
+        "5": 0,
+        "10": 598,
+        "16": 0
+      }
+    },
+    {
+      "method": "local_identification",
+      "condition": "damping_x1",
+      "episodes": 18,
+      "success_rate": 1.0,
+      "collision_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_steps": 33.27777777777778,
+      "planning_ms_p50": 5.115100000239181,
+      "planning_ms_p95": 5.669630000465986,
+      "mean_model_steps": 4500.0,
+      "horizon_counts": {
+        "5": 0,
+        "10": 599,
+        "16": 0
+      }
+    },
+    {
+      "method": "frozen_learned",
+      "condition": "damping_x1.7",
+      "episodes": 18,
+      "success_rate": 0.8333333333333334,
+      "collision_rate": 0.16666666666666666,
+      "timeout_rate": 0.0,
+      "mean_steps": 42.72222222222222,
+      "planning_ms_p50": 5.566599999838218,
+      "planning_ms_p95": 7.817560000330559,
+      "mean_model_steps": 4500.0,
+      "horizon_counts": {
+        "5": 0,
+        "10": 769,
+        "16": 0
+      }
+    },
+    {
+      "method": "residual_calibrated",
+      "condition": "damping_x1.7",
+      "episodes": 18,
+      "success_rate": 1.0,
+      "collision_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_steps": 43.888888888888886,
+      "planning_ms_p50": 5.617550000124538,
+      "planning_ms_p95": 7.702730000164592,
+      "mean_model_steps": 4500.0,
+      "horizon_counts": {
+        "5": 0,
+        "10": 790,
+        "16": 0
+      }
+    },
+    {
+      "method": "local_identification",
+      "condition": "damping_x1.7",
+      "episodes": 18,
+      "success_rate": 1.0,
+      "collision_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_steps": 43.888888888888886,
+      "planning_ms_p50": 3.94710000023224,
+      "planning_ms_p95": 4.595244999904935,
+      "mean_model_steps": 4500.0,
+      "horizon_counts": {
+        "5": 0,
+        "10": 790,
+        "16": 0
+      }
+    },
+    {
+      "method": "frozen_learned",
+      "condition": "damping_x2.2",
+      "episodes": 18,
+      "success_rate": 0.9444444444444444,
+      "collision_rate": 0.05555555555555555,
+      "timeout_rate": 0.0,
+      "mean_steps": 54.388888888888886,
+      "planning_ms_p50": 5.469499999890104,
+      "planning_ms_p95": 7.483690000299248,
+      "mean_model_steps": 4500.0,
+      "horizon_counts": {
+        "5": 0,
+        "10": 979,
+        "16": 0
+      }
+    },
+    {
+      "method": "residual_calibrated",
+      "condition": "damping_x2.2",
+      "episodes": 18,
+      "success_rate": 1.0,
+      "collision_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_steps": 53.166666666666664,
+      "planning_ms_p50": 5.502599999999802,
+      "planning_ms_p95": 7.44786000032036,
+      "mean_model_steps": 4500.0,
+      "horizon_counts": {
+        "5": 0,
+        "10": 957,
+        "16": 0
+      }
+    },
+    {
+      "method": "local_identification",
+      "condition": "damping_x2.2",
+      "episodes": 18,
+      "success_rate": 1.0,
+      "collision_rate": 0.0,
+      "timeout_rate": 0.0,
+      "mean_steps": 54.0,
+      "planning_ms_p50": 4.969399999936286,
+      "planning_ms_p95": 5.634969999778149,
+      "mean_model_steps": 4500.0,
+      "horizon_counts": {
+        "5": 0,
+        "10": 972,
+        "16": 0
+      }
+    }
+  ],
+  "prediction": [
+    {
+      "method": "frozen_learned",
+      "scale": 1.0,
+      "horizon": 1,
+      "rmse": 0.0009609838708770159,
+      "windows": 60
+    },
+    {
+      "method": "frozen_learned",
+      "scale": 1.0,
+      "horizon": 5,
+      "rmse": 0.010150064638151499,
+      "windows": 60
+    },
+    {
+      "method": "frozen_learned",
+      "scale": 1.0,
+      "horizon": 10,
+      "rmse": 0.022366065080256837,
+      "windows": 60
+    },
+    {
+      "method": "frozen_learned",
+      "scale": 1.0,
+      "horizon": 16,
+      "rmse": 0.030764362813312747,
+      "windows": 60
+    },
+    {
+      "method": "residual_calibrated",
+      "scale": 1.0,
+      "horizon": 1,
+      "rmse": 0.0007980201531536502,
+      "windows": 60
+    },
+    {
+      "method": "residual_calibrated",
+      "scale": 1.0,
+      "horizon": 5,
+      "rmse": 0.012388998968780629,
+      "windows": 60
+    },
+    {
+      "method": "residual_calibrated",
+      "scale": 1.0,
+      "horizon": 10,
+      "rmse": 0.04422475607056855,
+      "windows": 60
+    },
+    {
+      "method": "residual_calibrated",
+      "scale": 1.0,
+      "horizon": 16,
+      "rmse": 0.0854565368735492,
+      "windows": 60
+    },
+    {
+      "method": "local_identification",
+      "scale": 1.0,
+      "horizon": 1,
+      "rmse": 0.0035394742330886165,
+      "windows": 60
+    },
+    {
+      "method": "local_identification",
+      "scale": 1.0,
+      "horizon": 5,
+      "rmse": 0.05877107041245353,
+      "windows": 60
+    },
+    {
+      "method": "local_identification",
+      "scale": 1.0,
+      "horizon": 10,
+      "rmse": 0.2037548827271686,
+      "windows": 60
+    },
+    {
+      "method": "local_identification",
+      "scale": 1.0,
+      "horizon": 16,
+      "rmse": 0.46814503140382324,
+      "windows": 60
+    },
+    {
+      "method": "frozen_learned",
+      "scale": 1.7,
+      "horizon": 1,
+      "rmse": 0.014135607522761473,
+      "windows": 60
+    },
+    {
+      "method": "frozen_learned",
+      "scale": 1.7,
+      "horizon": 5,
+      "rmse": 0.1576001991794746,
+      "windows": 60
+    },
+    {
+      "method": "frozen_learned",
+      "scale": 1.7,
+      "horizon": 10,
+      "rmse": 0.417251038073464,
+      "windows": 60
+    },
+    {
+      "method": "frozen_learned",
+      "scale": 1.7,
+      "horizon": 16,
+      "rmse": 0.7118387601959348,
+      "windows": 60
+    },
+    {
+      "method": "residual_calibrated",
+      "scale": 1.7,
+      "horizon": 1,
+      "rmse": 0.0006527518388367338,
+      "windows": 60
+    },
+    {
+      "method": "residual_calibrated",
+      "scale": 1.7,
+      "horizon": 5,
+      "rmse": 0.011553697182309192,
+      "windows": 60
+    },
+    {
+      "method": "residual_calibrated",
+      "scale": 1.7,
+      "horizon": 10,
+      "rmse": 0.039089807343175936,
+      "windows": 60
+    },
+    {
+      "method": "residual_calibrated",
+      "scale": 1.7,
+      "horizon": 16,
+      "rmse": 0.06565131190987447,
+      "windows": 60
+    },
+    {
+      "method": "local_identification",
+      "scale": 1.7,
+      "horizon": 1,
+      "rmse": 0.002796531695046775,
+      "windows": 60
+    },
+    {
+      "method": "local_identification",
+      "scale": 1.7,
+      "horizon": 5,
+      "rmse": 0.04528930733967688,
+      "windows": 60
+    },
+    {
+      "method": "local_identification",
+      "scale": 1.7,
+      "horizon": 10,
+      "rmse": 0.15699718617370226,
+      "windows": 60
+    },
+    {
+      "method": "local_identification",
+      "scale": 1.7,
+      "horizon": 16,
+      "rmse": 0.3300794482636753,
+      "windows": 60
+    },
+    {
+      "method": "frozen_learned",
+      "scale": 2.2,
+      "horizon": 1,
+      "rmse": 0.020270792910538266,
+      "windows": 60
+    },
+    {
+      "method": "frozen_learned",
+      "scale": 2.2,
+      "horizon": 5,
+      "rmse": 0.2260500043557833,
+      "windows": 60
+    },
+    {
+      "method": "frozen_learned",
+      "scale": 2.2,
+      "horizon": 10,
+      "rmse": 0.595263006918021,
+      "windows": 60
+    },
+    {
+      "method": "frozen_learned",
+      "scale": 2.2,
+      "horizon": 16,
+      "rmse": 1.0251042848620415,
+      "windows": 60
+    },
+    {
+      "method": "residual_calibrated",
+      "scale": 2.2,
+      "horizon": 1,
+      "rmse": 0.0004912780016031105,
+      "windows": 60
+    },
+    {
+      "method": "residual_calibrated",
+      "scale": 2.2,
+      "horizon": 5,
+      "rmse": 0.007624432675652901,
+      "windows": 60
+    },
+    {
+      "method": "residual_calibrated",
+      "scale": 2.2,
+      "horizon": 10,
+      "rmse": 0.023556951687704542,
+      "windows": 60
+    },
+    {
+      "method": "residual_calibrated",
+      "scale": 2.2,
+      "horizon": 16,
+      "rmse": 0.04176445051062175,
+      "windows": 60
+    },
+    {
+      "method": "local_identification",
+      "scale": 2.2,
+      "horizon": 1,
+      "rmse": 0.002211521874235514,
+      "windows": 60
+    },
+    {
+      "method": "local_identification",
+      "scale": 2.2,
+      "horizon": 5,
+      "rmse": 0.03266756683024427,
+      "windows": 60
+    },
+    {
+      "method": "local_identification",
+      "scale": 2.2,
+      "horizon": 10,
+      "rmse": 0.12696760429109707,
+      "windows": 60
+    },
+    {
+      "method": "local_identification",
+      "scale": 2.2,
+      "horizon": 16,
+      "rmse": 0.2716561935458624,
+      "windows": 60
+    }
+  ],
+  "episode_runs": 162,
+  "note": "One frozen ensemble; 18 paired layouts. Update time included, logical calibration evaluations reported separately. No superiority/novelty claim."
+}

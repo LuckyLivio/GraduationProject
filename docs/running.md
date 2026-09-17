@@ -12,7 +12,7 @@ python -m venv .venv
 
 浏览器打开 `http://127.0.0.1:8765/web/`。实时模式调用本机 Python 推理；回放模式读取保存的 JSON。若端口已占用，改成 `--port 8766` 并打开对应地址。
 
-实时模式支持三种场景、六种方法、阻尼倍率与点击修改目标。阻尼修改在重置场景时生效。它是二维仿真导航，不连接真实机器人。网页中的离线成绩不随交互操作改变。
+实时模式支持三种场景、七种方法、阻尼倍率与点击修改目标。阻尼修改在重置场景时生效。它是二维仿真导航，不连接真实机器人。网页中的离线成绩不随交互操作改变。
 
 ## 训练与实验
 
@@ -27,10 +27,16 @@ python -m venv .venv
 复核三个独立训练运行：
 
 ```powershell
-.\.venv\Scripts\python scripts/replicate.py --episodes 24
+.\.venv\Scripts\python scripts/replicate.py --episodes 24 --output artifacts/local-replication
 ```
 
-该命令训练种子为 142/242/342；每个运行有 3 个集成成员，训练数据固定，测试场景配对。共 864 个方法运行回合，但不是 864 个独立环境布局。运行前保存的协议见 `artifacts/replication/protocol.json`。已有复核结果时不要直接覆盖；如需新的实验批次，应修改输出目录并记录协议。
+该命令训练种子为 142/242/342；每个运行有 3 个集成成员，训练数据固定，测试场景配对。共 864 个方法运行回合，但不是 864 个独立环境布局。已保存的协议见 `artifacts/replication/protocol.json`。脚本会拒绝覆盖已有协议目录；如需新的实验批次，指定新的输出目录。
+
+复现后续残差校准探索（使用冻结的首轮模型）：
+
+```powershell
+.\.venv\Scripts\python scripts/probe_residual.py --output artifacts/local-residual-probe
+```
 
 ## 结果文件
 

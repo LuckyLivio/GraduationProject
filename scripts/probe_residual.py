@@ -3,6 +3,7 @@
 Frozen trained ensemble; exactly one new mechanism and fresh diagnostic seeds.
 This does not establish novelty or general robustness.
 """
+import argparse
 import json
 from pathlib import Path
 import sys
@@ -21,7 +22,12 @@ from foresight.experiment import summarize, write_json
 
 
 def main():
-    output=ROOT/'artifacts/residual-probe'
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--output',default='artifacts/residual-probe')
+    args=parser.parse_args()
+    output=ROOT/args.output
+    if (output/'protocol.json').exists():
+        raise FileExistsError(f'Experiment already exists: {output}. Choose a new --output directory.')
     output.mkdir(parents=True,exist_ok=True)
     day0=json.loads((ROOT/'artifacts/day0/summary.json').read_text(encoding='utf-8'))
     base=HybridWorldModel.load(ROOT/'artifacts/day0/model.npz')

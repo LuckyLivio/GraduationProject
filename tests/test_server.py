@@ -1,6 +1,7 @@
 """HTTP checks for localhost live inference and restricted file serving."""
 import http.client
 import json
+import math
 from pathlib import Path
 import tempfile
 import threading
@@ -114,6 +115,28 @@ class LiveServerTests(unittest.TestCase):
         self.assertEqual(goal["frame"]["state"][4:6], [8.0, 3.0])
         status, _ = self.request("POST", "/api/goal", {"session_id": session_id, "x": 0, "y": 3})
         self.assertEqual(status, 400)
+
+    @unittest.skipUnless((ROOT / "artifacts/day0/model.npz").exists() and
+                         (ROOT / "artifacts/day0/summary.json").exists(), "Trained checkpoint unavailable")
+    def test_residual_calibration_is_live_and_session_local(self):
+        status, episode = self.request("POST", "/api/reset", {"method": "residual_calibrated", "seed": 41,
+                                                                "scenario": "open", "damping_scale": 1.7})
+        self.assertEqual(status, 200)
+        for step_number in (1, 2):
+            status, step = self.request("POST", "/api/step", {"session_id": episode["session_id"]})
+            self.assertEqual(status, 200)
+            self.assertEqual(step["step"], step_number)
+            self.assertEqual(step["frame"]["horizon"], 10)
+            self.assertTrue(math.isfinite(step["frame"]["learned_scale"]))
+            self.assertTrue(math.isfinite(step["frame"]["calibration_ms"]))
+            self.assertGreaterEqual(step["frame"]["calibration_ms"], 0)
+        self.assertGreater(step["frame"]["scale_updates"], 0)
+        status, another = self.request("POST", "/api/reset", {"method": "residual_calibrated", "seed": 41,
+                                                                "scenario": "open", "damping_scale": 1.7})
+        self.assertEqual(status, 200)
+        _, first_step = self.request("POST", "/api/step", {"session_id": another["session_id"]})
+        self.assertEqual(first_step["frame"]["learned_scale"], 1.0)
+        self.assertEqual(first_step["frame"]["scale_updates"], 0)
 
 
 if __name__ == "__main__":

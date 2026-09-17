@@ -1,0 +1,37 @@
+{
+  "stage": "exploratory_after_negative_result",
+  "model": "fixed day0 seed42 ensemble",
+  "new_mechanism": "5-transition residual WLS multiplicative correction of learned spatial damping",
+  "horizon": 10,
+  "budget": 4500,
+  "scales": [
+    1.0,
+    1.7,
+    2.2
+  ],
+  "scene_seeds": [
+    40000,
+    40001,
+    40002,
+    40003,
+    40004,
+    40005,
+    40006,
+    40007,
+    40008,
+    40009,
+    40010,
+    40011,
+    40012,
+    40013,
+    40014,
+    40015,
+    40016,
+    40017
+  ],
+  "prediction_data_seed": 45100,
+  "prediction_windows_per_scale": 60,
+  "known_scale_access": false,
+  "observe_overhead": "logged separately; added for end-to-end controller time",
+  "claim": "candidate engineering mechanism; novelty and generality unproven"
+}

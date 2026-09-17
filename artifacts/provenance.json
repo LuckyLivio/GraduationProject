@@ -1,0 +1,18 @@
+{
+  "day0": {
+    "implementation_commit": "720e21c",
+    "checkpoint_sha256": "7e472e7fe3dc9772861ec374bb7ed0b82993616829c2bfc8be355fefbcec12cb"
+  },
+  "replication": {
+    "implementation_commit": "afb6e83",
+    "per_run_source_hashes": "see each seed protocol.json"
+  },
+  "residual_probe": {
+    "implementation_commit": "99002b6",
+    "base_checkpoint": "artifacts/day0/model.npz"
+  },
+  "notes": [
+    "Later changes protect existing output directories but do not change these stored result numbers.",
+    "Runtime model source is in foresight/model.py; hybrid structure and training targets are documented."
+  ]
+}

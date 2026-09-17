@@ -158,6 +158,8 @@ def summarize(rows):
 
 def run(args):
     output = Path(args.output)
+    if (output / 'protocol.json').exists():
+        raise FileExistsError(f'Experiment already exists: {output}. Choose a new --output directory to preserve evidence.')
     output.mkdir(parents=True, exist_ok=True)
     start = time.perf_counter()
     seeds = {'training_data': 1100, 'validation_data': 5100, 'prediction_test': 9100,
@@ -251,7 +253,7 @@ def run(args):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--output',default='artifacts/day0')
+    parser.add_argument('--output',default='artifacts/local-run')
     parser.add_argument('--episodes',type=int,default=12)
     parser.add_argument('--train-episodes',type=int,default=240)
     parser.add_argument('--epochs',type=int,default=80)

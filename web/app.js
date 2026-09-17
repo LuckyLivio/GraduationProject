@@ -3,8 +3,9 @@
 (() => {
   const $ = id => document.getElementById(id);
   const ui = Object.fromEntries(["data-status","experiment-notice","notice-title","notice-text","reload-data","world-canvas","world-container","scene-empty","scene-coordinate","scene-outcome","scene-caption","scene-caption-text","method-select","method-description","condition-select","episode-select","frame-current","frame-total","timeline","play-button","reset-button","playback-speed","frame-horizon","horizon-viz","frame-latency","frame-model-steps","frame-disagreement","step-label","show-candidates","show-actual","chart-metric","evidence-empty","evidence-content","metric-chart","results-body","evidence-scope","data-provenance"].map(id => [id, $(id)]));
-  ["mode-live","mode-replay","mode-status","live-fields","live-scenario","live-seed","live-damping","damping-value","view-label","actual-legend","actual-option","inspector-note","evidence-condition"].forEach(id=>ui[id]=$(id));
+  ["mode-live","mode-replay","mode-status","live-fields","live-scenario","live-seed","live-damping","damping-value","view-label","actual-legend","actual-option","inspector-note","evidence-condition","frame-scale-row","frame-learned-scale","frame-calibration-row","frame-calibration-ms","scale-estimate-note"].forEach(id=>ui[id]=$(id));
   const methods = {
+    residual_calibrated: ["残差校准 · 学习世界模型", "保持空间阻尼模型冻结，利用近期实际转移与模型预测的残差修正阻尼倍率；不重新训练网络。"],
     global_physics: ["全局物理参数基线", "使用训练数据拟合的全局物理参数进行预测和规划。"],
     local_identification: ["局部参数辨识基线", "从近期状态转移中辨识局部动力学参数，用于后续预测。"],
     fixed_5: ["固定视野 · 5 步", "使用轻量混合世界模型，以固定 5 步视野推演候选动作。"],
@@ -57,6 +58,9 @@
   function updateFrame(){
     const frame=currentFrame();const position=state.mode==="live"?state.live.step:state.frame;ui.timeline.value=String(position);ui["frame-current"].textContent=String(position).padStart(3,"0");ui["step-label"].textContent=`STEP ${frame?String(position).padStart(3,"0"):"—"}`;
     ui["frame-horizon"].textContent=number(frame?.horizon,0);ui["frame-latency"].textContent=number(frame?.planning_ms,2);ui["frame-model-steps"].textContent=number(frame?.model_steps,0);ui["frame-disagreement"].textContent=number(frame?.disagreement,5);
+    ui["frame-scale-row"].hidden=state.mode!=="live"||!finite(frame?.learned_scale);ui["frame-learned-scale"].textContent=finite(frame?.learned_scale)?`${number(frame.learned_scale,3)}×`:"—";
+    ui["scale-estimate-note"].hidden=ui["frame-scale-row"].hidden;ui["scale-estimate-note"].textContent=`倍率根据本步执行后的观测校准，供下一次决策使用${finite(frame?.scale_updates)?`；已接受 ${number(frame.scale_updates,0)} 次更新`:""}。`;
+    ui["frame-calibration-row"].hidden=state.mode!=="live"||!finite(frame?.calibration_ms);ui["frame-calibration-ms"].textContent=finite(frame?.calibration_ms)?`${number(frame.calibration_ms,2)} ms`:"—";
     const maxHorizon=state.mode==="live"?16:Math.max(1,...(state.episode?.frames||[]).map(f=>finite(f.horizon)?f.horizon:0));
     const blocks=Array.from({length:16},(_,i)=>{const block=element("i",frame&&i<16*(frame.horizon||0)/maxHorizon?"active":"");block.style.height=`${12+i*1.4}px`;return block;});ui["horizon-viz"].replaceChildren(...blocks);
     if(frame){const candidates=frame.candidate_paths?.length||0;ui["scene-caption-text"].textContent=frame.predicted_path?.length?`推演 ${frame.horizon??frame.predicted_path.length-1} 步未来${candidates?` · 展示 ${candidates} 条候选轨迹`:""} · 执行当前动作后重新规划`:state.mode==="live"?state.live.done?"本回合已结束 · 重置场景后可再次运行":"点击开始，观察模型实时预测 · 点击地图设置目标":"当前决策未记录模型预测轨迹";}

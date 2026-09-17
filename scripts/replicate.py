@@ -13,8 +13,11 @@ import sys
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--episodes',type=int,default=24)
+    parser.add_argument('--output',default='artifacts/replication')
     args = parser.parse_args()
-    folder = Path('artifacts/replication')
+    folder = Path(args.output)
+    if (folder/'protocol.json').exists():
+        raise FileExistsError(f'Experiment already exists: {folder}. Choose a new --output directory.')
     folder.mkdir(parents=True,exist_ok=True)
     protocol = {'training_seeds':[142,242,342], 'navigation_seed_start':30000,
                 'episodes_per_condition_per_training_seed':args.episodes,
