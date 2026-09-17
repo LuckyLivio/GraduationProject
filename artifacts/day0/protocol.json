@@ -1,0 +1,38 @@
+{
+  "stage": "pilot",
+  "training_seed": 42,
+  "training_episodes": 240,
+  "validation_episodes": 50,
+  "prediction_test_episodes": 50,
+  "test_episodes_per_condition": 12,
+  "budget": 4500,
+  "horizons": [
+    5,
+    10,
+    16
+  ],
+  "epochs": 80,
+  "dt": 0.15,
+  "damping_scales": [
+    1.0,
+    1.7
+  ],
+  "split_seeds": {
+    "training_data": 1100,
+    "validation_data": 5100,
+    "prediction_test": 9100,
+    "planner_validation": 12000,
+    "navigation_test": 20000
+  },
+  "threshold_rule": "validation spread percentile 0.65",
+  "model_type": "hybrid learned damping with known integration/obstacle dynamics",
+  "main_question": "Does learned spatial damping improve prediction/control; does disagreement-driven horizon add benefit?",
+  "limitations": [
+    "one independent training run; ensemble members are not independent experiment runs",
+    "pilot tests are diagnostic; do not tune on these seeds and reuse them as final paper test",
+    "history-based physical baseline receives recent transitions; frozen learned model is stateless",
+    "known obstacle dynamics and kinematic structure retained; not fully learned state/video prediction",
+    "model-step budget compares ensemble members; real latency differs across predictor families"
+  ],
+  "git_commit_before_run": "720e21cf61a9847b6235de223bd70ed3f2db24f5"
+}
