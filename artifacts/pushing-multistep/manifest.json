@@ -1,0 +1,40 @@
+{
+  "datasets": {
+    "train": {
+      "path": "data\\processed\\pushing-pilot\\train.npz",
+      "sha256": "568a795b694563a79fa189d6f63bac3329806d825f1f9f198f5090edba954ed1",
+      "matches_published": true
+    },
+    "validation": {
+      "path": "data\\processed\\pushing-pilot\\validation.npz",
+      "sha256": "a2adba67705ae55f4d3872a44bb97df9015cfd6ebc1d9762d88a6c1a0a5249b4",
+      "matches_published": true
+    },
+    "evaluation": {
+      "episodes": 80,
+      "steps": 20,
+      "seed_start": 91000,
+      "sha256": "748284b3a586b26e645da5778b78f78914f247c8d17c5c1571e7e01517dd341a",
+      "contact_fraction": 0.916875
+    }
+  },
+  "initial_weights_sha256": {
+    "17": "b7bac3d10edd6173f0bd436cd75118c86ff5b66011d346b67d5d1e33d89cd299",
+    "29": "85a6f2bb3d982a5a92c6e66b81352b57024882b3a319687a36247ec04200f581",
+    "43": "a4c3e66428efd45cd2dc060435ef28e40e1e313b4cde7a47f2691ec9c7c03d18"
+  },
+  "protocol_sha256": "473d5f19c824a6e6faaeb4c153e725011bb6204cea0a97fafe54582e32385207",
+  "frozen_config": {
+    "seeds": [
+      17,
+      29,
+      43
+    ],
+    "updates": 2000,
+    "batch": 256,
+    "train_horizon": 5,
+    "validation_horizon": 10,
+    "lr": 0.0002
+  },
+  "notes": "Fresh development panel; repeated training seeds are not independent environment samples."
+}
